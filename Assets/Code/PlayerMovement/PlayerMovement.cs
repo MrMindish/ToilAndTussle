@@ -14,6 +14,7 @@ namespace AB
         public float moveSpeed;
         public float slowedMoveSpeed;
         public float jumpingPower;
+        public bool isStunned;
 
         public float pushForce;
 

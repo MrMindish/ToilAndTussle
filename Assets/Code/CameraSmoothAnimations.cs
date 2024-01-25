@@ -2,17 +2,21 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CameraSmoothAnimations : MonoBehaviour
+namespace AB
 {
-    // Start is called before the first frame update
-    void Start()
+    public class CameraSmoothAnimations : MonoBehaviour
     {
-        
-    }
+        [SerializeField] GameObject playerCam;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        private void Start()
+        {
+            playerCam = GameObject.FindWithTag("MainCamera");
+        }
+
+        private void Update()
+        {
+            Quaternion look = Quaternion.LookRotation(playerCam.transform.forward, Vector3.up);
+            transform.rotation = look;
+        }
     }
 }
