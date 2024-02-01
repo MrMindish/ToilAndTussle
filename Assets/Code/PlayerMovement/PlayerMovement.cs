@@ -9,12 +9,12 @@ namespace AB
     public class PlayerMovement : MonoBehaviour
     {
         PlayerPushBox playerPushBox;
+        PlayerAttackManager playerAttackManager;
 
         private float horizontal;
         public float moveSpeed;
         public float slowedMoveSpeed;
         public float jumpingPower;
-        public bool isStunned;
 
         public float pushForce;
 
@@ -33,13 +33,14 @@ namespace AB
         private void Awake()
         {
             playerPushBox = GetComponentInChildren<PlayerPushBox>();
+            playerAttackManager = GetComponentInChildren<PlayerAttackManager>();
         }
 
         void Update()
         {
                 horizontal = Input.GetAxisRaw("Horizontal");
 
-                if (Input.GetButtonDown(JumpName) && IsGrounded())
+                if (Input.GetButtonDown(JumpName) && IsGrounded() && playerAttackManager.isAttacking == false)
                 {
                     rb.velocity = new Vector3(rb.velocity.x, jumpingPower, 0);
                     
@@ -61,13 +62,12 @@ namespace AB
 
         private void FixedUpdate()
         {
-            if (IsGrounded() && playerPushBox.canPush == false)
+            if (IsGrounded() && playerPushBox.canPush == false && playerAttackManager.isAttacking == false)
             {
                 //movement part
                 rb.velocity = new Vector3(horizontal * moveSpeed, rb.velocity.y, 0f);
-
             }
-            else if (IsGrounded() && playerPushBox.canPush == true)
+            else if (IsGrounded() && playerPushBox.canPush == true && playerAttackManager.isAttacking == false)
             {
                 //make it so that, if the player isn't moving, they get pushed back 
                 rb.velocity = new Vector3(horizontal * slowedMoveSpeed, rb.velocity.y, 0f);
@@ -76,6 +76,7 @@ namespace AB
                     transform.position = transform.position;
                 }
             }
+
         }
 
         public bool IsGrounded()
@@ -87,7 +88,7 @@ namespace AB
 
         private void Flip()
         {
-            if (gameObject.tag == "Player1" && IsGrounded() && transform.position.x > playerTwoX.transform.position.x && isFacingRight == true)
+            if (gameObject.tag == "Player1" && IsGrounded() && transform.position.x > playerTwoX.transform.position.x && isFacingRight == false && playerAttackManager.isAttacking == false)
             {
                 isFacingRight = !isFacingRight;
                 Vector3 localScale = transform.localScale;
@@ -95,7 +96,7 @@ namespace AB
                 transform.localScale = localScale;
             }
 
-            if (gameObject.tag == "Player1" && IsGrounded() && transform.position.x < playerTwoX.transform.position.x && isFacingRight == false)
+            if (gameObject.tag == "Player1" && IsGrounded() && transform.position.x < playerTwoX.transform.position.x && isFacingRight == true && playerAttackManager.isAttacking == false)
             {
                 isFacingRight = !isFacingRight;
                 Vector3 localScale = transform.localScale;
