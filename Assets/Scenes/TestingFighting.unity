@@ -133,9 +133,9 @@ GameObject:
   m_Component:
   - component: {fileID: 77453363}
   - component: {fileID: 77453364}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: P1HitBoxes
-  m_TagString: Untagged
+  m_TagString: Hurtbox
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -172,14 +172,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 77453362}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c313501922b18f043be86fa35e0c376d, type: 3}
+  m_Script: {fileID: 11500000, guid: 473bef2c649e2aa4dad9b57a234ee03d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyTarget: {fileID: 0}
-  isStunned: 0
-  attackDamage: 0
-  horizontalKnockback: 0
-  verticalKnockback: 0
+  playerHitBoxes:
+  - {fileID: 315474339}
+  - {fileID: 1217222907}
+  - {fileID: 987594796}
+  - {fileID: 1105917333}
+  - {fileID: 1049400003}
+  - {fileID: 428697057}
+  - {fileID: 1392843061}
+  - {fileID: 1263962622}
 --- !u!1 &229089001
 GameObject:
   m_ObjectHideFlags: 0
@@ -335,7 +339,7 @@ GameObject:
   - component: {fileID: 258834416}
   - component: {fileID: 258834415}
   - component: {fileID: 258834414}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: P1HitboxRArmWLK
   m_TagString: Hurtbox
   m_Icon: {fileID: 0}
@@ -530,9 +534,9 @@ GameObject:
   - component: {fileID: 315474343}
   - component: {fileID: 315474342}
   - component: {fileID: 315474341}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: P1HitboxHeadWLK
-  m_TagString: Hurtbox
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -627,9 +631,9 @@ GameObject:
   - component: {fileID: 428697061}
   - component: {fileID: 428697060}
   - component: {fileID: 428697059}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: P1HitboxLFootWLK
-  m_TagString: Hurtbox
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -724,7 +728,7 @@ GameObject:
   - component: {fileID: 476636491}
   - component: {fileID: 476636490}
   - component: {fileID: 476636489}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: P1HitboxHeadWLK
   m_TagString: Hurtbox
   m_Icon: {fileID: 0}
@@ -1047,7 +1051,7 @@ GameObject:
   - component: {fileID: 752392788}
   - component: {fileID: 752392787}
   - component: {fileID: 752392786}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: P1HitboxLLegWLK
   m_TagString: Hurtbox
   m_Icon: {fileID: 0}
@@ -1144,7 +1148,7 @@ GameObject:
   - component: {fileID: 804139470}
   - component: {fileID: 804139469}
   - component: {fileID: 804139468}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: P1HitboxLArmWLK
   m_TagString: Hurtbox
   m_Icon: {fileID: 0}
@@ -1622,9 +1626,9 @@ GameObject:
   - component: {fileID: 987594800}
   - component: {fileID: 987594799}
   - component: {fileID: 987594798}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: P1HitboxRLegWLK
-  m_TagString: Hurtbox
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1719,9 +1723,9 @@ GameObject:
   - component: {fileID: 1049400007}
   - component: {fileID: 1049400006}
   - component: {fileID: 1049400005}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: P1HitboxRFootWLK
-  m_TagString: Hurtbox
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1816,9 +1820,9 @@ GameObject:
   - component: {fileID: 1105917337}
   - component: {fileID: 1105917336}
   - component: {fileID: 1105917335}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: P1HitboxLLegWLK
-  m_TagString: Hurtbox
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1913,9 +1917,9 @@ GameObject:
   - component: {fileID: 1217222911}
   - component: {fileID: 1217222910}
   - component: {fileID: 1217222909}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: P1HitboxChestWLK
-  m_TagString: Hurtbox
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2010,7 +2014,7 @@ GameObject:
   - component: {fileID: 1219367484}
   - component: {fileID: 1219367483}
   - component: {fileID: 1219367482}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: P1HitboxRLegWLK
   m_TagString: Hurtbox
   m_Icon: {fileID: 0}
@@ -2107,9 +2111,9 @@ GameObject:
   - component: {fileID: 1263962626}
   - component: {fileID: 1263962625}
   - component: {fileID: 1263962624}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: P1HitboxLArmWLK
-  m_TagString: Hurtbox
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2239,8 +2243,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c313501922b18f043be86fa35e0c376d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hurtboxs:
+    serializedVersion: 2
+    m_Bits: 0
   enemyTarget: {fileID: 0}
   isStunned: 0
+  isHit: 0
   attackDamage: 50
   horizontalKnockback: 0
   verticalKnockback: 0
@@ -2432,9 +2440,9 @@ GameObject:
   - component: {fileID: 1392843065}
   - component: {fileID: 1392843064}
   - component: {fileID: 1392843063}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: P1HitboxRArmWLK
-  m_TagString: Hurtbox
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2529,7 +2537,7 @@ GameObject:
   - component: {fileID: 1524996245}
   - component: {fileID: 1524996244}
   - component: {fileID: 1524996243}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: P1HitboxChestWLK
   m_TagString: Hurtbox
   m_Icon: {fileID: 0}
@@ -2866,7 +2874,7 @@ GameObject:
   - component: {fileID: 1695480570}
   - component: {fileID: 1695480569}
   - component: {fileID: 1695480568}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: P1HitboxLFootWLK
   m_TagString: Hurtbox
   m_Icon: {fileID: 0}
@@ -3093,8 +3101,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c313501922b18f043be86fa35e0c376d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hurtboxs:
+    serializedVersion: 2
+    m_Bits: 256
   enemyTarget: {fileID: 1955260032}
   isStunned: 0
+  isHit: 0
   attackDamage: 50
   horizontalKnockback: 0
   verticalKnockback: 0
@@ -3110,7 +3122,7 @@ GameObject:
   - component: {fileID: 1919321531}
   - component: {fileID: 1919321530}
   - component: {fileID: 1919321529}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: P1HitboxRFootWLK
   m_TagString: Hurtbox
   m_Icon: {fileID: 0}
@@ -3205,9 +3217,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1955260033}
   - component: {fileID: 1955260034}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: P2HitBoxes
-  m_TagString: Untagged
+  m_TagString: Hurtbox
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3247,8 +3259,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c313501922b18f043be86fa35e0c376d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hurtboxs:
+    serializedVersion: 2
+    m_Bits: 0
   enemyTarget: {fileID: 0}
   isStunned: 0
+  isHit: 0
   attackDamage: 0
   horizontalKnockback: 0
   verticalKnockback: 0
