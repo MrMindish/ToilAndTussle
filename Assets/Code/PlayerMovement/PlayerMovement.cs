@@ -22,9 +22,12 @@ namespace AB
 
         public GameObject playerOneX;
         public GameObject playerTwoX;
-        
 
         private bool isFacingRight = true;
+
+        public bool isRightPressed;
+        public bool isLeftPressed;
+        public bool isDownPressed;
 
         [SerializeField] private Rigidbody rb;
         [SerializeField] private LayerMask groundLayer;
@@ -51,7 +54,33 @@ namespace AB
                     rb.velocity = new Vector3(rb.velocity.x, rb.velocity.y * 0.5f, 0f);
                 }
 
-                Flip();
+            if (Input.GetKey(KeyCode.RightArrow))
+            {
+                isRightPressed = true;
+                isLeftPressed = false;
+                isDownPressed = false;
+            }
+            else if (Input.GetKey(KeyCode.LeftArrow))
+            {
+                isLeftPressed = true;
+                isRightPressed = false;
+                isDownPressed = false;
+            }
+            else if (Input.GetKey(KeyCode.DownArrow))
+            {
+                isDownPressed = true;
+                isRightPressed = false;
+                isLeftPressed = false;
+            }
+            else
+            {
+                isRightPressed = false;
+                isLeftPressed = false;
+                isDownPressed = false;
+            }
+
+
+            Flip();
             
         }
 

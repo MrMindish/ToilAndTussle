@@ -6,53 +6,57 @@ using UnityEngine.SceneManagement;
 using System.Collections.Generic;
 using AB;
 using UnityEngine.Video;
-
-public class ButtonHover : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
+namespace AB
 {
-    [Header("Images and Sprites - Buttons")]
-    [Space]
-    public Sprite normalSprite;
-    public Sprite hoverSprite;
-    public Sprite pressedSprite;
-    private Image buttonImage;
-
-    [Header("Menu Videos")]
-    [Space]
-    public RawImage VersusVideo;
-    public RenderTexture OtherVideo;
-    
 
 
-    void Start()
+    public class ButtonHover : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     {
-        buttonImage = GetComponent<Image>();
-        buttonImage.sprite = normalSprite;
-    }
+        [Header("Images and Sprites - Buttons")]
+        [Space]
+        public Sprite normalSprite;
+        public Sprite hoverSprite;
+        public Sprite pressedSprite;
+        private Image buttonImage;
 
-    public void OnPointerEnter(PointerEventData eventData)
-    {
-        buttonImage.sprite = hoverSprite;
-        VersusVideo.texture = OtherVideo;
-    }
+        [Header("Menu Videos")]
+        [Space]
+        public RawImage VersusVideo;
+        public RenderTexture OtherVideo;
 
-    public void OnPointerExit(PointerEventData eventData)
-    {
 
-        buttonImage.sprite = normalSprite;
-    }
 
-    public void EnterVersus()
-    {
-        SceneManager.LoadScene("TestingFighting");
-    }
+        void Start()
+        {
+            buttonImage = GetComponent<Image>();
+            buttonImage.sprite = normalSprite;
+        }
 
-    public void EnterStory()
-    {
-        Debug.Log("Story Selected");
-    }
+        public void OnPointerEnter(PointerEventData eventData)
+        {
+            buttonImage.sprite = hoverSprite;
+            VersusVideo.texture = OtherVideo;
+        }
 
-    public void EnterMore()
-    {
-        Debug.Log("More Selected");
+        public void OnPointerExit(PointerEventData eventData)
+        {
+
+            buttonImage.sprite = normalSprite;
+        }
+
+        public void EnterVersus()
+        {
+            SceneManager.LoadScene("TestingFighting");
+        }
+
+        public void EnterStory()
+        {
+            Debug.Log("Story Selected");
+        }
+
+        public void EnterMore()
+        {
+            Debug.Log("More Selected");
+        }
     }
 }

@@ -36,27 +36,26 @@ namespace AB
             playerHurtboxManager = GetComponent<PlayerHurtboxManager>();
         }
 
-        private void OnTriggerEnter(Collider other)
+        public void OnTriggerEnter(Collider other)
         {
             // Check if the hit has not occurred and the collider belongs to the hurtbox layer
             if (!hasHit && enemyTarget != null && ((1 << other.gameObject.layer) & hurtboxs) != 0)
             {
-                // Reduce player health
                 playerHealth.health -= attackDamage;
-
-                // Set the flag to true to indicate that the hit has occurred
                 hasHit = true;
-
-                // Debug log for testing
-                Debug.Log("Hit " + other.gameObject.name);
+                StartCoroutine(hasHitTimer());
+                Debug.Log("Hit" + other.gameObject.name);
             }
+            
         }
-        private void OnTriggerExit(Collider other)
+
+        public IEnumerator hasHitTimer()
         {
-            if (!hasHit && enemyTarget != null && ((1 << other.gameObject.layer) & hurtboxs) != 0)
-            {
-                hasHit = false;
-            }
+            
+            
+            yield return new WaitForSeconds(0.6f);
+            Debug.Log("WHYNOT");
+            hasHit = false;
         }
     }
 }

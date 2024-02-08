@@ -262,7 +262,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: c0bb16c2143511c40bda5a0b16c8541a, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 33dc994392a6669439b9582c680c6d52, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -1034,6 +1034,9 @@ MonoBehaviour:
   JumpName: Jump
   playerOneX: {fileID: 741692797}
   playerTwoX: {fileID: 933421091}
+  isRightPressed: 0
+  isLeftPressed: 0
+  isDownPressed: 0
   rb: {fileID: 741692803}
   groundLayer:
     serializedVersion: 2
@@ -1273,6 +1276,9 @@ MonoBehaviour:
   JumpName: Jump
   playerOneX: {fileID: 933421091}
   playerTwoX: {fileID: 0}
+  isRightPressed: 0
+  isLeftPressed: 0
+  isDownPressed: 0
   rb: {fileID: 933421093}
   groundLayer:
     serializedVersion: 2
@@ -1592,7 +1598,7 @@ GameObject:
   m_Component:
   - component: {fileID: 978988540}
   m_Layer: 0
-  m_Name: P1Hurtboxes
+  m_Name: P2Hurtboxes
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2210,7 +2216,7 @@ GameObject:
   - component: {fileID: 1275921918}
   - component: {fileID: 1275921917}
   m_Layer: 0
-  m_Name: P1HurtLN
+  m_Name: P2HurtLN
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2238,7 +2244,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1275921915}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c313501922b18f043be86fa35e0c376d, type: 3}
   m_Name: 

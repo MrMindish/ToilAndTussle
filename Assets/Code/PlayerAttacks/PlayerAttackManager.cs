@@ -40,6 +40,10 @@ namespace AB
                 isAttacking = true;
                 attackCooldown = 0.6f;
             }
+            if (Input.GetKeyDown(lightInput) && playerMovement.IsGrounded() && isAttacking == false && playerMovement.isRightPressed)
+            {
+
+            }
 
             if (attackCooldown > 0f)
             {
@@ -49,6 +53,11 @@ namespace AB
             if (attackCooldown <= 0f)
             {
                 isAttacking = false;
+            }
+
+            if(attackCooldown < 0f)
+            {
+                attackCooldown = 0f;
             }
         }
 
