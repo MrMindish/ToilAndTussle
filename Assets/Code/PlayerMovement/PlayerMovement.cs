@@ -11,6 +11,7 @@ namespace AB
         PlayerPushBox playerPushBox;
         PlayerAttackManager playerAttackManager;
 
+        //Handles all of the movement speed and such
         private float horizontal;
         public float moveSpeed;
         public float slowedMoveSpeed;
@@ -20,14 +21,20 @@ namespace AB
 
         public string JumpName;
 
+        //Used for the movement code to understand who the target is
         public GameObject playerOneX;
         public GameObject playerTwoX;
 
+        //Makes sure the player is facing towards the enemy
         private bool isFacingRight = true;
 
+        //Registers the directional inputs
         public bool isRightPressed;
         public bool isLeftPressed;
         public bool isDownPressed;
+
+        //Used for the crouch input
+        private bool isCrouching = false;
 
         [SerializeField] private Rigidbody rb;
         [SerializeField] private LayerMask groundLayer;
@@ -54,6 +61,12 @@ namespace AB
                     rb.velocity = new Vector3(rb.velocity.x, rb.velocity.y * 0.5f, 0f);
                 }
 
+                if(Input.GetKey(KeyCode.DownArrow) && !IsGrounded())
+                {
+                    IsCrouched();
+                }
+
+            //handles the directional inputs
             if (Input.GetKey(KeyCode.RightArrow))
             {
                 isRightPressed = true;
@@ -80,7 +93,7 @@ namespace AB
             }
 
 
-            Flip();
+                Flip();
             
         }
 
@@ -111,6 +124,11 @@ namespace AB
         public bool IsGrounded()
         {
             return Physics.Raycast(orientation.position, Vector3.down, 0.1f);
+        }
+
+        public bool IsCrouched()
+        {
+            return isCrouching;
         }
 
 

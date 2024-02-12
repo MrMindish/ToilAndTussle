@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
+// Checks the attacking Hitboxes on the players. 
 namespace AB
 {
     public class PlayerAttackingHitboxes : MonoBehaviour
@@ -15,19 +16,21 @@ namespace AB
         public GameObject enemyTarget;
         public bool isStunned;
         public bool isHit;
+        public bool hasTakenDamage;
 
         public int attackDamage;
         public int horizontalKnockback;
         public int verticalKnockback;
 
         // Flag to check if the hit has already occurred
-        private bool hasHit;
+        public bool hasHit;
 
         private void Start()
         {
             isStunned = false;
             isHit = false;
             hasHit = false;
+            hasTakenDamage = false;
         }
 
         private void Awake()
@@ -39,7 +42,7 @@ namespace AB
         public void OnTriggerEnter(Collider other)
         {
             // Check if the hit has not occurred and the collider belongs to the hurtbox layer
-            if (!hasHit && enemyTarget != null && ((1 << other.gameObject.layer) & hurtboxs) != 0)
+            if (enemyTarget != null && ((1 << other.gameObject.layer) & hurtboxs) != 0)
             {
                 playerHealth.health -= attackDamage;
                 hasHit = true;
@@ -48,12 +51,12 @@ namespace AB
             }
             
         }
-
+        
         public IEnumerator hasHitTimer()
         {
             
             
-            yield return new WaitForSeconds(0.6f);
+            yield return new WaitForSeconds(0.23f);
             Debug.Log("WHYNOT");
             hasHit = false;
         }

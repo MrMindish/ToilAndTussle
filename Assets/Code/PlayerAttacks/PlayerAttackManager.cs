@@ -38,7 +38,7 @@ namespace AB
             {
                 animator.SetTrigger("isLNAttacking");
                 isAttacking = true;
-                attackCooldown = 0.6f;
+                attackCooldown = 0.26f;
             }
             if (Input.GetKeyDown(lightInput) && playerMovement.IsGrounded() && isAttacking == false && playerMovement.isRightPressed)
             {
