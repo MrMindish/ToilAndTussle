@@ -12,16 +12,27 @@ namespace AB
         public KeyCode specialInput;
         public KeyCode blockInput;
 
+        //Calculates how long the player attacks for
         public bool isAttacking;
         public float attackCooldown;
 
+        //Calculates what direction the attacker moves if they land the attack (This is to prevent corner trapping)
         public float startPosition;
         public float endPosition;
 
+        //Calls upon the animation and animator windows
         private Animation anim;
         private Animator animator;
 
         PlayerMovement playerMovement;
+
+        //Registers the directional inputs
+        public bool isRightPressed;
+        public bool isLeftPressed;
+        public bool isDownPressed;
+
+        //Used for the crouch input
+        private bool isCrouching = false;
 
         private void Awake()
         {
@@ -59,6 +70,38 @@ namespace AB
             {
                 attackCooldown = 0f;
             }
+
+
+            //handles the directional inputs
+            if (Input.GetKey(KeyCode.RightArrow))
+            {
+                isRightPressed = true;
+                isLeftPressed = false;
+                isDownPressed = false;
+            }
+            else if (Input.GetKey(KeyCode.LeftArrow))
+            {
+                isLeftPressed = true;
+                isRightPressed = false;
+                isDownPressed = false;
+            }
+            else if (Input.GetKey(KeyCode.DownArrow))
+            {
+                isDownPressed = true;
+                isRightPressed = false;
+                isLeftPressed = false;
+                if (playerMovement.IsGrounded())
+                {
+                    animator.SetTrigger("isCrouchingStart");
+                    isCrouching = true;
+                }
+            }
+            else
+            {
+                isRightPressed = false;
+                isLeftPressed = false;
+                isDownPressed = false;
+            }
         }
 
         private void AnimationChecks()
@@ -66,6 +109,10 @@ namespace AB
 
         }
 
+        public bool IsCrouched()
+        {
+            return isCrouching;
+        }
 
 
     }
