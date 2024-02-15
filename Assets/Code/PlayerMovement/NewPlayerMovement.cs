@@ -16,7 +16,6 @@ namespace AB
 
         public GameObject playerOneX;
         public GameObject playerTwoX;
-        private bool isFacingRight = true;
 
         [SerializeField] private Rigidbody rb;
         [SerializeField] private LayerMask groundLayer;

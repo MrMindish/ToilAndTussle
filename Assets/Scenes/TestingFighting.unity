@@ -328,6 +328,10 @@ MonoBehaviour:
   attackCooldown: 0
   startPosition: 0
   endPosition: 0
+  isRightPressed: 0
+  isLeftPressed: 0
+  isDownPressed: 0
+  isNothingPressed: 0
 --- !u!114 &229089007
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -853,9 +857,6 @@ MonoBehaviour:
   JumpName: Jump
   playerOneX: {fileID: 741692797}
   playerTwoX: {fileID: 839004335}
-  isRightPressed: 0
-  isLeftPressed: 0
-  isDownPressed: 0
   rb: {fileID: 741692803}
   groundLayer:
     serializedVersion: 2

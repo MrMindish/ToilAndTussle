@@ -30,6 +30,7 @@ namespace AB
         public bool isRightPressed;
         public bool isLeftPressed;
         public bool isDownPressed;
+        public bool isNothingPressed;
 
         //Used for the crouch input
         private bool isCrouching = false;
@@ -45,13 +46,13 @@ namespace AB
 
         private void Update()
         {
-            if (Input.GetKeyDown(lightInput) && playerMovement.IsGrounded() && isAttacking == false)
+            if (Input.GetKeyDown(lightInput) && playerMovement.IsGrounded() && isAttacking == false && isNothingPressed)
             {
                 animator.SetTrigger("isLNAttacking");
                 isAttacking = true;
                 attackCooldown = 0.26f;
             }
-            if (Input.GetKeyDown(lightInput) && playerMovement.IsGrounded() && isAttacking == false && playerMovement.isRightPressed)
+            if (Input.GetKeyDown(lightInput) && playerMovement.IsGrounded() && isAttacking == false && isRightPressed)
             {
 
             }
@@ -101,6 +102,14 @@ namespace AB
                 isRightPressed = false;
                 isLeftPressed = false;
                 isDownPressed = false;
+            }
+            if(isRightPressed == false && isLeftPressed == false && isDownPressed == false)
+            {
+                isNothingPressed = true;
+            }
+            else
+            {
+                isNothingPressed = false;
             }
         }
 
