@@ -54,7 +54,9 @@ namespace AB
             }
             if (Input.GetKeyDown(lightInput) && playerMovement.IsGrounded() && isAttacking == false && isRightPressed)
             {
-
+                animator.SetTrigger("isLFAttacking");
+                isAttacking = true;
+                attackCooldown = 0.32f;
             }
 
             if (attackCooldown > 0f)
