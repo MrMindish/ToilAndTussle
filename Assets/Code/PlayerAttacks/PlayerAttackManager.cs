@@ -33,7 +33,7 @@ namespace AB
         public bool isNothingPressed;
 
         //Used for the crouch input
-        private bool isCrouching = false;
+        public bool isCrouching = false;
 
         private void Awake()
         {
@@ -76,7 +76,18 @@ namespace AB
 
 
             //handles the directional inputs
-            if (Input.GetKey(KeyCode.RightArrow))
+            if (Input.GetKey(KeyCode.DownArrow))
+            {
+                isDownPressed = true;
+                isRightPressed = false;
+                isLeftPressed = false;
+                if (playerMovement.IsGrounded())
+                {
+                    animator.SetTrigger("isCrouchingStart");
+                    isCrouching = true;
+                }
+            }
+            else if (Input.GetKey(KeyCode.RightArrow))
             {
                 isRightPressed = true;
                 isLeftPressed = false;
@@ -88,24 +99,23 @@ namespace AB
                 isRightPressed = false;
                 isDownPressed = false;
             }
-            else if (Input.GetKey(KeyCode.DownArrow))
-            {
-                isDownPressed = true;
-                isRightPressed = false;
-                isLeftPressed = false;
-                if (playerMovement.IsGrounded())
-                {
-                    animator.SetTrigger("isCrouchingStart");
-                    isCrouching = true;
-                }
-            }
             else
             {
                 isRightPressed = false;
                 isLeftPressed = false;
                 isDownPressed = false;
             }
-            if(isRightPressed == false && isLeftPressed == false && isDownPressed == false)
+
+            //Ends the crouch when the player releases down
+            if (Input.GetKeyUp(KeyCode.DownArrow))
+            {
+                isCrouching = false;
+                animator.ResetTrigger("isCrouchingStart");
+                animator.SetTrigger("isCrouchingEnd");
+            }
+
+            //Runs the bool that checks if it's possible to perform a Null attack
+            if (isRightPressed == false && isLeftPressed == false && isDownPressed == false)
             {
                 isNothingPressed = true;
             }
@@ -113,11 +123,6 @@ namespace AB
             {
                 isNothingPressed = false;
             }
-        }
-
-        private void AnimationChecks()
-        {
-
         }
 
         public bool IsCrouched()

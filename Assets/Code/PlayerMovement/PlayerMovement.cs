@@ -42,7 +42,7 @@ namespace AB
         {
                 horizontal = Input.GetAxisRaw("Horizontal");
 
-                if (Input.GetButtonDown(JumpName) && IsGrounded() && playerAttackManager.isAttacking == false)
+                if (Input.GetButtonDown(JumpName) && IsGrounded() && playerAttackManager.isAttacking == false && playerAttackManager.isCrouching == false)
                 {
                     rb.velocity = new Vector3(rb.velocity.x, jumpingPower, 0);
                     
@@ -60,12 +60,12 @@ namespace AB
 
         private void FixedUpdate()
         {
-            if (IsGrounded() && playerPushBox.canPush == false && playerAttackManager.isAttacking == false)
+            if (IsGrounded() && playerPushBox.canPush == false && playerAttackManager.isAttacking == false && playerAttackManager.isCrouching == false)
             {
                 //movement part
                 rb.velocity = new Vector3(horizontal * moveSpeed, rb.velocity.y, 0f);
             }
-            else if (IsGrounded() && playerPushBox.canPush == true && playerAttackManager.isAttacking == false)
+            else if (IsGrounded() && playerPushBox.canPush == true && playerAttackManager.isAttacking == false && playerAttackManager.isCrouching == false)
             {
                 //make it so that, if the player isn't moving, they get pushed back 
                 rb.velocity = new Vector3(horizontal * slowedMoveSpeed, rb.velocity.y, 0f);
