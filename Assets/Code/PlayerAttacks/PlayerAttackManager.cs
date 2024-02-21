@@ -73,9 +73,25 @@ namespace AB
             //Performs the Light Backwards Attack
             if (Input.GetKeyDown(lightInput) && playerMovement.IsGrounded() && transform.position.x < playerMovement.playerTwoX.transform.position.x && isAttacking == false && isLeftPressed)
             {
+                //On the Right Side of the Opponent
                 animator.SetTrigger("isLBAttacking");
                 isAttacking = true;
                 attackCooldown = 0.36f;
+            }
+            else if (Input.GetKeyDown(lightInput) && playerMovement.IsGrounded() && transform.position.x > playerMovement.playerTwoX.transform.position.x && isAttacking == false && isRightPressed)
+            {
+                //On the Left Side of the Opponent
+                animator.SetTrigger("isLBAttacking");
+                isAttacking = true;
+                attackCooldown = 0.36f;
+            }
+
+            //Performs the Light Crouch Attack
+            if (Input.GetKeyDown(lightInput) && playerMovement.IsGrounded() && isAttacking == false && isDownPressed && isCrouching)
+            {
+                animator.SetTrigger("isLCAttacking");
+                isAttacking = true;
+                attackCooldown = 0.5f;
             }
 
 
