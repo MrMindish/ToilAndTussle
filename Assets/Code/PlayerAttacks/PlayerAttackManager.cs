@@ -46,18 +46,38 @@ namespace AB
 
         private void Update()
         {
+            //Performs the Light Null Attack
             if (Input.GetKeyDown(lightInput) && playerMovement.IsGrounded() && isAttacking == false && isNothingPressed)
             {
                 animator.SetTrigger("isLNAttacking");
                 isAttacking = true;
                 attackCooldown = 0.26f;
             }
-            if (Input.GetKeyDown(lightInput) && playerMovement.IsGrounded() && isAttacking == false && isRightPressed)
+
+            //Performs the Light Forward Attack
+            if (Input.GetKeyDown(lightInput) && playerMovement.IsGrounded() && transform.position.x > playerMovement.playerTwoX.transform.position.x && isAttacking == false && isLeftPressed)
             {
+                //On the Left Side of the Opponent
                 animator.SetTrigger("isLFAttacking");
                 isAttacking = true;
                 attackCooldown = 0.32f;
             }
+            else if (Input.GetKeyDown(lightInput) && playerMovement.IsGrounded() && transform.position.x < playerMovement.playerTwoX.transform.position.x && isAttacking == false && isRightPressed)
+            {
+                //On the Right Side of the Opponent
+                animator.SetTrigger("isLFAttacking");
+                isAttacking = true;
+                attackCooldown = 0.32f;
+            }
+
+            //Performs the Light Backwards Attack
+            if (Input.GetKeyDown(lightInput) && playerMovement.IsGrounded() && transform.position.x < playerMovement.playerTwoX.transform.position.x && isAttacking == false && isLeftPressed)
+            {
+                animator.SetTrigger("isLBAttacking");
+                isAttacking = true;
+                attackCooldown = 0.36f;
+            }
+
 
             if (attackCooldown > 0f)
             {
