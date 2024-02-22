@@ -44,7 +44,6 @@ namespace AB
             // Check if the hit has not occurred and the collider belongs to the hurtbox layer
             if (enemyTarget != null && ((1 << other.gameObject.layer) & hurtboxs) != 0)
             {
-                playerHealth.health -= attackDamage;
                 hasHit = true;
                 StartCoroutine(hasHitTimer());
                 Debug.Log("Hit" + other.gameObject.name);
