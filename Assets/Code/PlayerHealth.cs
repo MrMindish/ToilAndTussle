@@ -54,9 +54,13 @@ namespace AB
                 //manages the chip timer
                 frontHealthBar.fillAmount = hFraction;
                 lerpTimer += Time.deltaTime;
-                float percentComplete = lerpTimer / chipSpeed;
-                percentComplete = percentComplete * percentComplete;
-                backHealthBar.fillAmount = Mathf.Lerp(fillB, hFraction, percentComplete);
+                if (!playerHurtboxManager.isStunned)
+                {
+                    float percentComplete = lerpTimer / chipSpeed;
+                    percentComplete = percentComplete * percentComplete;
+                    backHealthBar.fillAmount = Mathf.Lerp(fillB, hFraction, percentComplete);
+                }
+
             }
         }
 

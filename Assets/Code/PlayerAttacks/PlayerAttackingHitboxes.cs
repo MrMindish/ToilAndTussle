@@ -15,12 +15,18 @@ namespace AB
 
         public GameObject enemyTarget;
 
+        //helps the Hurtbox manager identify how many times each attack hits
         private float timer;
         public float hitboxTimer;
 
+        //calculates what kind of damage the attack does
         public int attackDamage;
         public int horizontalKnockback;
         public int verticalKnockback;
+        public float stunTime;
+
+        //Checks if it's possible to launch the opponent with the attack
+        public bool hasKnockback;
 
         // Flag to check if the hit has already occurred
         public bool hasHit;
