@@ -18,10 +18,12 @@ namespace AB
         public Image backHealthBar;
 
         PlayerAttackingHitboxes playerAttackingHitboxes;
+        PlayerHurtboxManager playerHurtboxManager;
 
         private void Awake()
         {
             playerAttackingHitboxes = GetComponentInChildren<PlayerAttackingHitboxes>();
+            playerHurtboxManager = GetComponentInChildren<PlayerHurtboxManager>();
         }
 
 
@@ -34,9 +36,10 @@ namespace AB
         {
             health = Mathf.Clamp(health, 0, maxHealth);
             UpdateHealthUI();
-            if (playerAttackingHitboxes.hasHit)
+            if (playerHurtboxManager.isHit)
             {
-                health -= playerAttackingHitboxes.attackDamage;
+                health -= playerHurtboxManager.damageToHealth;
+                playerHurtboxManager.isHit = false;
             }
         }
 
@@ -48,6 +51,7 @@ namespace AB
             float hFraction = health / maxHealth;
             if(fillB > hFraction)
             {
+                //manages the chip timer
                 frontHealthBar.fillAmount = hFraction;
                 lerpTimer += Time.deltaTime;
                 float percentComplete = lerpTimer / chipSpeed;

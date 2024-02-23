@@ -174,9 +174,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   enemyTarget: {fileID: 839004335}
-  isStunned: 0
-  isHit: 0
-  hasTakenDamage: 0
+  hitboxTimer: 0
   attackDamage: 40
   horizontalKnockback: 0
   verticalKnockback: 0
@@ -296,15 +294,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 473bef2c649e2aa4dad9b57a234ee03d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerHitBoxes:
-  - {fileID: 315474339}
-  - {fileID: 1217222907}
-  - {fileID: 987594796}
-  - {fileID: 1105917333}
-  - {fileID: 1049400003}
-  - {fileID: 428697057}
-  - {fileID: 1392843061}
-  - {fileID: 1263962622}
+  damageToHealth: 0
+  isHit: 0
 --- !u!1 &107211842
 GameObject:
   m_ObjectHideFlags: 0
@@ -381,6 +372,103 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 107211842}
   m_CullTransparentMesh: 1
+--- !u!1 &123966574
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 123966575}
+  - component: {fileID: 123966578}
+  - component: {fileID: 123966577}
+  - component: {fileID: 123966576}
+  m_Layer: 8
+  m_Name: PunchingHitbox
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &123966575
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 123966574}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.04, y: -0.033, z: 0}
+  m_LocalScale: {x: 0.9275643, y: 0.9590746, z: 0.92696}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 839004339}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &123966576
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 123966574}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!23 &123966577
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 123966574}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: bbb6074fbaa22834699cbe7dccf1e198, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!33 &123966578
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 123966574}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1 &229089001
 GameObject:
   m_ObjectHideFlags: 0
@@ -543,7 +631,7 @@ GameObject:
   - component: {fileID: 244479016}
   m_Layer: 0
   m_Name: P1HurtLC
-  m_TagString: Hurtbox
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -579,9 +667,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   enemyTarget: {fileID: 839004335}
-  isStunned: 0
-  isHit: 0
-  hasTakenDamage: 0
+  hitboxTimer: 0
   attackDamage: 50
   horizontalKnockback: 0
   verticalKnockback: 0
@@ -1228,9 +1314,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   enemyTarget: {fileID: 839004335}
-  isStunned: 0
-  isHit: 0
-  hasTakenDamage: 0
+  hitboxTimer: 0
   attackDamage: 30
   horizontalKnockback: 0
   verticalKnockback: 0
@@ -1469,6 +1553,8 @@ GameObject:
   - component: {fileID: 839004338}
   - component: {fileID: 839004337}
   - component: {fileID: 839004336}
+  - component: {fileID: 839004340}
+  - component: {fileID: 839004341}
   m_Layer: 8
   m_Name: Punching Bag
   m_TagString: Hurtbox
@@ -1550,10 +1636,41 @@ Transform:
   m_LocalPosition: {x: 0.76, y: 1.2193, z: -4.29}
   m_LocalScale: {x: 1, y: 2.3787, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 123966575}
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &839004340
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 839004335}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 315e541c1d0f55f48ac68ee0a0220486, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 1000
+  chipSpeed: 2
+  frontHealthBar: {fileID: 1447884095}
+  backHealthBar: {fileID: 1656274677}
+--- !u!114 &839004341
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 839004335}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 473bef2c649e2aa4dad9b57a234ee03d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damageToHealth: 0
+  isHit: 0
 --- !u!1 &955113368
 GameObject:
   m_ObjectHideFlags: 0
@@ -3002,10 +3119,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   enemyTarget: {fileID: 839004335}
-  isStunned: 0
-  isHit: 0
-  hasTakenDamage: 0
-  attackDamage: 50
+  hitboxTimer: 0.01
+  attackDamage: 30
   horizontalKnockback: 0
   verticalKnockback: 0
   hasHit: 0
@@ -3204,9 +3319,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   enemyTarget: {fileID: 839004335}
-  isStunned: 0
-  isHit: 0
-  hasTakenDamage: 0
+  hitboxTimer: 0
   attackDamage: 50
   horizontalKnockback: 0
   verticalKnockback: 0

@@ -14,9 +14,9 @@ namespace AB
         public LayerMask hurtboxs;
 
         public GameObject enemyTarget;
-        public bool isStunned;
-        public bool isHit;
-        public bool hasTakenDamage;
+
+        private float timer;
+        public float hitboxTimer;
 
         public int attackDamage;
         public int horizontalKnockback;
@@ -27,10 +27,8 @@ namespace AB
 
         private void Start()
         {
-            isStunned = false;
-            isHit = false;
             hasHit = false;
-            hasTakenDamage = false;
+            timer = hitboxTimer;
         }
 
         private void Awake()
@@ -42,22 +40,27 @@ namespace AB
         public void OnTriggerEnter(Collider other)
         {
             // Check if the hit has not occurred and the collider belongs to the hurtbox layer
-            if (enemyTarget != null && ((1 << other.gameObject.layer) & hurtboxs) != 0)
+            if (!hasHit && enemyTarget != null && ((1 << other.gameObject.layer) & hurtboxs) != 0)
             {
                 hasHit = true;
-                StartCoroutine(hasHitTimer());
                 Debug.Log("Hit" + other.gameObject.name);
             }
             
         }
-        
-        public IEnumerator hasHitTimer()
+
+        private void Update()
         {
+            if (hasHit)
+            {
+                timer -= Time.deltaTime;
+            }
             
-            
-            yield return new WaitForSeconds(0.23f);
-            Debug.Log("WHYNOT");
-            hasHit = false;
+            if(timer <= 0)
+            {
+                timer = 0;
+                hasHit = false;
+                timer = hitboxTimer;
+            }
         }
     }
 }
