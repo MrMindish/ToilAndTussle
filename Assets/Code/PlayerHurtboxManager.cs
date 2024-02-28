@@ -11,6 +11,8 @@ namespace AB
 
         public float damageToHealth;
         public float stunDuration;
+        public float vKnockback;
+        public float hKnockback;
 
         public bool isHit;
         public bool isStunned;
@@ -41,6 +43,8 @@ namespace AB
             if (attackerHitboxes != null)
             {
                 damageToHealth = attackerHitboxes.attackDamage;
+                vKnockback = attackerHitboxes.verticalKnockback;
+                hKnockback = attackerHitboxes.horizontalKnockback;
 
                 if (isStunned)
                 {

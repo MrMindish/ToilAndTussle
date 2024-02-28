@@ -10,6 +10,7 @@ namespace AB
     {
         PlayerPushBox playerPushBox;
         PlayerAttackManager playerAttackManager;
+        PlayerHurtboxManager hurtboxManager;
 
         //Handles all of the movement speed and such
         private float horizontal;
@@ -36,20 +37,23 @@ namespace AB
         {
             playerPushBox = GetComponentInChildren<PlayerPushBox>();
             playerAttackManager = GetComponentInChildren<PlayerAttackManager>();
+            hurtboxManager = GetComponentInChildren<PlayerHurtboxManager>();
         }
 
         void Update()
         {
                 horizontal = Input.GetAxisRaw("Horizontal");
 
-                if (Input.GetButtonDown(JumpName) && IsGrounded() && playerAttackManager.isAttacking == false && playerAttackManager.isCrouching == false)
+                if (Input.GetButtonDown(JumpName) && IsGrounded() && playerAttackManager.isAttacking == false && playerAttackManager.isCrouching == false && hurtboxManager.isStunned == false)
                 {
+                    //if the jump is inputed while the fighter is grounded, not attacking or being attacked, or crouching, then the jump is performed
                     rb.velocity = new Vector3(rb.velocity.x, jumpingPower, 0);
                     
                 }
 
                 if (Input.GetButtonUp(JumpName) && rb.velocity.y > 0f)
                 {
+                    //Allows the jump to be cancelled halfway, allowing short hops to happen
                     rb.velocity = new Vector3(rb.velocity.x, rb.velocity.y * 0.5f, 0f);
                 }
 
@@ -60,19 +64,14 @@ namespace AB
 
         private void FixedUpdate()
         {
-            if (IsGrounded() && playerPushBox.canPush == false && playerAttackManager.isAttacking == false && playerAttackManager.isCrouching == false)
+            if (IsGrounded() && playerPushBox.canPush == false && playerAttackManager.isAttacking == false && playerAttackManager.isCrouching == false && hurtboxManager.isStunned == false)
             {
                 //movement part
                 rb.velocity = new Vector3(horizontal * moveSpeed, rb.velocity.y, 0f);
             }
-            else if (IsGrounded() && playerPushBox.canPush == true && playerAttackManager.isAttacking == false && playerAttackManager.isCrouching == false)
+            else if (hurtboxManager.isStunned)
             {
-                //make it so that, if the player isn't moving, they get pushed back 
-                rb.velocity = new Vector3(horizontal * slowedMoveSpeed, rb.velocity.y, 0f);
-                if(slowedMoveSpeed == 0f)
-                {
-                    transform.position = transform.position;
-                }
+                Debug.Log("is stunned");
             }
 
         }
