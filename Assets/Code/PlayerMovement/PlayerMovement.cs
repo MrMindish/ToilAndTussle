@@ -69,9 +69,14 @@ namespace AB
                 //movement part
                 rb.velocity = new Vector3(horizontal * moveSpeed, rb.velocity.y, 0f);
             }
-            else if (hurtboxManager.isStunned)
+            else if (hurtboxManager.isStunned && hurtboxManager.isKnockback)
             {
                 Debug.Log("is stunned");
+                rb.velocity = new Vector3(hurtboxManager.hKnockback, hurtboxManager.vKnockback, 0f);
+            }
+            else if (hurtboxManager.isStunned && !hurtboxManager.isKnockback)
+            {
+                rb.velocity = new Vector3(rb.velocity.x, rb.velocity.y, 0f);
             }
 
         }
@@ -92,13 +97,45 @@ namespace AB
                 localScale.x *= -1f;
                 transform.localScale = localScale;
             }
-
-            if (gameObject.tag == "Player1" && IsGrounded() && transform.position.x < playerTwoX.transform.position.x && isFacingRight == true && playerAttackManager.isAttacking == false)
+            else if (gameObject.tag == "Player1" && IsGrounded() && transform.position.x < playerTwoX.transform.position.x && isFacingRight == true && playerAttackManager.isAttacking == false)
             {
                 isFacingRight = !isFacingRight;
                 Vector3 localScale = transform.localScale;
                 localScale.x *= -1f;
                 transform.localScale = localScale;
+            }
+
+            if (gameObject.tag == "Player2" && IsGrounded() && transform.position.x > playerOneX.transform.position.x && isFacingRight == false && playerAttackManager.isAttacking == false)
+            {
+                isFacingRight = !isFacingRight;
+                Vector3 localScale = transform.localScale;
+                localScale.x *= -1f;
+                transform.localScale = localScale;
+            }
+            else if (gameObject.tag == "Player2" && IsGrounded() && transform.position.x < playerOneX.transform.position.x && isFacingRight == true && playerAttackManager.isAttacking == false)
+            {
+                isFacingRight = !isFacingRight;
+                Vector3 localScale = transform.localScale;
+                localScale.x *= -1f;
+                transform.localScale = localScale;
+            }
+
+            if(gameObject.tag == "Player1" && transform.position.x < playerTwoX.transform.position.x && hurtboxManager.hKnockback > 0f)
+            {
+                hurtboxManager.hKnockback *= -1;
+            }
+            else if (gameObject.tag == "Player1" && transform.position.x > playerTwoX.transform.position.x && hurtboxManager.hKnockback < 0f)
+            {
+                hurtboxManager.hKnockback *= -1;
+            }
+
+            if (gameObject.tag == "Player2" && transform.position.x < playerOneX.transform.position.x && hurtboxManager.hKnockback > 0f)
+            {
+                hurtboxManager.hKnockback *= -1;
+            }
+            else if (gameObject.tag == "Player2" && transform.position.x > playerOneX.transform.position.x && hurtboxManager.hKnockback < 0f)
+            {
+                hurtboxManager.hKnockback *= -1;
             }
         }
 

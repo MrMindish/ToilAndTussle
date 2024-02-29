@@ -20,13 +20,11 @@ namespace AB
         public float hitboxTimer;
 
         //calculates what kind of damage the attack does
-        public int attackDamage;
-        public int horizontalKnockback;
-        public int verticalKnockback;
+        public float attackDamage;
+        public float horizontalKnockback;
+        public float verticalKnockback;
         public float stunTime;
-
-        //Checks if it's possible to launch the opponent with the attack
-        public bool hasKnockback;
+        public float knockbackTime;
 
         // Flag to check if the hit has already occurred
         public bool hasHit;

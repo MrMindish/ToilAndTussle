@@ -25,6 +25,7 @@ namespace AB
         private Animator animator;
 
         PlayerMovement playerMovement;
+        PlayerHurtboxManager hurtboxManager;
 
         //Registers the directional inputs
         public bool isRightPressed;
@@ -40,6 +41,7 @@ namespace AB
             anim = GetComponent<Animation>();
             animator = GetComponent<Animator>();
             playerMovement = GetComponentInParent<PlayerMovement>();
+            hurtboxManager = GetComponentInChildren<PlayerHurtboxManager>();
 
             isAttacking = false;
         }
@@ -47,7 +49,7 @@ namespace AB
         private void Update()
         {
             //Performs the Light Null Attack
-            if (Input.GetKeyDown(lightInput) && playerMovement.IsGrounded() && isAttacking == false && isNothingPressed)
+            if (Input.GetKeyDown(lightInput) && playerMovement.IsGrounded() && isAttacking == false && hurtboxManager.isStunned == false && isNothingPressed)
             {
                 animator.SetTrigger("isLNAttacking");
                 isAttacking = true;
@@ -55,14 +57,14 @@ namespace AB
             }
 
             //Performs the Light Forward Attack
-            if (Input.GetKeyDown(lightInput) && playerMovement.IsGrounded() && transform.position.x > playerMovement.playerTwoX.transform.position.x && isAttacking == false && isLeftPressed)
+            if (Input.GetKeyDown(lightInput) && playerMovement.IsGrounded() && transform.position.x > playerMovement.playerTwoX.transform.position.x && isAttacking == false && hurtboxManager.isStunned == false && isLeftPressed)
             {
                 //On the Left Side of the Opponent
                 animator.SetTrigger("isLFAttacking");
                 isAttacking = true;
                 attackCooldown = 0.32f;
             }
-            else if (Input.GetKeyDown(lightInput) && playerMovement.IsGrounded() && transform.position.x < playerMovement.playerTwoX.transform.position.x && isAttacking == false && isRightPressed)
+            else if (Input.GetKeyDown(lightInput) && playerMovement.IsGrounded() && transform.position.x < playerMovement.playerTwoX.transform.position.x && isAttacking == false && hurtboxManager.isStunned == false && isRightPressed)
             {
                 //On the Right Side of the Opponent
                 animator.SetTrigger("isLFAttacking");
@@ -71,14 +73,14 @@ namespace AB
             }
 
             //Performs the Light Backwards Attack
-            if (Input.GetKeyDown(lightInput) && playerMovement.IsGrounded() && transform.position.x < playerMovement.playerTwoX.transform.position.x && isAttacking == false && isLeftPressed)
+            if (Input.GetKeyDown(lightInput) && playerMovement.IsGrounded() && transform.position.x < playerMovement.playerTwoX.transform.position.x && isAttacking == false && hurtboxManager.isStunned == false && isLeftPressed)
             {
                 //On the Right Side of the Opponent
                 animator.SetTrigger("isLBAttacking");
                 isAttacking = true;
                 attackCooldown = 0.36f;
             }
-            else if (Input.GetKeyDown(lightInput) && playerMovement.IsGrounded() && transform.position.x > playerMovement.playerTwoX.transform.position.x && isAttacking == false && isRightPressed)
+            else if (Input.GetKeyDown(lightInput) && playerMovement.IsGrounded() && transform.position.x > playerMovement.playerTwoX.transform.position.x && isAttacking == false && hurtboxManager.isStunned == false && isRightPressed)
             {
                 //On the Left Side of the Opponent
                 animator.SetTrigger("isLBAttacking");
@@ -87,7 +89,7 @@ namespace AB
             }
 
             //Performs the Light Crouch Attack
-            if (Input.GetKeyDown(lightInput) && playerMovement.IsGrounded() && isAttacking == false && isDownPressed && isCrouching)
+            if (Input.GetKeyDown(lightInput) && playerMovement.IsGrounded() && isAttacking == false && hurtboxManager.isStunned == false && isDownPressed && isCrouching)
             {
                 animator.SetTrigger("isLCAttacking");
                 isAttacking = true;
