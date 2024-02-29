@@ -8,6 +8,7 @@ namespace AB
     public class PlayerHurtboxManager : MonoBehaviour
     {
         PlayerAttackingHitboxes playerAttackingHitboxes;
+        PlayerMovement playerMovement;
 
         //Recieves the data from the Attacking Hitboxes
         public float damageToHealth;
@@ -20,6 +21,8 @@ namespace AB
         public bool isHit;
         public bool isStunned;
         public bool isKnockback;
+        public bool isLaunched;
+        public bool isInvincible;
 
         private float knockbackTimer;
 
@@ -32,6 +35,7 @@ namespace AB
         private void Awake()
         {
             playerAttackingHitboxes = GetComponent<PlayerAttackingHitboxes>();
+            playerMovement = GetComponentInParent<PlayerMovement>();
         }
 
         private void Start()
@@ -39,6 +43,8 @@ namespace AB
             isHit = false;
             isStunned = false;
             isKnockback = false;
+            isLaunched = false;
+            isInvincible = false;
         }
 
         private void OnTriggerEnter(Collider other)
@@ -47,7 +53,7 @@ namespace AB
             PlayerAttackingHitboxes attackerHitboxes = other.gameObject.GetComponent<PlayerAttackingHitboxes>();
 
             // Check if the attackerHitboxes is not null and print its attack damage
-            if (attackerHitboxes != null)
+            if (attackerHitboxes != null && isInvincible == false)
             {
                 damageToHealth = attackerHitboxes.attackDamage;
                 vKnockback = attackerHitboxes.verticalKnockback;
@@ -73,13 +79,22 @@ namespace AB
 
         private void Update()
         {
-            if (isStunned)
+            if (isStunned && playerMovement.IsGrounded() && !isLaunched)
             {
                 stunDuration -= Time.deltaTime;
                 if (stunDuration <= 0)
                 {
                     isStunned = false;
                 }
+            }
+            else if (isStunned && playerMovement.IsGrounded() && isLaunched)
+            {
+                playerMovement.canRecover = true;
+            }
+            
+            if (isStunned && !playerMovement.IsGrounded())
+            {
+                isLaunched = true;
             }
 
             if (isKnockback)

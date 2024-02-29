@@ -22,6 +22,12 @@ namespace AB
 
         public string JumpName;
 
+        //Once the player has landed after being juggled, they can recover/jump backwards
+        public bool canRecover;
+        public float recoveryTime = 2;
+        public float recoveryForce = 3;
+        public bool isRecovering;
+
         //Used for the movement code to understand who the target is
         public GameObject playerOneX;
         public GameObject playerTwoX;
@@ -38,6 +44,12 @@ namespace AB
             playerPushBox = GetComponentInChildren<PlayerPushBox>();
             playerAttackManager = GetComponentInChildren<PlayerAttackManager>();
             hurtboxManager = GetComponentInChildren<PlayerHurtboxManager>();
+        }
+
+        private void Start()
+        {
+            canRecover = false;
+            isRecovering = false;
         }
 
         void Update()
@@ -71,14 +83,44 @@ namespace AB
             }
             else if (hurtboxManager.isStunned && hurtboxManager.isKnockback)
             {
+                //Allows the player to get knocked backwards
                 Debug.Log("is stunned");
                 rb.velocity = new Vector3(hurtboxManager.hKnockback, hurtboxManager.vKnockback, 0f);
             }
             else if (hurtboxManager.isStunned && !hurtboxManager.isKnockback)
             {
+                //Prevents the knockback from lasting throughout the entirety of the hitstun
                 rb.velocity = new Vector3(rb.velocity.x, rb.velocity.y, 0f);
             }
 
+            if (canRecover)
+            {
+                hurtboxManager.isInvincible = true;
+                recoveryTime -= Time.deltaTime;
+
+                if(Input.GetButtonDown(JumpName) && recoveryTime <= 0.4 && recoveryTime > 0 && isRecovering == false)
+                {
+                    isRecovering = true;
+                    recoveryTime = 0.4f;
+                }
+
+                if(recoveryTime <= 0)
+                {
+                    hurtboxManager.isLaunched = false;
+                    hurtboxManager.isInvincible = false;
+                    canRecover = false;
+                    isRecovering = false;
+                }
+            }
+            else if (!canRecover)
+            {
+                recoveryTime = 0.5f;
+            }
+
+            if (isRecovering)
+            {
+                rb.velocity = new Vector3(recoveryForce, 0f, 0f);
+            }
         }
 
         public bool IsGrounded()
@@ -90,6 +132,7 @@ namespace AB
 
         private void Flip()
         {
+            //Flips the player to face the enemy
             if (gameObject.tag == "Player1" && IsGrounded() && transform.position.x > playerTwoX.transform.position.x && isFacingRight == false && playerAttackManager.isAttacking == false)
             {
                 isFacingRight = !isFacingRight;
@@ -120,6 +163,7 @@ namespace AB
                 transform.localScale = localScale;
             }
 
+            //Makes sure the knockback sends the player away from the attacker
             if(gameObject.tag == "Player1" && transform.position.x < playerTwoX.transform.position.x && hurtboxManager.hKnockback > 0f)
             {
                 hurtboxManager.hKnockback *= -1;
