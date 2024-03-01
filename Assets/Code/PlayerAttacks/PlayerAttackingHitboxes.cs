@@ -20,11 +20,22 @@ namespace AB
         public float hitboxTimer;
 
         //calculates what kind of damage the attack does
-        public float attackDamage;
-        public float horizontalKnockback;
-        public float verticalKnockback;
-        public float stunTime;
-        public float knockbackTime;
+        public float attackDamage;                                      //The maximum damage the attack can do
+
+        public float horizontalKnockback;                               //How far left/right the opponent is sent
+        public float verticalKnockback;                                 //How far up the opponent is sent (Made for juggling)
+
+        public float horizontalAirKnockback;                            //How far left/right the opponent is sent while in the air
+        public float verticalAirKnockback;                              //How far up/down the opponent is sent while airbourne
+
+        public float stunTime;                                          //How long the opponent is in stun for
+        public float knockbackTime;                                     //How long the opponent is knocked back for
+
+        //Identifies the specific move used, which HurtboxManager uses to calculate how many times that specific move can hit it in a combo
+        public bool isSpecialMove;
+        public bool isAerialMove;
+        public bool isRegularMove;
+        public bool isJugglingMove;
 
         // Flag to check if the hit has already occurred
         public bool hasHit;

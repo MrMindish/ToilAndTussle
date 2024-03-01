@@ -181,6 +181,25 @@ namespace AB
             {
                 hurtboxManager.hKnockback *= -1;
             }
+
+            //Makes the recovery travel away from the other player
+            if (gameObject.tag == "Player1" && transform.position.x < playerTwoX.transform.position.x && isRecovering)
+            {
+                recoveryForce *= -1;
+            }
+            else if (gameObject.tag == "Player1" && transform.position.x > playerTwoX.transform.position.x && isRecovering)
+            {
+                recoveryForce *= -1;
+            }
+
+            if (gameObject.tag == "Player2" && transform.position.x < playerOneX.transform.position.x && isRecovering)
+            {
+                recoveryForce *= -1;
+            }
+            else if (gameObject.tag == "Player2" && transform.position.x > playerOneX.transform.position.x && isRecovering)
+            {
+                recoveryForce *= -1;
+            }
         }
 
         public void OnDrawGizmos()

@@ -26,6 +26,24 @@ namespace AB
 
         private float knockbackTimer;
 
+
+        //Checks how many times specific moves can hit the fighter in one combo
+        private float specialHitsCounter;
+        private float maxSpecialHits;
+        public bool canHitSpecial;
+
+        private float aerialHitsCounter;
+        private float maxAerialHits;
+        public bool canHitAerial;
+
+        private float regularHitsCounter;
+        private float maxRegularHits;
+        public bool canHitRegular;
+
+        private float juggleHitsCounter;
+        private float maxJuggleHits;
+        public bool canHitJuggle;
+
         // Counter for hits during stun
         private int hitCountDuringStun = 0;
 
@@ -45,6 +63,11 @@ namespace AB
             isKnockback = false;
             isLaunched = false;
             isInvincible = false;
+
+            aerialHitsCounter = 0;
+            regularHitsCounter = 0;
+            specialHitsCounter = 0;
+            juggleHitsCounter = 0;
         }
 
         private void OnTriggerEnter(Collider other)
@@ -74,6 +97,12 @@ namespace AB
                 isHit = true;
                 // Reset hit count when entering stun
                 hitCountDuringStun = 0;
+
+                if(isStunned && canHitJuggle)
+                {
+                    juggleHitsCounter++;
+                    canHitJuggle = false;
+                }
             }
         }
 
@@ -89,6 +118,7 @@ namespace AB
             }
             else if (isStunned && playerMovement.IsGrounded() && isLaunched)
             {
+                stunDuration = 0;
                 playerMovement.canRecover = true;
             }
             

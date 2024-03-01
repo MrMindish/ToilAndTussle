@@ -14,6 +14,7 @@ namespace AB
 
         //Calculates how long the player attacks for
         public bool isAttacking;
+        public bool isAirAttacking;
         public float attackCooldown;
 
         //Calculates what direction the attacker moves if they land the attack (This is to prevent corner trapping)
@@ -44,6 +45,7 @@ namespace AB
             hurtboxManager = GetComponentInChildren<PlayerHurtboxManager>();
 
             isAttacking = false;
+            isAirAttacking = false;
         }
 
         private void Update()
@@ -96,8 +98,28 @@ namespace AB
                 attackCooldown = 0.5f;
             }
 
+            //Performs the Light Aerial Attack
+            if(Input.GetKeyDown(lightInput) && !playerMovement.IsGrounded() && isAttacking == false && hurtboxManager.isStunned == false)
+            {
+                animator.SetTrigger("isLAAttacking");
+                isAttacking = true;
+                isAirAttacking = true;
+                attackCooldown = 0.1f;
+            }
 
-            if (attackCooldown > 0f)
+
+
+
+            //Performs the Heavy Null Attack
+            if (Input.GetKeyDown(heavyInput) && playerMovement.IsGrounded() && isAttacking == false && hurtboxManager.isStunned == false && isNothingPressed)
+            {
+                animator.SetTrigger("isHNAttacking");
+                isAttacking = true;
+                attackCooldown = 0.4f;
+            }
+
+
+            if (attackCooldown > 0f && isAirAttacking == false)
             {
                 attackCooldown = attackCooldown - Time.deltaTime;
             }
@@ -110,6 +132,11 @@ namespace AB
             if(attackCooldown < 0f)
             {
                 attackCooldown = 0f;
+            }
+
+            if (isAirAttacking && playerMovement.IsGrounded())
+            {
+                isAirAttacking = false;
             }
 
 
