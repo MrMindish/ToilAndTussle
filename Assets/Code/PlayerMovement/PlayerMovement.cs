@@ -44,13 +44,13 @@ namespace AB
             playerPushBox = GetComponentInChildren<PlayerPushBox>();
             playerAttackManager = GetComponentInChildren<PlayerAttackManager>();
             hurtboxManager = GetComponentInChildren<PlayerHurtboxManager>();
-        }
+        } //Includes the Component Getting
 
         private void Start()
         {
             canRecover = false;
             isRecovering = false;
-        }
+        } //Sets various bools to false
 
         void Update()
         {
@@ -72,7 +72,7 @@ namespace AB
             IsGrounded();
             Flip();
 
-        }
+        } //Includes the Jumping Code
 
         private void FixedUpdate()
         {
@@ -81,25 +81,38 @@ namespace AB
                 //movement part
                 rb.velocity = new Vector3(horizontal * moveSpeed, rb.velocity.y, 0f);
             }
-            else if (hurtboxManager.isStunned && hurtboxManager.isKnockback)
+
+            else if (hurtboxManager.isStunned && hurtboxManager.isKnockback && IsGrounded())
             {
                 //Allows the player to get knocked backwards
                 Debug.Log("is stunned");
                 rb.velocity = new Vector3(hurtboxManager.hKnockback, hurtboxManager.vKnockback, 0f);
             }
-            else if (hurtboxManager.isStunned && !hurtboxManager.isKnockback)
+            else if (hurtboxManager.isStunned && !hurtboxManager.isKnockback && IsGrounded())
             {
                 //Prevents the knockback from lasting throughout the entirety of the hitstun
                 rb.velocity = new Vector3(rb.velocity.x, rb.velocity.y, 0f);
             }
 
+            else if (hurtboxManager.isStunned && hurtboxManager.isKnockback && hurtboxManager.isLaunched)
+            {
+                //Uses different knockback floats while in the air
+                Debug.Log("is stunned");
+                rb.velocity = new Vector3(hurtboxManager.hAirKnockback, hurtboxManager.vAirKnockback, 0f);
+
+                //Since gravity will guide the juggled fighter, an else if for knockback duration is not necessary
+            }
+
+
             if (canRecover)
             {
+                //If the player has been knocked down, they're made invincible until they get back up
                 hurtboxManager.isInvincible = true;
                 recoveryTime -= Time.deltaTime;
 
                 if(Input.GetButtonDown(JumpName) && recoveryTime <= 0.4 && recoveryTime > 0 && isRecovering == false)
                 {
+                    //Allows the player to "Recover" by rolling away from the enemy
                     isRecovering = true;
                     recoveryTime = 0.4f;
                 }
@@ -116,12 +129,26 @@ namespace AB
             {
                 recoveryTime = 0.5f;
             }
-
             if (isRecovering)
             {
                 rb.velocity = new Vector3(recoveryForce, 0f, 0f);
             }
+
+            if (hurtboxManager.canReset && !IsGrounded())
+            {
+                hurtboxManager.isInvincible = true;
+                hurtboxManager.isLaunched = false;
+                rb.velocity = new Vector3(hurtboxManager.hAirKnockback, -3, 0f);
+
+            }
+            if(hurtboxManager.canReset && IsGrounded())
+            {
+                hurtboxManager.canReset = false;
+                hurtboxManager.isInvincible = false;
+                hurtboxManager.isStunned = false;
+            }
         }
+
 
         public bool IsGrounded()
         {

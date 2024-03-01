@@ -16,13 +16,16 @@ namespace AB
         public float vKnockback;
         public float hKnockback;
         public float kTime;
-
+        public float vAirKnockback;
+        public float hAirKnockback;
         
         public bool isHit;
         public bool isStunned;
         public bool isKnockback;
         public bool isLaunched;
         public bool isInvincible;
+
+        public bool canReset;
 
         private float knockbackTimer;
 
@@ -63,6 +66,7 @@ namespace AB
             isKnockback = false;
             isLaunched = false;
             isInvincible = false;
+            canReset = false;
 
             aerialHitsCounter = 0;
             regularHitsCounter = 0;
@@ -78,9 +82,23 @@ namespace AB
             // Check if the attackerHitboxes is not null and print its attack damage
             if (attackerHitboxes != null && isInvincible == false)
             {
-                damageToHealth = attackerHitboxes.attackDamage;
-                vKnockback = attackerHitboxes.verticalKnockback;
-                hKnockback = attackerHitboxes.horizontalKnockback;
+                //Pulls various information from the attacking hitboxes
+                damageToHealth = attackerHitboxes.attackDamage;                         //The Damage of the Attack
+                vKnockback = attackerHitboxes.verticalKnockback;                        //The Vertical (Up and Down) knockback
+                hKnockback = attackerHitboxes.horizontalKnockback;                      //The Horizontal (Left and Right) knockback
+                vAirKnockback = attackerHitboxes.verticalAirKnockback;                  //The Vertical Knockback while in the Air
+                hAirKnockback = attackerHitboxes.horizontalAirKnockback;                //The Horizontal Knockback while in the Air
+                if (!playerMovement.IsGrounded())
+                {
+                    canReset = attackerHitboxes.resetAerialOpponent;                    //Checks if the attack resets airbourne fighters
+                }
+
+
+                canHitRegular = attackerHitboxes.isRegularMove;                         //Checks if the attack is Light or Heavy
+                canHitSpecial = attackerHitboxes.isSpecialMove;                         //Checks if the attack is special
+                canHitAerial = attackerHitboxes.isAerialMove;                           //Checks if the attack is Aerial
+                canHitJuggle = attackerHitboxes.isJugglingMove;                         //Checks if the attack can launch fighters upwards
+
 
                 isStunned = true;
                 isKnockback = true;
@@ -97,6 +115,7 @@ namespace AB
                 isHit = true;
                 // Reset hit count when entering stun
                 hitCountDuringStun = 0;
+
 
                 if(isStunned && canHitJuggle)
                 {

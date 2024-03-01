@@ -31,6 +31,8 @@ namespace AB
         public float stunTime;                                          //How long the opponent is in stun for
         public float knockbackTime;                                     //How long the opponent is knocked back for
 
+        public bool resetAerialOpponent;                                //If used on an airbourne fighter, they get "reset", forcing the combo to end
+
         //Identifies the specific move used, which HurtboxManager uses to calculate how many times that specific move can hit it in a combo
         public bool isSpecialMove;
         public bool isAerialMove;

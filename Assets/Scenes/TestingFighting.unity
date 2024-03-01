@@ -178,10 +178,11 @@ MonoBehaviour:
   attackDamage: 30
   horizontalKnockback: 3
   verticalKnockback: 0
-  horizontalAirKnockback: 0
-  verticalAirKnockback: 0
+  horizontalAirKnockback: 2
+  verticalAirKnockback: -1
   stunTime: 0.28
-  knockbackTime: 0.26
+  knockbackTime: 0.2
+  resetAerialOpponent: 0
   isSpecialMove: 0
   isAerialMove: 0
   isRegularMove: 1
@@ -478,11 +479,14 @@ MonoBehaviour:
   vKnockback: 0
   hKnockback: 0
   kTime: 0
+  vAirKnockback: 0
+  hAirKnockback: 0
   isHit: 0
   isStunned: 0
   isKnockback: 0
   isLaunched: 0
   isInvincible: 0
+  canReset: 0
   canHitSpecial: 0
   canHitAerial: 0
   canHitRegular: 0
@@ -749,11 +753,14 @@ MonoBehaviour:
   vKnockback: 0
   hKnockback: 0
   kTime: 0
+  vAirKnockback: 0
+  hAirKnockback: 0
   isHit: 0
   isStunned: 0
   isKnockback: 0
   isLaunched: 0
   isInvincible: 0
+  canReset: 0
   canHitSpecial: 0
   canHitAerial: 0
   canHitRegular: 0
@@ -950,10 +957,11 @@ MonoBehaviour:
   attackDamage: 40
   horizontalKnockback: 0.8
   verticalKnockback: 0
-  horizontalAirKnockback: 0
-  verticalAirKnockback: 0
+  horizontalAirKnockback: 2
+  verticalAirKnockback: -1
   stunTime: 0.3
   knockbackTime: 0.2
+  resetAerialOpponent: 0
   isSpecialMove: 0
   isAerialMove: 0
   isRegularMove: 1
@@ -1271,11 +1279,14 @@ MonoBehaviour:
   vKnockback: 0
   hKnockback: 0
   kTime: 0
+  vAirKnockback: 0
+  hAirKnockback: 0
   isHit: 0
   isStunned: 0
   isKnockback: 0
   isLaunched: 0
   isInvincible: 0
+  canReset: 0
   canHitSpecial: 0
   canHitAerial: 0
   canHitRegular: 0
@@ -1340,6 +1351,7 @@ MonoBehaviour:
   verticalAirKnockback: 0
   stunTime: 0.3
   knockbackTime: 0
+  resetAerialOpponent: 0
   isSpecialMove: 0
   isAerialMove: 0
   isRegularMove: 0
@@ -1599,11 +1611,14 @@ MonoBehaviour:
   vKnockback: 0
   hKnockback: 0
   kTime: 0
+  vAirKnockback: 0
+  hAirKnockback: 0
   isHit: 0
   isStunned: 0
   isKnockback: 0
   isLaunched: 0
   isInvincible: 0
+  canReset: 0
   canHitSpecial: 0
   canHitAerial: 0
   canHitRegular: 0
@@ -1738,12 +1753,13 @@ MonoBehaviour:
   enemyTarget: {fileID: 1674511205}
   hitboxTimer: 0.01
   attackDamage: 70
-  horizontalKnockback: 1
+  horizontalKnockback: 0.8
   verticalKnockback: 0
-  horizontalAirKnockback: 0
-  verticalAirKnockback: 0
+  horizontalAirKnockback: 1.2
+  verticalAirKnockback: -0.8
   stunTime: 0.5
   knockbackTime: 0.2
+  resetAerialOpponent: 0
   isSpecialMove: 0
   isAerialMove: 0
   isRegularMove: 1
@@ -1927,11 +1943,14 @@ MonoBehaviour:
   vKnockback: 0
   hKnockback: 0
   kTime: 0
+  vAirKnockback: 0
+  hAirKnockback: 0
   isHit: 0
   isStunned: 0
   isKnockback: 0
   isLaunched: 0
   isInvincible: 0
+  canReset: 0
   canHitSpecial: 0
   canHitAerial: 0
   canHitRegular: 0
@@ -1996,6 +2015,7 @@ MonoBehaviour:
   verticalAirKnockback: 0
   stunTime: 0.6
   knockbackTime: 0.5
+  resetAerialOpponent: 0
   isSpecialMove: 0
   isAerialMove: 1
   isRegularMove: 1
@@ -2200,11 +2220,14 @@ MonoBehaviour:
   vKnockback: 0
   hKnockback: 0
   kTime: 0
+  vAirKnockback: 0
+  hAirKnockback: 0
   isHit: 0
   isStunned: 0
   isKnockback: 0
   isLaunched: 0
   isInvincible: 0
+  canReset: 0
   canHitSpecial: 0
   canHitAerial: 0
   canHitRegular: 0
@@ -2328,10 +2351,11 @@ MonoBehaviour:
   attackDamage: 20
   horizontalKnockback: 5
   verticalKnockback: 0
-  horizontalAirKnockback: 0
+  horizontalAirKnockback: 1
   verticalAirKnockback: 0
   stunTime: 0.3
   knockbackTime: 0.1
+  resetAerialOpponent: 0
   isSpecialMove: 0
   isAerialMove: 0
   isRegularMove: 1
@@ -2719,6 +2743,7 @@ MonoBehaviour:
   verticalAirKnockback: 0
   stunTime: 0.4
   knockbackTime: 0
+  resetAerialOpponent: 0
   isSpecialMove: 0
   isAerialMove: 0
   isRegularMove: 0
@@ -2846,6 +2871,7 @@ MonoBehaviour:
   verticalAirKnockback: 0
   stunTime: 0.4
   knockbackTime: 0
+  resetAerialOpponent: 0
   isSpecialMove: 0
   isAerialMove: 0
   isRegularMove: 0
@@ -3191,11 +3217,14 @@ MonoBehaviour:
   vKnockback: 0
   hKnockback: 0
   kTime: 0
+  vAirKnockback: 0
+  hAirKnockback: 0
   isHit: 0
   isStunned: 0
   isKnockback: 0
   isLaunched: 0
   isInvincible: 0
+  canReset: 0
   canHitSpecial: 0
   canHitAerial: 0
   canHitRegular: 0
@@ -3260,6 +3289,7 @@ MonoBehaviour:
   verticalAirKnockback: 0
   stunTime: 0.3
   knockbackTime: 0
+  resetAerialOpponent: 0
   isSpecialMove: 0
   isAerialMove: 0
   isRegularMove: 0
@@ -3883,11 +3913,14 @@ MonoBehaviour:
   vKnockback: 0
   hKnockback: 0
   kTime: 0
+  vAirKnockback: 0
+  hAirKnockback: 0
   isHit: 0
   isStunned: 0
   isKnockback: 0
   isLaunched: 0
   isInvincible: 0
+  canReset: 0
   canHitSpecial: 0
   canHitAerial: 0
   canHitRegular: 0
@@ -4008,11 +4041,14 @@ MonoBehaviour:
   vKnockback: 0
   hKnockback: 0
   kTime: 0
+  vAirKnockback: 0
+  hAirKnockback: 0
   isHit: 0
   isStunned: 0
   isKnockback: 0
   isLaunched: 0
   isInvincible: 0
+  canReset: 0
   canHitSpecial: 0
   canHitAerial: 0
   canHitRegular: 0
@@ -4133,11 +4169,14 @@ MonoBehaviour:
   vKnockback: 0
   hKnockback: 0
   kTime: 0
+  vAirKnockback: 0
+  hAirKnockback: 0
   isHit: 0
   isStunned: 0
   isKnockback: 0
   isLaunched: 0
   isInvincible: 0
+  canReset: 0
   canHitSpecial: 0
   canHitAerial: 0
   canHitRegular: 0
@@ -4334,11 +4373,14 @@ MonoBehaviour:
   vKnockback: 0
   hKnockback: 0
   kTime: 0
+  vAirKnockback: 0
+  hAirKnockback: 0
   isHit: 0
   isStunned: 0
   isKnockback: 0
   isLaunched: 0
   isInvincible: 0
+  canReset: 0
   canHitSpecial: 0
   canHitAerial: 0
   canHitRegular: 0
@@ -4459,11 +4501,14 @@ MonoBehaviour:
   vKnockback: 0
   hKnockback: 0
   kTime: 0
+  vAirKnockback: 0
+  hAirKnockback: 0
   isHit: 0
   isStunned: 0
   isKnockback: 0
   isLaunched: 0
   isInvincible: 0
+  canReset: 0
   canHitSpecial: 0
   canHitAerial: 0
   canHitRegular: 0
@@ -4559,6 +4604,7 @@ MonoBehaviour:
   verticalAirKnockback: 0
   stunTime: 0.3
   knockbackTime: 0
+  resetAerialOpponent: 0
   isSpecialMove: 0
   isAerialMove: 0
   isRegularMove: 0
@@ -4742,11 +4788,14 @@ MonoBehaviour:
   vKnockback: 0
   hKnockback: 0
   kTime: 0
+  vAirKnockback: 0
+  hAirKnockback: 0
   isHit: 0
   isStunned: 0
   isKnockback: 0
   isLaunched: 0
   isInvincible: 0
+  canReset: 0
   canHitSpecial: 0
   canHitAerial: 0
   canHitRegular: 0
@@ -4943,11 +4992,14 @@ MonoBehaviour:
   vKnockback: 0
   hKnockback: 0
   kTime: 0
+  vAirKnockback: 0
+  hAirKnockback: 0
   isHit: 0
   isStunned: 0
   isKnockback: 0
   isLaunched: 0
   isInvincible: 0
+  canReset: 0
   canHitSpecial: 0
   canHitAerial: 0
   canHitRegular: 0
@@ -5005,11 +5057,14 @@ MonoBehaviour:
   vKnockback: 0
   hKnockback: 0
   kTime: 0
+  vAirKnockback: 0
+  hAirKnockback: 0
   isHit: 0
   isStunned: 0
   isKnockback: 0
   isLaunched: 0
   isInvincible: 0
+  canReset: 0
   canHitSpecial: 0
   canHitAerial: 0
   canHitRegular: 0
@@ -5474,11 +5529,14 @@ MonoBehaviour:
   vKnockback: 0
   hKnockback: 0
   kTime: 0
+  vAirKnockback: 0
+  hAirKnockback: 0
   isHit: 0
   isStunned: 0
   isKnockback: 0
   isLaunched: 0
   isInvincible: 0
+  canReset: 0
   canHitSpecial: 0
   canHitAerial: 0
   canHitRegular: 0
@@ -5541,11 +5599,14 @@ MonoBehaviour:
   vKnockback: 0
   hKnockback: 0
   kTime: 0
+  vAirKnockback: 0
+  hAirKnockback: 0
   isHit: 0
   isStunned: 0
   isKnockback: 0
   isLaunched: 0
   isInvincible: 0
+  canReset: 0
   canHitSpecial: 0
   canHitAerial: 0
   canHitRegular: 0
@@ -5742,11 +5803,14 @@ MonoBehaviour:
   vKnockback: 0
   hKnockback: 0
   kTime: 0
+  vAirKnockback: 0
+  hAirKnockback: 0
   isHit: 0
   isStunned: 0
   isKnockback: 0
   isLaunched: 0
   isInvincible: 0
+  canReset: 0
   canHitSpecial: 0
   canHitAerial: 0
   canHitRegular: 0
@@ -5908,10 +5972,11 @@ MonoBehaviour:
   attackDamage: 20
   horizontalKnockback: 2
   verticalKnockback: 0
-  horizontalAirKnockback: 0
-  verticalAirKnockback: 0
-  stunTime: 0.4
-  knockbackTime: 0.3
+  horizontalAirKnockback: 1
+  verticalAirKnockback: -2
+  stunTime: 0.3
+  knockbackTime: 0.2
+  resetAerialOpponent: 1
   isSpecialMove: 0
   isAerialMove: 0
   isRegularMove: 1
@@ -6374,12 +6439,13 @@ MonoBehaviour:
   enemyTarget: {fileID: 1674511205}
   hitboxTimer: 0.01
   attackDamage: 50
-  horizontalKnockback: 1
-  verticalKnockback: 5
-  horizontalAirKnockback: 0
-  verticalAirKnockback: 0
+  horizontalKnockback: 1.5
+  verticalKnockback: 4
+  horizontalAirKnockback: 1.5
+  verticalAirKnockback: 4
   stunTime: 0.3
   knockbackTime: 0.2
+  resetAerialOpponent: 0
   isSpecialMove: 0
   isAerialMove: 0
   isRegularMove: 1
@@ -6660,11 +6726,14 @@ MonoBehaviour:
   vKnockback: 0
   hKnockback: 0
   kTime: 0
+  vAirKnockback: 0
+  hAirKnockback: 0
   isHit: 0
   isStunned: 0
   isKnockback: 0
   isLaunched: 0
   isInvincible: 0
+  canReset: 0
   canHitSpecial: 0
   canHitAerial: 0
   canHitRegular: 0
@@ -6785,11 +6854,14 @@ MonoBehaviour:
   vKnockback: 0
   hKnockback: 0
   kTime: 0
+  vAirKnockback: 0
+  hAirKnockback: 0
   isHit: 0
   isStunned: 0
   isKnockback: 0
   isLaunched: 0
   isInvincible: 0
+  canReset: 0
   canHitSpecial: 0
   canHitAerial: 0
   canHitRegular: 0
