@@ -178,8 +178,14 @@ MonoBehaviour:
   attackDamage: 30
   horizontalKnockback: 3
   verticalKnockback: 0
+  horizontalAirKnockback: 0
+  verticalAirKnockback: 0
   stunTime: 0.28
   knockbackTime: 0.26
+  isSpecialMove: 0
+  isAerialMove: 0
+  isRegularMove: 1
+  isJugglingMove: 0
   hasHit: 0
 --- !u!65 &6553782
 BoxCollider:
@@ -477,6 +483,10 @@ MonoBehaviour:
   isKnockback: 0
   isLaunched: 0
   isInvincible: 0
+  canHitSpecial: 0
+  canHitAerial: 0
+  canHitRegular: 0
+  canHitJuggle: 0
   maxDamageReductionFactor: 0.5
 --- !u!1 &77453362
 GameObject:
@@ -744,6 +754,10 @@ MonoBehaviour:
   isKnockback: 0
   isLaunched: 0
   isInvincible: 0
+  canHitSpecial: 0
+  canHitAerial: 0
+  canHitRegular: 0
+  canHitJuggle: 0
   maxDamageReductionFactor: 0.5
 --- !u!1 &229089001
 GameObject:
@@ -872,6 +886,7 @@ MonoBehaviour:
   specialInput: 99
   blockInput: 305
   isAttacking: 0
+  isAirAttacking: 0
   attackCooldown: 0
   startPosition: 0
   endPosition: 0
@@ -935,8 +950,14 @@ MonoBehaviour:
   attackDamage: 40
   horizontalKnockback: 0.8
   verticalKnockback: 0
+  horizontalAirKnockback: 0
+  verticalAirKnockback: 0
   stunTime: 0.3
   knockbackTime: 0.2
+  isSpecialMove: 0
+  isAerialMove: 0
+  isRegularMove: 1
+  isJugglingMove: 0
   hasHit: 0
 --- !u!65 &244479017
 BoxCollider:
@@ -1255,6 +1276,10 @@ MonoBehaviour:
   isKnockback: 0
   isLaunched: 0
   isInvincible: 0
+  canHitSpecial: 0
+  canHitAerial: 0
+  canHitRegular: 0
+  canHitJuggle: 0
   maxDamageReductionFactor: 0.5
 --- !u!1 &324375150
 GameObject:
@@ -1311,8 +1336,14 @@ MonoBehaviour:
   attackDamage: 50
   horizontalKnockback: 1
   verticalKnockback: 4
+  horizontalAirKnockback: 0
+  verticalAirKnockback: 0
   stunTime: 0.3
   knockbackTime: 0
+  isSpecialMove: 0
+  isAerialMove: 0
+  isRegularMove: 0
+  isJugglingMove: 0
   hasHit: 0
 --- !u!65 &324375153
 BoxCollider:
@@ -1573,6 +1604,10 @@ MonoBehaviour:
   isKnockback: 0
   isLaunched: 0
   isInvincible: 0
+  canHitSpecial: 0
+  canHitAerial: 0
+  canHitRegular: 0
+  canHitJuggle: 0
   maxDamageReductionFactor: 0.5
 --- !u!1 &555425338
 GameObject:
@@ -1705,8 +1740,14 @@ MonoBehaviour:
   attackDamage: 70
   horizontalKnockback: 1
   verticalKnockback: 0
+  horizontalAirKnockback: 0
+  verticalAirKnockback: 0
   stunTime: 0.5
   knockbackTime: 0.2
+  isSpecialMove: 0
+  isAerialMove: 0
+  isRegularMove: 1
+  isJugglingMove: 0
   hasHit: 0
 --- !u!65 &604183533
 BoxCollider:
@@ -1891,6 +1932,10 @@ MonoBehaviour:
   isKnockback: 0
   isLaunched: 0
   isInvincible: 0
+  canHitSpecial: 0
+  canHitAerial: 0
+  canHitRegular: 0
+  canHitJuggle: 0
   maxDamageReductionFactor: 0.5
 --- !u!1 &622839967
 GameObject:
@@ -1947,8 +1992,14 @@ MonoBehaviour:
   attackDamage: 40
   horizontalKnockback: 0.4
   verticalKnockback: 0
+  horizontalAirKnockback: 0
+  verticalAirKnockback: 0
   stunTime: 0.6
   knockbackTime: 0.5
+  isSpecialMove: 0
+  isAerialMove: 1
+  isRegularMove: 1
+  isJugglingMove: 0
   hasHit: 0
 --- !u!65 &622839970
 BoxCollider:
@@ -2154,6 +2205,10 @@ MonoBehaviour:
   isKnockback: 0
   isLaunched: 0
   isInvincible: 0
+  canHitSpecial: 0
+  canHitAerial: 0
+  canHitRegular: 0
+  canHitJuggle: 0
   maxDamageReductionFactor: 0.5
 --- !u!65 &623187906
 BoxCollider:
@@ -2273,8 +2328,14 @@ MonoBehaviour:
   attackDamage: 20
   horizontalKnockback: 5
   verticalKnockback: 0
+  horizontalAirKnockback: 0
+  verticalAirKnockback: 0
   stunTime: 0.3
   knockbackTime: 0.1
+  isSpecialMove: 0
+  isAerialMove: 0
+  isRegularMove: 1
+  isJugglingMove: 0
   hasHit: 0
 --- !u!65 &641713452
 BoxCollider:
@@ -2654,8 +2715,14 @@ MonoBehaviour:
   attackDamage: 30
   horizontalKnockback: 5
   verticalKnockback: 0
+  horizontalAirKnockback: 0
+  verticalAirKnockback: 0
   stunTime: 0.4
   knockbackTime: 0
+  isSpecialMove: 0
+  isAerialMove: 0
+  isRegularMove: 0
+  isJugglingMove: 0
   hasHit: 0
 --- !u!65 &787552039
 BoxCollider:
@@ -2775,8 +2842,14 @@ MonoBehaviour:
   attackDamage: 20
   horizontalKnockback: 5
   verticalKnockback: 0
+  horizontalAirKnockback: 0
+  verticalAirKnockback: 0
   stunTime: 0.4
   knockbackTime: 0
+  isSpecialMove: 0
+  isAerialMove: 0
+  isRegularMove: 0
+  isJugglingMove: 0
   hasHit: 0
 --- !u!65 &803552155
 BoxCollider:
@@ -3123,6 +3196,10 @@ MonoBehaviour:
   isKnockback: 0
   isLaunched: 0
   isInvincible: 0
+  canHitSpecial: 0
+  canHitAerial: 0
+  canHitRegular: 0
+  canHitJuggle: 0
   maxDamageReductionFactor: 0.5
 --- !u!1 &901709236
 GameObject:
@@ -3179,8 +3256,14 @@ MonoBehaviour:
   attackDamage: 20
   horizontalKnockback: 10
   verticalKnockback: 0
+  horizontalAirKnockback: 0
+  verticalAirKnockback: 0
   stunTime: 0.3
   knockbackTime: 0
+  isSpecialMove: 0
+  isAerialMove: 0
+  isRegularMove: 0
+  isJugglingMove: 0
   hasHit: 0
 --- !u!65 &901709239
 BoxCollider:
@@ -3299,6 +3382,7 @@ MonoBehaviour:
   specialInput: 112
   blockInput: 305
   isAttacking: 0
+  isAirAttacking: 0
   attackCooldown: 0
   startPosition: 0
   endPosition: 0
@@ -3804,6 +3888,10 @@ MonoBehaviour:
   isKnockback: 0
   isLaunched: 0
   isInvincible: 0
+  canHitSpecial: 0
+  canHitAerial: 0
+  canHitRegular: 0
+  canHitJuggle: 0
   maxDamageReductionFactor: 0.5
 --- !u!1 &1049400003
 GameObject:
@@ -3925,6 +4013,10 @@ MonoBehaviour:
   isKnockback: 0
   isLaunched: 0
   isInvincible: 0
+  canHitSpecial: 0
+  canHitAerial: 0
+  canHitRegular: 0
+  canHitJuggle: 0
   maxDamageReductionFactor: 0.5
 --- !u!1 &1105917333
 GameObject:
@@ -4046,6 +4138,10 @@ MonoBehaviour:
   isKnockback: 0
   isLaunched: 0
   isInvincible: 0
+  canHitSpecial: 0
+  canHitAerial: 0
+  canHitRegular: 0
+  canHitJuggle: 0
   maxDamageReductionFactor: 0.5
 --- !u!1 &1134625545
 GameObject:
@@ -4243,6 +4339,10 @@ MonoBehaviour:
   isKnockback: 0
   isLaunched: 0
   isInvincible: 0
+  canHitSpecial: 0
+  canHitAerial: 0
+  canHitRegular: 0
+  canHitJuggle: 0
   maxDamageReductionFactor: 0.5
 --- !u!1 &1263962622
 GameObject:
@@ -4364,6 +4464,10 @@ MonoBehaviour:
   isKnockback: 0
   isLaunched: 0
   isInvincible: 0
+  canHitSpecial: 0
+  canHitAerial: 0
+  canHitRegular: 0
+  canHitJuggle: 0
   maxDamageReductionFactor: 0.5
 --- !u!1 &1351152213
 GameObject:
@@ -4451,8 +4555,14 @@ MonoBehaviour:
   attackDamage: 40
   horizontalKnockback: 0
   verticalKnockback: 0
+  horizontalAirKnockback: 0
+  verticalAirKnockback: 0
   stunTime: 0.3
   knockbackTime: 0
+  isSpecialMove: 0
+  isAerialMove: 0
+  isRegularMove: 0
+  isJugglingMove: 0
   hasHit: 0
 --- !u!65 &1355370781
 BoxCollider:
@@ -4637,6 +4747,10 @@ MonoBehaviour:
   isKnockback: 0
   isLaunched: 0
   isInvincible: 0
+  canHitSpecial: 0
+  canHitAerial: 0
+  canHitRegular: 0
+  canHitJuggle: 0
   maxDamageReductionFactor: 0.5
 --- !u!1 &1447884093
 GameObject:
@@ -4834,6 +4948,10 @@ MonoBehaviour:
   isKnockback: 0
   isLaunched: 0
   isInvincible: 0
+  canHitSpecial: 0
+  canHitAerial: 0
+  canHitRegular: 0
+  canHitJuggle: 0
   maxDamageReductionFactor: 0.5
 --- !u!1 &1536258901
 GameObject:
@@ -4892,6 +5010,10 @@ MonoBehaviour:
   isKnockback: 0
   isLaunched: 0
   isInvincible: 0
+  canHitSpecial: 0
+  canHitAerial: 0
+  canHitRegular: 0
+  canHitJuggle: 0
   maxDamageReductionFactor: 0.5
 --- !u!65 &1536258904
 BoxCollider:
@@ -5357,6 +5479,10 @@ MonoBehaviour:
   isKnockback: 0
   isLaunched: 0
   isInvincible: 0
+  canHitSpecial: 0
+  canHitAerial: 0
+  canHitRegular: 0
+  canHitJuggle: 0
   maxDamageReductionFactor: 0.5
 --- !u!1 &1674511205
 GameObject:
@@ -5420,6 +5546,10 @@ MonoBehaviour:
   isKnockback: 0
   isLaunched: 0
   isInvincible: 0
+  canHitSpecial: 0
+  canHitAerial: 0
+  canHitRegular: 0
+  canHitJuggle: 0
   maxDamageReductionFactor: 0.5
 --- !u!1 &1690919592
 GameObject:
@@ -5617,6 +5747,10 @@ MonoBehaviour:
   isKnockback: 0
   isLaunched: 0
   isInvincible: 0
+  canHitSpecial: 0
+  canHitAerial: 0
+  canHitRegular: 0
+  canHitJuggle: 0
   maxDamageReductionFactor: 0.5
 --- !u!1 &1891786233
 GameObject:
@@ -5774,8 +5908,14 @@ MonoBehaviour:
   attackDamage: 20
   horizontalKnockback: 2
   verticalKnockback: 0
+  horizontalAirKnockback: 0
+  verticalAirKnockback: 0
   stunTime: 0.4
   knockbackTime: 0.3
+  isSpecialMove: 0
+  isAerialMove: 0
+  isRegularMove: 1
+  isJugglingMove: 0
   hasHit: 0
 --- !u!1 &1920333159
 GameObject:
@@ -6236,8 +6376,14 @@ MonoBehaviour:
   attackDamage: 50
   horizontalKnockback: 1
   verticalKnockback: 5
+  horizontalAirKnockback: 0
+  verticalAirKnockback: 0
   stunTime: 0.3
   knockbackTime: 0.2
+  isSpecialMove: 0
+  isAerialMove: 0
+  isRegularMove: 1
+  isJugglingMove: 1
   hasHit: 0
 --- !u!65 &2043342609
 BoxCollider:
@@ -6519,6 +6665,10 @@ MonoBehaviour:
   isKnockback: 0
   isLaunched: 0
   isInvincible: 0
+  canHitSpecial: 0
+  canHitAerial: 0
+  canHitRegular: 0
+  canHitJuggle: 0
   maxDamageReductionFactor: 0.5
 --- !u!1 &2120777262
 GameObject:
@@ -6640,6 +6790,10 @@ MonoBehaviour:
   isKnockback: 0
   isLaunched: 0
   isInvincible: 0
+  canHitSpecial: 0
+  canHitAerial: 0
+  canHitRegular: 0
+  canHitJuggle: 0
   maxDamageReductionFactor: 0.5
 --- !u!1 &2137048770
 GameObject:
