@@ -39,6 +39,8 @@ namespace AB
         public bool isRegularMove;
         public bool isJugglingMove;
 
+        public bool isProjectile;
+
         // Flag to check if the hit has already occurred
         public bool hasHit;
 
@@ -62,7 +64,13 @@ namespace AB
                 hasHit = true;
                 Debug.Log("Hit" + other.gameObject.name);
             }
-            
+            else if (!hasHit && enemyTarget != null && ((1 << other.gameObject.layer) & hurtboxs) != 0 && isProjectile)
+            {
+                hasHit = true;
+                Debug.Log("Projectile Hit");
+                gameObject.SetActive(false);
+            }
+
         }
 
         private void Update()

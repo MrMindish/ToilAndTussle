@@ -37,6 +37,9 @@ namespace AB
         //Used for the crouch input
         public bool isCrouching = false;
 
+        //Used for Cancelling Moves into Specials
+        public bool isCancel = false;
+
         private void Awake()
         {
             anim = GetComponent<Animation>();
@@ -119,6 +122,21 @@ namespace AB
             }
 
 
+            //Performs the Special Null Attack
+            if(Input.GetKeyDown(specialInput) && playerMovement.IsGrounded() && isAttacking == false && hurtboxManager.isStunned == false && isNothingPressed)
+            {
+                animator.SetTrigger("isSN1Attacking");
+                isAttacking= true;
+                attackCooldown = 0.4f;
+            }
+            else if (Input.GetKeyDown(specialInput) && playerMovement.IsGrounded() && isAttacking == true && hurtboxManager.isStunned == false && isNothingPressed && CanCancel())
+            {
+                animator.SetTrigger("isSN1AttackingCancel");
+                isAttacking = true;
+                attackCooldown = 0.4f;
+                Debug.Log("Cancelled");
+            }
+
             if (attackCooldown > 0f && isAirAttacking == false)
             {
                 attackCooldown = attackCooldown - Time.deltaTime;
@@ -193,6 +211,11 @@ namespace AB
         public bool IsCrouched()
         {
             return isCrouching;
+        }
+
+        public bool CanCancel()
+        {
+            return isCancel = true;
         }
 
 

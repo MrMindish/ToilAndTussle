@@ -187,6 +187,7 @@ MonoBehaviour:
   isAerialMove: 0
   isRegularMove: 1
   isJugglingMove: 0
+  isProjectile: 1
   hasHit: 0
 --- !u!65 &6553782
 BoxCollider:
@@ -902,6 +903,7 @@ MonoBehaviour:
   isDownPressed: 0
   isNothingPressed: 0
   isCrouching: 0
+  isCancel: 0
 --- !u!1 &244479014
 GameObject:
   m_ObjectHideFlags: 0
@@ -966,6 +968,7 @@ MonoBehaviour:
   isAerialMove: 0
   isRegularMove: 1
   isJugglingMove: 0
+  isProjectile: 0
   hasHit: 0
 --- !u!65 &244479017
 BoxCollider:
@@ -1356,6 +1359,7 @@ MonoBehaviour:
   isAerialMove: 0
   isRegularMove: 0
   isJugglingMove: 0
+  isProjectile: 0
   hasHit: 0
 --- !u!65 &324375153
 BoxCollider:
@@ -1913,6 +1917,7 @@ MonoBehaviour:
   isAerialMove: 0
   isRegularMove: 1
   isJugglingMove: 0
+  isProjectile: 0
   hasHit: 0
 --- !u!65 &604183533
 BoxCollider:
@@ -2169,6 +2174,7 @@ MonoBehaviour:
   isAerialMove: 1
   isRegularMove: 1
   isJugglingMove: 0
+  isProjectile: 0
   hasHit: 0
 --- !u!65 &622839970
 BoxCollider:
@@ -2547,6 +2553,7 @@ MonoBehaviour:
   isAerialMove: 0
   isRegularMove: 1
   isJugglingMove: 0
+  isProjectile: 0
   hasHit: 0
 --- !u!65 &641713452
 BoxCollider:
@@ -2785,7 +2792,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 3
   slowedMoveSpeed: 2
-  jumpingPower: 8
+  jumpingPower: 9
   pushForce: 2
   JumpName: Jump
   canRecover: 0
@@ -2976,6 +2983,7 @@ MonoBehaviour:
   isAerialMove: 0
   isRegularMove: 0
   isJugglingMove: 0
+  isProjectile: 0
   hasHit: 0
 --- !u!65 &787552039
 BoxCollider:
@@ -3104,6 +3112,7 @@ MonoBehaviour:
   isAerialMove: 0
   isRegularMove: 0
   isJugglingMove: 0
+  isProjectile: 0
   hasHit: 0
 --- !u!65 &803552155
 BoxCollider:
@@ -3522,6 +3531,7 @@ MonoBehaviour:
   isAerialMove: 0
   isRegularMove: 0
   isJugglingMove: 0
+  isProjectile: 0
   hasHit: 0
 --- !u!65 &901709239
 BoxCollider:
@@ -3649,6 +3659,7 @@ MonoBehaviour:
   isDownPressed: 0
   isNothingPressed: 0
   isCrouching: 0
+  isCancel: 0
 --- !u!95 &913467388
 Animator:
   serializedVersion: 5
@@ -4837,6 +4848,7 @@ MonoBehaviour:
   isAerialMove: 0
   isRegularMove: 0
   isJugglingMove: 0
+  isProjectile: 0
   hasHit: 0
 --- !u!65 &1355370781
 BoxCollider:
@@ -5478,6 +5490,135 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1603739779}
   m_CullTransparentMesh: 1
+--- !u!1 &1642082556
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1642082557}
+  - component: {fileID: 1642082560}
+  - component: {fileID: 1642082559}
+  - component: {fileID: 1642082558}
+  - component: {fileID: 1642082561}
+  m_Layer: 0
+  m_Name: P1HurtSN1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &1642082557
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1642082556}
+  m_LocalRotation: {x: -0, y: -0, z: 0.23626383, w: 0.971689}
+  m_LocalPosition: {x: -3.1849985, y: 9.240004, z: 0}
+  m_LocalScale: {x: 3.0281272, y: 2.7282326, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1891786234}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 27.332}
+--- !u!65 &1642082558
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1642082556}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!23 &1642082559
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1642082556}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!33 &1642082560
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1642082556}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1642082561
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1642082556}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c313501922b18f043be86fa35e0c376d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hurtboxs:
+    serializedVersion: 2
+    m_Bits: 256
+  enemyTarget: {fileID: 1674511205}
+  hitboxTimer: 0.01
+  attackDamage: 50
+  horizontalKnockback: 0.5
+  verticalKnockback: 0
+  horizontalAirKnockback: 1
+  verticalAirKnockback: 1
+  stunTime: 0.4
+  knockbackTime: 0.2
+  resetAerialOpponent: 0
+  isSpecialMove: 1
+  isAerialMove: 0
+  isRegularMove: 0
+  isJugglingMove: 0
+  isProjectile: 1
+  hasHit: 0
 --- !u!1 &1646263991
 GameObject:
   m_ObjectHideFlags: 0
@@ -6218,6 +6359,7 @@ Transform:
   - {fileID: 244479015}
   - {fileID: 622839968}
   - {fileID: 604183531}
+  - {fileID: 1642082557}
   m_Father: {fileID: 229089002}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -6348,6 +6490,7 @@ MonoBehaviour:
   isAerialMove: 0
   isRegularMove: 1
   isJugglingMove: 0
+  isProjectile: 0
   hasHit: 0
 --- !u!1 &1920333159
 GameObject:
@@ -6715,7 +6858,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 3
   slowedMoveSpeed: 2
-  jumpingPower: 8
+  jumpingPower: 9
   pushForce: 2
   JumpName: Jump
   canRecover: 0
@@ -6890,6 +7033,7 @@ MonoBehaviour:
   isAerialMove: 0
   isRegularMove: 1
   isJugglingMove: 1
+  isProjectile: 0
   hasHit: 0
 --- !u!65 &2043342609
 BoxCollider:
