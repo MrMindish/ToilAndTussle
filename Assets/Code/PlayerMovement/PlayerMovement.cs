@@ -194,19 +194,23 @@ namespace AB
             if(gameObject.tag == "Player1" && transform.position.x < playerTwoX.transform.position.x && hurtboxManager.hKnockback > 0f)
             {
                 hurtboxManager.hKnockback *= -1;
+                hurtboxManager.hAirKnockback *= -1;
             }
             else if (gameObject.tag == "Player1" && transform.position.x > playerTwoX.transform.position.x && hurtboxManager.hKnockback < 0f)
             {
                 hurtboxManager.hKnockback *= -1;
+                hurtboxManager.hAirKnockback *= -1;
             }
 
             if (gameObject.tag == "Player2" && transform.position.x < playerOneX.transform.position.x && hurtboxManager.hKnockback > 0f)
             {
                 hurtboxManager.hKnockback *= -1;
+                hurtboxManager.hAirKnockback *= -1;
             }
             else if (gameObject.tag == "Player2" && transform.position.x > playerOneX.transform.position.x && hurtboxManager.hKnockback < 0f)
             {
                 hurtboxManager.hKnockback *= -1;
+                hurtboxManager.hAirKnockback *= -1;
             }
 
             //Makes the recovery travel away from the other player
