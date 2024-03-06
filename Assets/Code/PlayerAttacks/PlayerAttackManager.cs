@@ -53,6 +53,17 @@ namespace AB
 
         private void Update()
         {
+            //Performs the Jump Animation
+            if (playerMovement.isJumping)
+            {
+                animator.SetTrigger("jumpStart");
+            }
+            if (!playerMovement.isJumping)
+            {
+                animator.ResetTrigger("jumpStart");
+                animator.SetTrigger("jumpEnd");
+            }
+
             //Performs the Light Null Attack
             if (Input.GetKeyDown(lightInput) && playerMovement.IsGrounded() && isAttacking == false && hurtboxManager.isStunned == false && isNothingPressed)
             {
@@ -99,6 +110,7 @@ namespace AB
                 animator.SetTrigger("isLCAttacking");
                 isAttacking = true;
                 attackCooldown = 0.5f;
+                animator.SetBool("canCancel", true);
             }
 
             //Performs the Light Aerial Attack
@@ -119,6 +131,7 @@ namespace AB
                 animator.SetTrigger("isHNAttacking");
                 isAttacking = true;
                 attackCooldown = 0.4f;
+                animator.SetBool("canCancel", true);
             }
 
 
@@ -129,12 +142,12 @@ namespace AB
                 isAttacking= true;
                 attackCooldown = 0.4f;
             }
-            else if (Input.GetKeyDown(specialInput) && playerMovement.IsGrounded() && isAttacking == true && hurtboxManager.isStunned == false && isNothingPressed && CanCancel())
+            else if (Input.GetKeyDown(specialInput) && playerMovement.IsGrounded() && isAttacking == true && hurtboxManager.isStunned == false && isNothingPressed && isCancel)
             {
-                animator.SetTrigger("isSN1AttackingCancel");
+                animator.SetTrigger("isSN1Attacking");
                 isAttacking = true;
                 attackCooldown = 0.4f;
-                Debug.Log("Cancelled");
+                animator.ResetTrigger("isCrouchingEnd");
             }
 
             if (attackCooldown > 0f && isAirAttacking == false)
@@ -206,6 +219,15 @@ namespace AB
             {
                 isNothingPressed = false;
             }
+
+            if (isCancel)
+            {
+                animator.SetBool("canCancel", true);
+            }
+            else if (!isCancel)
+            {
+                animator.SetBool("canCancel", false);
+            }
         }
 
         public bool IsCrouched()
@@ -216,6 +238,11 @@ namespace AB
         public bool CanCancel()
         {
             return isCancel = true;
+        }
+
+        public bool EndCancel()
+        {
+            return isCancel = false;
         }
 
 

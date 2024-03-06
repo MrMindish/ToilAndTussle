@@ -35,6 +35,10 @@ namespace AB
         //Makes sure the player is facing towards the enemy
         private bool isFacingRight = true;
 
+        //Allows the jump animation to play
+        public bool isJumping;
+        public float jumpTimer;
+
         [SerializeField] private Rigidbody rb;
         [SerializeField] private LayerMask groundLayer;
         [SerializeField] private Transform orientation;
@@ -50,6 +54,7 @@ namespace AB
         {
             canRecover = false;
             isRecovering = false;
+            isJumping = false;
         } //Sets various bools to false
 
         void Update()
@@ -60,7 +65,7 @@ namespace AB
                 {
                     //if the jump is inputed while the fighter is grounded, not attacking or being attacked, or crouching, then the jump is performed
                     rb.velocity = new Vector3(rb.velocity.x, jumpingPower, 0);
-                    
+                    jumpTimer = 0.2f;
                 }
 
                 if (Input.GetButtonUp(JumpName) && rb.velocity.y > 0f)
@@ -71,6 +76,17 @@ namespace AB
 
             IsGrounded();
             Flip();
+
+            if(jumpTimer > 0)
+            {
+                jumpTimer -= Time.deltaTime;
+                isJumping = true;
+            }
+            if(jumpTimer <= 0 && IsGrounded())
+            {
+                jumpTimer = 0;
+                isJumping = false;
+            }
 
         } //Includes the Jumping Code
 
