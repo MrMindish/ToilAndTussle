@@ -18,12 +18,18 @@ namespace AB
         public float kTime;
         public float vAirKnockback;
         public float hAirKnockback;
+
+        public float damageToShield;
+        public float shieldStunDuration;
+
         
         public bool isHit;
+        public bool isShieldHit;
         public bool isStunned;
         public bool isKnockback;
         public bool isLaunched;
         public bool isInvincible;
+        public bool isShieldStunned;
 
         public bool canReset;
 
@@ -47,11 +53,19 @@ namespace AB
         private float maxJuggleHits;
         public bool canHitJuggle;
 
+        private float lowHitsCounter;
+        private float maxLowHits;
+        public bool canHitLow;
+
         // Counter for hits during stun
         private int hitCountDuringStun = 0;
 
         // The maximum reduction factor for damage
         public float maxDamageReductionFactor = 0.5f;
+
+
+        //Checks if the attack is blockable (Specifically, if the script is on the invisible box collider that activates before the actual attack
+        public bool isBlockable;
 
         private void Awake()
         {
@@ -67,6 +81,8 @@ namespace AB
             isLaunched = false;
             isInvincible = false;
             canReset = false;
+            isShieldStunned = false;
+            isShieldHit = false;
 
             aerialHitsCounter = 0;
             regularHitsCounter = 0;
@@ -79,8 +95,10 @@ namespace AB
             // Get the component of type PlayerAttackingHitboxes from the collider's GameObject
             PlayerAttackingHitboxes attackerHitboxes = other.gameObject.GetComponent<PlayerAttackingHitboxes>();
 
+            isBlockable = attackerHitboxes.isBlockBox;
+
             // Check if the attackerHitboxes is not null and print its attack damage
-            if (attackerHitboxes != null && isInvincible == false)
+            if (attackerHitboxes != null && isInvincible == false && !playerMovement.isBlocking)
             {
                 //Pulls various information from the attacking hitboxes
                 damageToHealth = attackerHitboxes.attackDamage;                         //The Damage of the Attack
@@ -98,6 +116,7 @@ namespace AB
                 canHitSpecial = attackerHitboxes.isSpecialMove;                         //Checks if the attack is special
                 canHitAerial = attackerHitboxes.isAerialMove;                           //Checks if the attack is Aerial
                 canHitJuggle = attackerHitboxes.isJugglingMove;                         //Checks if the attack can launch fighters upwards
+                canHitLow = attackerHitboxes.isLowMove;                                 //Checks if the attack is low
 
 
                 isStunned = true;
@@ -123,6 +142,32 @@ namespace AB
                     canHitJuggle = false;
                 }
             }
+            else if (attackerHitboxes != null && isInvincible == false && playerMovement.isBlocking)
+            {
+                //Pulls various information from the attacking hitboxes
+                damageToShield = attackerHitboxes.shieldDamage;                         //The Damage of the Attack
+                vKnockback = attackerHitboxes.verticalKnockback * 0f;                   //The Vertical (Up and Down) knockback
+                hKnockback = attackerHitboxes.horizontalKnockback * 0.9f;               //The Horizontal (Left and Right) knockback
+
+
+                canHitRegular = attackerHitboxes.isRegularMove;                         //Checks if the attack is Light or Heavy
+                canHitSpecial = attackerHitboxes.isSpecialMove;                         //Checks if the attack is special
+                canHitAerial = attackerHitboxes.isAerialMove;                           //Checks if the attack is Aerial
+                canHitJuggle = attackerHitboxes.isJugglingMove;                         //Checks if the attack can launch fighters upwards
+
+
+                isShieldStunned = true;
+                isKnockback = true;
+                if (isShieldStunned)
+                {
+                    float damageReductionFactor = Mathf.Lerp(1f, maxDamageReductionFactor, hitCountDuringStun / 1f);
+                    damageToShield *= damageReductionFactor;
+                }
+
+                stunDuration = attackerHitboxes.shieldStunTime;
+                kTime = attackerHitboxes.knockbackTime;
+                isShieldHit = true;
+            }
         }
 
         private void Update()
@@ -139,6 +184,16 @@ namespace AB
             {
                 stunDuration = 0;
                 playerMovement.canRecover = true;
+            }
+
+            if (isShieldStunned)
+            {
+                stunDuration -= Time.deltaTime;
+                if (stunDuration <= 0)
+                {
+                    isShieldStunned = false;
+                    stunDuration = 0;
+                }
             }
             
             if (isStunned && !playerMovement.IsGrounded())

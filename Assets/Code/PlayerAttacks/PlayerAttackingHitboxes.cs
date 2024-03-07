@@ -21,6 +21,7 @@ namespace AB
 
         //calculates what kind of damage the attack does
         public float attackDamage;                                      //The maximum damage the attack can do
+        public float shieldDamage;                                      //The maximum damage an attack does to the opponents shield
 
         public float horizontalKnockback;                               //How far left/right the opponent is sent
         public float verticalKnockback;                                 //How far up the opponent is sent (Made for juggling)
@@ -29,6 +30,7 @@ namespace AB
         public float verticalAirKnockback;                              //How far up/down the opponent is sent while airbourne
 
         public float stunTime;                                          //How long the opponent is in stun for
+        public float shieldStunTime;                                    //How long the opponent is in stun for after blocking
         public float knockbackTime;                                     //How long the opponent is knocked back for
 
         public bool resetAerialOpponent;                                //If used on an airbourne fighter, they get "reset", forcing the combo to end
@@ -38,11 +40,16 @@ namespace AB
         public bool isAerialMove;
         public bool isRegularMove;
         public bool isJugglingMove;
+        public bool isLowMove;
 
         public bool isProjectile;
 
         // Flag to check if the hit has already occurred
         public bool hasHit;
+
+
+        //Used for the invisible boxes before the attack activates, forcing the opponent to block
+        public bool isBlockBox;
 
         private void Start()
         {

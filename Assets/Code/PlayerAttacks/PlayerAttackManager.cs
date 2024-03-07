@@ -40,6 +40,11 @@ namespace AB
         //Used for Cancelling Moves into Specials
         public bool isCancel = false;
 
+        //Used to block attacks
+        public bool isBlocking;
+
+
+
         private void Awake()
         {
             anim = GetComponent<Animation>();
@@ -65,7 +70,7 @@ namespace AB
             }
 
             //Performs the Light Null Attack
-            if (Input.GetKeyDown(lightInput) && playerMovement.IsGrounded() && isAttacking == false && hurtboxManager.isStunned == false && isNothingPressed)
+            if (Input.GetKeyDown(lightInput) && playerMovement.IsGrounded() && isAttacking == false && hurtboxManager.isStunned == false && hurtboxManager.isShieldStunned == false && isNothingPressed)
             {
                 animator.SetTrigger("isLNAttacking");
                 isAttacking = true;
@@ -73,14 +78,14 @@ namespace AB
             }
 
             //Performs the Light Forward Attack
-            if (Input.GetKeyDown(lightInput) && playerMovement.IsGrounded() && transform.position.x > playerMovement.playerTwoX.transform.position.x && isAttacking == false && hurtboxManager.isStunned == false && isLeftPressed)
+            if (Input.GetKeyDown(lightInput) && playerMovement.IsGrounded() && transform.position.x > playerMovement.playerTwoX.transform.position.x && isAttacking == false && hurtboxManager.isStunned == false && hurtboxManager.isShieldStunned == false && isLeftPressed)
             {
                 //On the Left Side of the Opponent
                 animator.SetTrigger("isLFAttacking");
                 isAttacking = true;
                 attackCooldown = 0.32f;
             }
-            else if (Input.GetKeyDown(lightInput) && playerMovement.IsGrounded() && transform.position.x < playerMovement.playerTwoX.transform.position.x && isAttacking == false && hurtboxManager.isStunned == false && isRightPressed)
+            else if (Input.GetKeyDown(lightInput) && playerMovement.IsGrounded() && transform.position.x < playerMovement.playerTwoX.transform.position.x && isAttacking == false && hurtboxManager.isStunned == false && hurtboxManager.isShieldStunned == false && isRightPressed)
             {
                 //On the Right Side of the Opponent
                 animator.SetTrigger("isLFAttacking");
@@ -89,14 +94,14 @@ namespace AB
             }
 
             //Performs the Light Backwards Attack
-            if (Input.GetKeyDown(lightInput) && playerMovement.IsGrounded() && transform.position.x < playerMovement.playerTwoX.transform.position.x && isAttacking == false && hurtboxManager.isStunned == false && isLeftPressed)
+            if (Input.GetKeyDown(lightInput) && playerMovement.IsGrounded() && transform.position.x < playerMovement.playerTwoX.transform.position.x && isAttacking == false && hurtboxManager.isStunned == false && hurtboxManager.isShieldStunned == false && isLeftPressed)
             {
                 //On the Right Side of the Opponent
                 animator.SetTrigger("isLBAttacking");
                 isAttacking = true;
                 attackCooldown = 0.36f;
             }
-            else if (Input.GetKeyDown(lightInput) && playerMovement.IsGrounded() && transform.position.x > playerMovement.playerTwoX.transform.position.x && isAttacking == false && hurtboxManager.isStunned == false && isRightPressed)
+            else if (Input.GetKeyDown(lightInput) && playerMovement.IsGrounded() && transform.position.x > playerMovement.playerTwoX.transform.position.x && isAttacking == false && hurtboxManager.isStunned == false && hurtboxManager.isShieldStunned == false && isRightPressed)
             {
                 //On the Left Side of the Opponent
                 animator.SetTrigger("isLBAttacking");
@@ -105,7 +110,7 @@ namespace AB
             }
 
             //Performs the Light Crouch Attack
-            if (Input.GetKeyDown(lightInput) && playerMovement.IsGrounded() && isAttacking == false && hurtboxManager.isStunned == false && isDownPressed && isCrouching)
+            if (Input.GetKeyDown(lightInput) && playerMovement.IsGrounded() && isAttacking == false && hurtboxManager.isStunned == false && hurtboxManager.isShieldStunned == false && isDownPressed && isCrouching)
             {
                 animator.SetTrigger("isLCAttacking");
                 isAttacking = true;
@@ -114,7 +119,7 @@ namespace AB
             }
 
             //Performs the Light Aerial Attack
-            if(Input.GetKeyDown(lightInput) && !playerMovement.IsGrounded() && isAttacking == false && hurtboxManager.isStunned == false)
+            if(Input.GetKeyDown(lightInput) && !playerMovement.IsGrounded() && isAttacking == false && hurtboxManager.isStunned == false && hurtboxManager.isShieldStunned == false)
             {
                 animator.SetTrigger("isLAAttacking");
                 isAttacking = true;
@@ -126,7 +131,7 @@ namespace AB
 
 
             //Performs the Heavy Null Attack
-            if (Input.GetKeyDown(heavyInput) && playerMovement.IsGrounded() && isAttacking == false && hurtboxManager.isStunned == false && isNothingPressed)
+            if (Input.GetKeyDown(heavyInput) && playerMovement.IsGrounded() && isAttacking == false && hurtboxManager.isStunned == false && hurtboxManager.isShieldStunned == false && isNothingPressed)
             {
                 animator.SetTrigger("isHNAttacking");
                 isAttacking = true;
@@ -136,13 +141,13 @@ namespace AB
 
 
             //Performs the Special Null Attack
-            if(Input.GetKeyDown(specialInput) && playerMovement.IsGrounded() && isAttacking == false && hurtboxManager.isStunned == false && isNothingPressed)
+            if(Input.GetKeyDown(specialInput) && playerMovement.IsGrounded() && isAttacking == false && hurtboxManager.isStunned == false && hurtboxManager.isShieldStunned == false && isNothingPressed)
             {
                 animator.SetTrigger("isSN1Attacking");
                 isAttacking= true;
                 attackCooldown = 0.4f;
             }
-            else if (Input.GetKeyDown(specialInput) && playerMovement.IsGrounded() && isAttacking == true && hurtboxManager.isStunned == false && isNothingPressed && isCancel)
+            else if (Input.GetKeyDown(specialInput) && playerMovement.IsGrounded() && isAttacking == true && hurtboxManager.isStunned == false && isNothingPressed && hurtboxManager.isShieldStunned == false && isCancel)
             {
                 animator.SetTrigger("isSN1Attacking");
                 isAttacking = true;

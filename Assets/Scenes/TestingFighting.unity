@@ -176,19 +176,23 @@ MonoBehaviour:
   enemyTarget: {fileID: 1674511205}
   hitboxTimer: 0.01
   attackDamage: 30
+  shieldDamage: 4
   horizontalKnockback: 3
   verticalKnockback: 0
   horizontalAirKnockback: 2
   verticalAirKnockback: -1
   stunTime: 0.28
+  shieldStunTime: 0.2
   knockbackTime: 0.2
   resetAerialOpponent: 1
   isSpecialMove: 0
   isAerialMove: 0
   isRegularMove: 1
   isJugglingMove: 0
+  isLowMove: 0
   isProjectile: 1
   hasHit: 0
+  isBlockBox: 0
 --- !u!65 &6553782
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -482,17 +486,23 @@ MonoBehaviour:
   kTime: 0
   vAirKnockback: 0
   hAirKnockback: 0
+  damageToShield: 0
+  shieldStunDuration: 0
   isHit: 0
+  isShieldHit: 0
   isStunned: 0
   isKnockback: 0
   isLaunched: 0
   isInvincible: 0
+  isShieldStunned: 0
   canReset: 0
   canHitSpecial: 0
   canHitAerial: 0
   canHitRegular: 0
   canHitJuggle: 0
+  canHitLow: 0
   maxDamageReductionFactor: 0.5
+  isBlockable: 0
 --- !u!1 &77453362
 GameObject:
   m_ObjectHideFlags: 0
@@ -530,7 +540,7 @@ Transform:
   - {fileID: 1392843062}
   - {fileID: 1263962623}
   m_Father: {fileID: 229089002}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &98967695
 GameObject:
@@ -594,7 +604,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1558507952}
-  m_RootOrder: 3
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -756,17 +766,23 @@ MonoBehaviour:
   kTime: 0
   vAirKnockback: 0
   hAirKnockback: 0
+  damageToShield: 0
+  shieldStunDuration: 0
   isHit: 0
+  isShieldHit: 0
   isStunned: 0
   isKnockback: 0
   isLaunched: 0
   isInvincible: 0
+  isShieldStunned: 0
   canReset: 0
   canHitSpecial: 0
   canHitAerial: 0
   canHitRegular: 0
   canHitJuggle: 0
+  canHitLow: 0
   maxDamageReductionFactor: 0.5
+  isBlockable: 0
 --- !u!1 &229089001
 GameObject:
   m_ObjectHideFlags: 0
@@ -799,6 +815,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1891786234}
+  - {fileID: 929874407}
   - {fileID: 1536258902}
   - {fileID: 77453363}
   m_Father: {fileID: 741692802}
@@ -904,6 +921,7 @@ MonoBehaviour:
   isNothingPressed: 0
   isCrouching: 0
   isCancel: 0
+  isBlocking: 0
 --- !u!1 &244479014
 GameObject:
   m_ObjectHideFlags: 0
@@ -957,19 +975,23 @@ MonoBehaviour:
   enemyTarget: {fileID: 1674511205}
   hitboxTimer: 0.01
   attackDamage: 40
+  shieldDamage: 8
   horizontalKnockback: 0.8
   verticalKnockback: 0
   horizontalAirKnockback: 2
   verticalAirKnockback: -1
-  stunTime: 0.3
+  stunTime: 0.35
+  shieldStunTime: 0.25
   knockbackTime: 0.2
   resetAerialOpponent: 0
   isSpecialMove: 0
   isAerialMove: 0
   isRegularMove: 1
   isJugglingMove: 0
+  isLowMove: 0
   isProjectile: 0
   hasHit: 0
+  isBlockBox: 0
 --- !u!65 &244479017
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1284,17 +1306,23 @@ MonoBehaviour:
   kTime: 0
   vAirKnockback: 0
   hAirKnockback: 0
+  damageToShield: 0
+  shieldStunDuration: 0
   isHit: 0
+  isShieldHit: 0
   isStunned: 0
   isKnockback: 0
   isLaunched: 0
   isInvincible: 0
+  isShieldStunned: 0
   canReset: 0
   canHitSpecial: 0
   canHitAerial: 0
   canHitRegular: 0
   canHitJuggle: 0
+  canHitLow: 0
   maxDamageReductionFactor: 0.5
+  isBlockable: 0
 --- !u!1 &324375150
 GameObject:
   m_ObjectHideFlags: 0
@@ -1348,19 +1376,23 @@ MonoBehaviour:
   enemyTarget: {fileID: 77453362}
   hitboxTimer: 0.01
   attackDamage: 50
+  shieldDamage: 0
   horizontalKnockback: 1
   verticalKnockback: 4
   horizontalAirKnockback: 0
   verticalAirKnockback: 0
   stunTime: 0.3
+  shieldStunTime: 0
   knockbackTime: 0
   resetAerialOpponent: 0
   isSpecialMove: 0
   isAerialMove: 0
   isRegularMove: 0
   isJugglingMove: 0
+  isLowMove: 0
   isProjectile: 0
   hasHit: 0
+  isBlockBox: 0
 --- !u!65 &324375153
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1455,7 +1487,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1558507952}
-  m_RootOrder: 4
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -1766,17 +1798,23 @@ MonoBehaviour:
   kTime: 0
   vAirKnockback: 0
   hAirKnockback: 0
+  damageToShield: 0
+  shieldStunDuration: 0
   isHit: 0
+  isShieldHit: 0
   isStunned: 0
   isKnockback: 0
   isLaunched: 0
   isInvincible: 0
+  isShieldStunned: 0
   canReset: 0
   canHitSpecial: 0
   canHitAerial: 0
   canHitRegular: 0
   canHitJuggle: 0
+  canHitLow: 0
   maxDamageReductionFactor: 0.5
+  isBlockable: 0
 --- !u!1 &555425338
 GameObject:
   m_ObjectHideFlags: 0
@@ -1808,7 +1846,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 714130364}
-  m_RootOrder: 3
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -1906,19 +1944,23 @@ MonoBehaviour:
   enemyTarget: {fileID: 1674511205}
   hitboxTimer: 0.01
   attackDamage: 70
+  shieldDamage: 10
   horizontalKnockback: 0.8
   verticalKnockback: 0
   horizontalAirKnockback: 1.2
   verticalAirKnockback: -0.8
   stunTime: 0.5
+  shieldStunTime: 0.3
   knockbackTime: 0.2
   resetAerialOpponent: 1
   isSpecialMove: 0
   isAerialMove: 0
   isRegularMove: 1
   isJugglingMove: 0
+  isLowMove: 0
   isProjectile: 0
   hasHit: 0
+  isBlockBox: 0
 --- !u!65 &604183533
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2099,17 +2141,23 @@ MonoBehaviour:
   kTime: 0
   vAirKnockback: 0
   hAirKnockback: 0
+  damageToShield: 0
+  shieldStunDuration: 0
   isHit: 0
+  isShieldHit: 0
   isStunned: 0
   isKnockback: 0
   isLaunched: 0
   isInvincible: 0
+  isShieldStunned: 0
   canReset: 0
   canHitSpecial: 0
   canHitAerial: 0
   canHitRegular: 0
   canHitJuggle: 0
+  canHitLow: 0
   maxDamageReductionFactor: 0.5
+  isBlockable: 0
 --- !u!1 &622839967
 GameObject:
   m_ObjectHideFlags: 0
@@ -2163,19 +2211,23 @@ MonoBehaviour:
   enemyTarget: {fileID: 0}
   hitboxTimer: 0.01
   attackDamage: 40
+  shieldDamage: 4
   horizontalKnockback: 0.4
   verticalKnockback: 0
   horizontalAirKnockback: 0
   verticalAirKnockback: 0
   stunTime: 0.6
+  shieldStunTime: 0
   knockbackTime: 0.5
   resetAerialOpponent: 1
   isSpecialMove: 0
   isAerialMove: 1
   isRegularMove: 1
   isJugglingMove: 0
+  isLowMove: 0
   isProjectile: 0
   hasHit: 0
+  isBlockBox: 0
 --- !u!65 &622839970
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2377,17 +2429,23 @@ MonoBehaviour:
   kTime: 0
   vAirKnockback: 0
   hAirKnockback: 0
+  damageToShield: 0
+  shieldStunDuration: 0
   isHit: 0
+  isShieldHit: 0
   isStunned: 0
   isKnockback: 0
   isLaunched: 0
   isInvincible: 0
+  isShieldStunned: 0
   canReset: 0
   canHitSpecial: 0
   canHitAerial: 0
   canHitRegular: 0
   canHitJuggle: 0
+  canHitLow: 0
   maxDamageReductionFactor: 0.5
+  isBlockable: 0
 --- !u!65 &623187906
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2542,19 +2600,23 @@ MonoBehaviour:
   enemyTarget: {fileID: 1674511205}
   hitboxTimer: 0.01
   attackDamage: 20
+  shieldDamage: 3
   horizontalKnockback: 5
   verticalKnockback: 0
   horizontalAirKnockback: 1
   verticalAirKnockback: 0
   stunTime: 0.3
+  shieldStunTime: 0.1
   knockbackTime: 0.1
   resetAerialOpponent: 0
   isSpecialMove: 0
   isAerialMove: 0
   isRegularMove: 1
   isJugglingMove: 0
+  isLowMove: 0
   isProjectile: 0
   hasHit: 0
+  isBlockBox: 0
 --- !u!65 &641713452
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2649,6 +2711,8 @@ RectTransform:
   - {fileID: 1690919593}
   - {fileID: 1134625546}
   - {fileID: 1920333160}
+  - {fileID: 2135291236}
+  - {fileID: 1640390388}
   - {fileID: 555425339}
   - {fileID: 1972650725}
   m_Father: {fileID: 1646263995}
@@ -2674,6 +2738,7 @@ GameObject:
   - component: {fileID: 741692803}
   - component: {fileID: 741692804}
   - component: {fileID: 741692805}
+  - component: {fileID: 741692806}
   m_Layer: 0
   m_Name: Player1
   m_TagString: Player1
@@ -2801,6 +2866,9 @@ MonoBehaviour:
   isRecovering: 0
   playerOneX: {fileID: 741692797}
   playerTwoX: {fileID: 2002236527}
+  isJumping: 0
+  jumpTimer: 0
+  isBlocking: 0
   rb: {fileID: 741692803}
   groundLayer:
     serializedVersion: 2
@@ -2822,6 +2890,21 @@ MonoBehaviour:
   chipSpeed: 2
   frontHealthBar: {fileID: 1920333161}
   backHealthBar: {fileID: 1134625547}
+--- !u!114 &741692806
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 741692797}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc9280ebd5494624783008b697135c4b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxShield: 100
+  shieldBufferTimer: 0
+  shieldBar: {fileID: 1640390389}
 --- !u!1 &782786552
 GameObject:
   m_ObjectHideFlags: 0
@@ -2972,19 +3055,23 @@ MonoBehaviour:
   enemyTarget: {fileID: 77453362}
   hitboxTimer: 0.01
   attackDamage: 30
+  shieldDamage: 0
   horizontalKnockback: 5
   verticalKnockback: 0
   horizontalAirKnockback: 0
   verticalAirKnockback: 0
   stunTime: 0.4
+  shieldStunTime: 0
   knockbackTime: 0
   resetAerialOpponent: 0
   isSpecialMove: 0
   isAerialMove: 0
   isRegularMove: 0
   isJugglingMove: 0
+  isLowMove: 0
   isProjectile: 0
   hasHit: 0
+  isBlockBox: 0
 --- !u!65 &787552039
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3101,19 +3188,23 @@ MonoBehaviour:
   enemyTarget: {fileID: 77453362}
   hitboxTimer: 0.01
   attackDamage: 20
+  shieldDamage: 0
   horizontalKnockback: 5
   verticalKnockback: 0
   horizontalAirKnockback: 0
   verticalAirKnockback: 0
   stunTime: 0.4
+  shieldStunTime: 0
   knockbackTime: 0
   resetAerialOpponent: 0
   isSpecialMove: 0
   isAerialMove: 0
   isRegularMove: 0
   isJugglingMove: 0
+  isLowMove: 0
   isProjectile: 0
   hasHit: 0
+  isBlockBox: 0
 --- !u!65 &803552155
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3177,6 +3268,82 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 803552152}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &818223959
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 818223962}
+  - component: {fileID: 818223961}
+  - component: {fileID: 818223960}
+  m_Layer: 5
+  m_Name: P2ShieldFront
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &818223960
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 818223959}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: 941e9b81ffd1fca4a8c27770230a241d, type: 3}
+  m_Type: 3
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 0
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 1
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &818223961
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 818223959}
+  m_CullTransparentMesh: 1
+--- !u!224 &818223962
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 818223959}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1558507952}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 295.90002, y: 218.36449}
+  m_SizeDelta: {x: 174.5017, y: 18.4077}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &839004335
 GameObject:
   m_ObjectHideFlags: 0
@@ -3334,6 +3501,9 @@ MonoBehaviour:
   isRecovering: 0
   playerOneX: {fileID: 741692797}
   playerTwoX: {fileID: 839004335}
+  isJumping: 0
+  jumpTimer: 0
+  isBlocking: 0
   rb: {fileID: 839004341}
   groundLayer:
     serializedVersion: 2
@@ -3456,17 +3626,23 @@ MonoBehaviour:
   kTime: 0
   vAirKnockback: 0
   hAirKnockback: 0
+  damageToShield: 0
+  shieldStunDuration: 0
   isHit: 0
+  isShieldHit: 0
   isStunned: 0
   isKnockback: 0
   isLaunched: 0
   isInvincible: 0
+  isShieldStunned: 0
   canReset: 0
   canHitSpecial: 0
   canHitAerial: 0
   canHitRegular: 0
   canHitJuggle: 0
+  canHitLow: 0
   maxDamageReductionFactor: 0.5
+  isBlockable: 0
 --- !u!1 &901709236
 GameObject:
   m_ObjectHideFlags: 0
@@ -3520,19 +3696,23 @@ MonoBehaviour:
   enemyTarget: {fileID: 77453362}
   hitboxTimer: 0.01
   attackDamage: 20
+  shieldDamage: 0
   horizontalKnockback: 10
   verticalKnockback: 0
   horizontalAirKnockback: 0
   verticalAirKnockback: 0
   stunTime: 0.3
+  shieldStunTime: 0
   knockbackTime: 0
   resetAerialOpponent: 0
   isSpecialMove: 0
   isAerialMove: 0
   isRegularMove: 0
   isJugglingMove: 0
+  isLowMove: 0
   isProjectile: 0
   hasHit: 0
+  isBlockBox: 0
 --- !u!65 &901709239
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3660,6 +3840,7 @@ MonoBehaviour:
   isNothingPressed: 0
   isCrouching: 0
   isCancel: 0
+  isBlocking: 0
 --- !u!95 &913467388
 Animator:
   serializedVersion: 5
@@ -3829,6 +4010,38 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 10
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &929874406
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 929874407}
+  m_Layer: 0
+  m_Name: P1Blockboxes
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &929874407
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 929874406}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.22222237, y: -2.1361113, z: 0}
+  m_LocalScale: {x: 0.27777776, y: 0.27777776, z: 0.25}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1230758285}
+  m_Father: {fileID: 229089002}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &955113368
 GameObject:
@@ -4154,17 +4367,23 @@ MonoBehaviour:
   kTime: 0
   vAirKnockback: 0
   hAirKnockback: 0
+  damageToShield: 0
+  shieldStunDuration: 0
   isHit: 0
+  isShieldHit: 0
   isStunned: 0
   isKnockback: 0
   isLaunched: 0
   isInvincible: 0
+  isShieldStunned: 0
   canReset: 0
   canHitSpecial: 0
   canHitAerial: 0
   canHitRegular: 0
   canHitJuggle: 0
+  canHitLow: 0
   maxDamageReductionFactor: 0.5
+  isBlockable: 0
 --- !u!1 &1049400003
 GameObject:
   m_ObjectHideFlags: 0
@@ -4282,17 +4501,23 @@ MonoBehaviour:
   kTime: 0
   vAirKnockback: 0
   hAirKnockback: 0
+  damageToShield: 0
+  shieldStunDuration: 0
   isHit: 0
+  isShieldHit: 0
   isStunned: 0
   isKnockback: 0
   isLaunched: 0
   isInvincible: 0
+  isShieldStunned: 0
   canReset: 0
   canHitSpecial: 0
   canHitAerial: 0
   canHitRegular: 0
   canHitJuggle: 0
+  canHitLow: 0
   maxDamageReductionFactor: 0.5
+  isBlockable: 0
 --- !u!1 &1105917333
 GameObject:
   m_ObjectHideFlags: 0
@@ -4410,17 +4635,23 @@ MonoBehaviour:
   kTime: 0
   vAirKnockback: 0
   hAirKnockback: 0
+  damageToShield: 0
+  shieldStunDuration: 0
   isHit: 0
+  isShieldHit: 0
   isStunned: 0
   isKnockback: 0
   isLaunched: 0
   isInvincible: 0
+  isShieldStunned: 0
   canReset: 0
   canHitSpecial: 0
   canHitAerial: 0
   canHitRegular: 0
   canHitJuggle: 0
+  canHitLow: 0
   maxDamageReductionFactor: 0.5
+  isBlockable: 0
 --- !u!1 &1134625545
 GameObject:
   m_ObjectHideFlags: 0
@@ -4614,17 +4845,156 @@ MonoBehaviour:
   kTime: 0
   vAirKnockback: 0
   hAirKnockback: 0
+  damageToShield: 0
+  shieldStunDuration: 0
   isHit: 0
+  isShieldHit: 0
   isStunned: 0
   isKnockback: 0
   isLaunched: 0
   isInvincible: 0
+  isShieldStunned: 0
   canReset: 0
   canHitSpecial: 0
   canHitAerial: 0
   canHitRegular: 0
   canHitJuggle: 0
+  canHitLow: 0
   maxDamageReductionFactor: 0.5
+  isBlockable: 0
+--- !u!1 &1230758284
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1230758285}
+  - component: {fileID: 1230758289}
+  - component: {fileID: 1230758288}
+  - component: {fileID: 1230758287}
+  - component: {fileID: 1230758286}
+  m_Layer: 0
+  m_Name: P1BlockLB
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &1230758285
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1230758284}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -3.13, y: 6.192, z: 0.009999752}
+  m_LocalScale: {x: 4.060103, y: 6.4014077, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 929874407}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1230758286
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1230758284}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c313501922b18f043be86fa35e0c376d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hurtboxs:
+    serializedVersion: 2
+    m_Bits: 256
+  enemyTarget: {fileID: 1674511205}
+  hitboxTimer: 0.01
+  attackDamage: 0
+  shieldDamage: 0
+  horizontalKnockback: 0
+  verticalKnockback: 0
+  horizontalAirKnockback: 0
+  verticalAirKnockback: 0
+  stunTime: 0
+  shieldStunTime: 0
+  knockbackTime: 0
+  resetAerialOpponent: 0
+  isSpecialMove: 0
+  isAerialMove: 0
+  isRegularMove: 0
+  isJugglingMove: 0
+  isLowMove: 0
+  isProjectile: 0
+  hasHit: 0
+  isBlockBox: 1
+--- !u!65 &1230758287
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1230758284}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!23 &1230758288
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1230758284}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!33 &1230758289
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1230758284}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1 &1263962622
 GameObject:
   m_ObjectHideFlags: 0
@@ -4742,17 +5112,23 @@ MonoBehaviour:
   kTime: 0
   vAirKnockback: 0
   hAirKnockback: 0
+  damageToShield: 0
+  shieldStunDuration: 0
   isHit: 0
+  isShieldHit: 0
   isStunned: 0
   isKnockback: 0
   isLaunched: 0
   isInvincible: 0
+  isShieldStunned: 0
   canReset: 0
   canHitSpecial: 0
   canHitAerial: 0
   canHitRegular: 0
   canHitJuggle: 0
+  canHitLow: 0
   maxDamageReductionFactor: 0.5
+  isBlockable: 0
 --- !u!1 &1351152213
 GameObject:
   m_ObjectHideFlags: 0
@@ -4837,19 +5213,23 @@ MonoBehaviour:
   enemyTarget: {fileID: 77453362}
   hitboxTimer: 0.01
   attackDamage: 40
+  shieldDamage: 0
   horizontalKnockback: 0
   verticalKnockback: 0
   horizontalAirKnockback: 0
   verticalAirKnockback: 0
   stunTime: 0.3
+  shieldStunTime: 0
   knockbackTime: 0
   resetAerialOpponent: 0
   isSpecialMove: 0
   isAerialMove: 0
   isRegularMove: 0
   isJugglingMove: 0
+  isLowMove: 0
   isProjectile: 0
   hasHit: 0
+  isBlockBox: 0
 --- !u!65 &1355370781
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -5030,17 +5410,23 @@ MonoBehaviour:
   kTime: 0
   vAirKnockback: 0
   hAirKnockback: 0
+  damageToShield: 0
+  shieldStunDuration: 0
   isHit: 0
+  isShieldHit: 0
   isStunned: 0
   isKnockback: 0
   isLaunched: 0
   isInvincible: 0
+  isShieldStunned: 0
   canReset: 0
   canHitSpecial: 0
   canHitAerial: 0
   canHitRegular: 0
   canHitJuggle: 0
+  canHitLow: 0
   maxDamageReductionFactor: 0.5
+  isBlockable: 0
 --- !u!1 &1447884093
 GameObject:
   m_ObjectHideFlags: 0
@@ -5234,17 +5620,23 @@ MonoBehaviour:
   kTime: 0
   vAirKnockback: 0
   hAirKnockback: 0
+  damageToShield: 0
+  shieldStunDuration: 0
   isHit: 0
+  isShieldHit: 0
   isStunned: 0
   isKnockback: 0
   isLaunched: 0
   isInvincible: 0
+  isShieldStunned: 0
   canReset: 0
   canHitSpecial: 0
   canHitAerial: 0
   canHitRegular: 0
   canHitJuggle: 0
+  canHitLow: 0
   maxDamageReductionFactor: 0.5
+  isBlockable: 0
 --- !u!1 &1536258901
 GameObject:
   m_ObjectHideFlags: 0
@@ -5278,7 +5670,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 229089002}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1536258903
 MonoBehaviour:
@@ -5299,17 +5691,23 @@ MonoBehaviour:
   kTime: 0
   vAirKnockback: 0
   hAirKnockback: 0
+  damageToShield: 0
+  shieldStunDuration: 0
   isHit: 0
+  isShieldHit: 0
   isStunned: 0
   isKnockback: 0
   isLaunched: 0
   isInvincible: 0
+  isShieldStunned: 0
   canReset: 0
   canHitSpecial: 0
   canHitAerial: 0
   canHitRegular: 0
   canHitJuggle: 0
+  canHitLow: 0
   maxDamageReductionFactor: 0.5
+  isBlockable: 0
 --- !u!65 &1536258904
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -5404,6 +5802,8 @@ RectTransform:
   - {fileID: 390519951}
   - {fileID: 1656274676}
   - {fileID: 1447884094}
+  - {fileID: 2112660084}
+  - {fileID: 818223962}
   - {fileID: 107211843}
   - {fileID: 343872324}
   m_Father: {fileID: 1646263995}
@@ -5489,6 +5889,82 @@ CanvasRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1603739779}
+  m_CullTransparentMesh: 1
+--- !u!1 &1640390387
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1640390388}
+  - component: {fileID: 1640390390}
+  - component: {fileID: 1640390389}
+  m_Layer: 5
+  m_Name: P1ShieldFront
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1640390388
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1640390387}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 714130364}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: -195.70447, y: 218.36449}
+  m_SizeDelta: {x: 174.5017, y: 18.4077}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1640390389
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1640390387}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: 941e9b81ffd1fca4a8c27770230a241d, type: 3}
+  m_Type: 3
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 0
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &1640390390
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1640390387}
   m_CullTransparentMesh: 1
 --- !u!1 &1642082556
 GameObject:
@@ -5606,19 +6082,23 @@ MonoBehaviour:
   enemyTarget: {fileID: 1674511205}
   hitboxTimer: 0.01
   attackDamage: 50
+  shieldDamage: 6
   horizontalKnockback: 0.5
   verticalKnockback: 0
   horizontalAirKnockback: 1
   verticalAirKnockback: 1
   stunTime: 0.4
+  shieldStunTime: 0.2
   knockbackTime: 0.2
   resetAerialOpponent: 0
   isSpecialMove: 1
   isAerialMove: 0
   isRegularMove: 0
   isJugglingMove: 0
+  isLowMove: 0
   isProjectile: 1
   hasHit: 0
+  isBlockBox: 0
 --- !u!1 &1646263991
 GameObject:
   m_ObjectHideFlags: 0
@@ -6039,17 +6519,23 @@ MonoBehaviour:
   kTime: 0
   vAirKnockback: 0
   hAirKnockback: 0
+  damageToShield: 0
+  shieldStunDuration: 0
   isHit: 0
+  isShieldHit: 0
   isStunned: 0
   isKnockback: 0
   isLaunched: 0
   isInvincible: 0
+  isShieldStunned: 0
   canReset: 0
   canHitSpecial: 0
   canHitAerial: 0
   canHitRegular: 0
   canHitJuggle: 0
+  canHitLow: 0
   maxDamageReductionFactor: 0.5
+  isBlockable: 0
 --- !u!1 &1674511205
 GameObject:
   m_ObjectHideFlags: 0
@@ -6109,17 +6595,23 @@ MonoBehaviour:
   kTime: 0
   vAirKnockback: 0
   hAirKnockback: 0
+  damageToShield: 0
+  shieldStunDuration: 0
   isHit: 0
+  isShieldHit: 0
   isStunned: 0
   isKnockback: 0
   isLaunched: 0
   isInvincible: 0
+  isShieldStunned: 0
   canReset: 0
   canHitSpecial: 0
   canHitAerial: 0
   canHitRegular: 0
   canHitJuggle: 0
+  canHitLow: 0
   maxDamageReductionFactor: 0.5
+  isBlockable: 0
 --- !u!1 &1690919592
 GameObject:
   m_ObjectHideFlags: 0
@@ -6313,17 +6805,23 @@ MonoBehaviour:
   kTime: 0
   vAirKnockback: 0
   hAirKnockback: 0
+  damageToShield: 0
+  shieldStunDuration: 0
   isHit: 0
+  isShieldHit: 0
   isStunned: 0
   isKnockback: 0
   isLaunched: 0
   isInvincible: 0
+  isShieldStunned: 0
   canReset: 0
   canHitSpecial: 0
   canHitAerial: 0
   canHitRegular: 0
   canHitJuggle: 0
+  canHitLow: 0
   maxDamageReductionFactor: 0.5
+  isBlockable: 0
 --- !u!1 &1891786233
 GameObject:
   m_ObjectHideFlags: 0
@@ -6479,19 +6977,23 @@ MonoBehaviour:
   enemyTarget: {fileID: 1674511205}
   hitboxTimer: 0.01
   attackDamage: 20
+  shieldDamage: 4
   horizontalKnockback: 2
   verticalKnockback: 0
   horizontalAirKnockback: 1
   verticalAirKnockback: -2
   stunTime: 0.3
+  shieldStunTime: 0.1
   knockbackTime: 0.2
   resetAerialOpponent: 1
   isSpecialMove: 0
   isAerialMove: 0
   isRegularMove: 1
   isJugglingMove: 0
+  isLowMove: 0
   isProjectile: 0
   hasHit: 0
+  isBlockBox: 0
 --- !u!1 &1920333159
 GameObject:
   m_ObjectHideFlags: 0
@@ -6764,7 +7266,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 714130364}
-  m_RootOrder: 4
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -6821,6 +7323,7 @@ GameObject:
   - component: {fileID: 2002236530}
   - component: {fileID: 2002236529}
   - component: {fileID: 2002236528}
+  - component: {fileID: 2002236535}
   m_Layer: 0
   m_Name: Player2
   m_TagString: Player2
@@ -6867,6 +7370,9 @@ MonoBehaviour:
   isRecovering: 0
   playerOneX: {fileID: 741692797}
   playerTwoX: {fileID: 2002236527}
+  isJumping: 0
+  jumpTimer: 0
+  isBlocking: 0
   rb: {fileID: 2002236530}
   groundLayer:
     serializedVersion: 2
@@ -6969,6 +7475,21 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2002236535
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2002236527}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc9280ebd5494624783008b697135c4b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxShield: 100
+  shieldBufferTimer: 0
+  shieldBar: {fileID: 818223960}
 --- !u!1 &2043342606
 GameObject:
   m_ObjectHideFlags: 0
@@ -7022,19 +7543,23 @@ MonoBehaviour:
   enemyTarget: {fileID: 1674511205}
   hitboxTimer: 0.01
   attackDamage: 50
+  shieldDamage: 6
   horizontalKnockback: 1.5
   verticalKnockback: 4
   horizontalAirKnockback: 1.5
   verticalAirKnockback: 4
   stunTime: 0.3
+  shieldStunTime: 0.24
   knockbackTime: 0.2
   resetAerialOpponent: 0
   isSpecialMove: 0
   isAerialMove: 0
   isRegularMove: 1
   isJugglingMove: 1
+  isLowMove: 0
   isProjectile: 0
   hasHit: 0
+  isBlockBox: 0
 --- !u!65 &2043342609
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -7312,17 +7837,99 @@ MonoBehaviour:
   kTime: 0
   vAirKnockback: 0
   hAirKnockback: 0
+  damageToShield: 0
+  shieldStunDuration: 0
   isHit: 0
+  isShieldHit: 0
   isStunned: 0
   isKnockback: 0
   isLaunched: 0
   isInvincible: 0
+  isShieldStunned: 0
   canReset: 0
   canHitSpecial: 0
   canHitAerial: 0
   canHitRegular: 0
   canHitJuggle: 0
+  canHitLow: 0
   maxDamageReductionFactor: 0.5
+  isBlockable: 0
+--- !u!1 &2112660083
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2112660084}
+  - component: {fileID: 2112660086}
+  - component: {fileID: 2112660085}
+  m_Layer: 5
+  m_Name: P2ShieldBackground
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &2112660084
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2112660083}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1558507952}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 295.9, y: 218.36449}
+  m_SizeDelta: {x: 174.5017, y: 18.4077}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &2112660085
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2112660083}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: e864e47e698e6ac45ad1732bd93832f8, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 0
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &2112660086
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2112660083}
+  m_CullTransparentMesh: 1
 --- !u!1 &2120777262
 GameObject:
   m_ObjectHideFlags: 0
@@ -7440,17 +8047,99 @@ MonoBehaviour:
   kTime: 0
   vAirKnockback: 0
   hAirKnockback: 0
+  damageToShield: 0
+  shieldStunDuration: 0
   isHit: 0
+  isShieldHit: 0
   isStunned: 0
   isKnockback: 0
   isLaunched: 0
   isInvincible: 0
+  isShieldStunned: 0
   canReset: 0
   canHitSpecial: 0
   canHitAerial: 0
   canHitRegular: 0
   canHitJuggle: 0
+  canHitLow: 0
   maxDamageReductionFactor: 0.5
+  isBlockable: 0
+--- !u!1 &2135291235
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2135291236}
+  - component: {fileID: 2135291238}
+  - component: {fileID: 2135291237}
+  m_Layer: 5
+  m_Name: P1ShieldBackground
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &2135291236
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2135291235}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 714130364}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: -195.70447, y: 218.36449}
+  m_SizeDelta: {x: 174.5017, y: 18.4077}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &2135291237
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2135291235}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: e864e47e698e6ac45ad1732bd93832f8, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 0
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &2135291238
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2135291235}
+  m_CullTransparentMesh: 1
 --- !u!1 &2137048770
 GameObject:
   m_ObjectHideFlags: 0

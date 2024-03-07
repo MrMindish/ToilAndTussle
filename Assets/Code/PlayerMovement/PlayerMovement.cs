@@ -39,6 +39,9 @@ namespace AB
         public bool isJumping;
         public float jumpTimer;
 
+        //
+        public bool isBlocking;
+
         [SerializeField] private Rigidbody rb;
         [SerializeField] private LayerMask groundLayer;
         [SerializeField] private Transform orientation;
@@ -61,7 +64,7 @@ namespace AB
         {
                 horizontal = Input.GetAxisRaw("Horizontal");
 
-                if (Input.GetButtonDown(JumpName) && IsGrounded() && playerAttackManager.isAttacking == false && playerAttackManager.isCrouching == false && hurtboxManager.isStunned == false)
+                if (Input.GetButtonDown(JumpName) && IsGrounded() && playerAttackManager.isAttacking == false && playerAttackManager.isCrouching == false && hurtboxManager.isStunned == false && hurtboxManager.isShieldStunned == false)
                 {
                     //if the jump is inputed while the fighter is grounded, not attacking or being attacked, or crouching, then the jump is performed
                     rb.velocity = new Vector3(rb.velocity.x, jumpingPower, 0);
@@ -76,6 +79,7 @@ namespace AB
 
             IsGrounded();
             Flip();
+            BlockingRange();
 
             if(jumpTimer > 0)
             {
@@ -92,10 +96,17 @@ namespace AB
 
         private void FixedUpdate()
         {
-            if (IsGrounded() && playerPushBox.canPush == false && playerAttackManager.isAttacking == false && playerAttackManager.isCrouching == false && hurtboxManager.isStunned == false)
+            //if the player's on the ground, isn't attacking, isn't crouching, isn't stunned and isn't blocking, they move normally
+            if (IsGrounded() && playerAttackManager.isAttacking == false && playerAttackManager.isCrouching == false && hurtboxManager.isStunned == false && hurtboxManager.isShieldStunned == false && !isBlocking)
             {
                 //movement part
                 rb.velocity = new Vector3(horizontal * moveSpeed, rb.velocity.y, 0f);
+            }
+            //Holds the player in place if they're blocking
+            else if (IsGrounded() && playerAttackManager.isAttacking == false && playerAttackManager.isCrouching == false && hurtboxManager.isStunned == false && hurtboxManager.isShieldStunned == false && isBlocking)
+            {
+                //Blocking movement
+                rb.velocity = new Vector3(0f, rb.velocity.y, 0f);
             }
 
             else if (hurtboxManager.isStunned && hurtboxManager.isKnockback && IsGrounded())
@@ -162,13 +173,14 @@ namespace AB
                 hurtboxManager.canReset = false;
                 hurtboxManager.isInvincible = false;
                 hurtboxManager.isStunned = false;
+                hurtboxManager.isShieldStunned = false;
             }
         }
 
 
         public bool IsGrounded()
         {
-            return Physics.Raycast(orientation.position, Vector3.down, 0.1f);
+            return Physics.Raycast(orientation.position, Vector3.down, 0.01f);
         }
 
 
@@ -246,6 +258,35 @@ namespace AB
             else if (gameObject.tag == "Player2" && transform.position.x > playerOneX.transform.position.x && isRecovering)
             {
                 recoveryForce *= -1;
+            }
+        }
+
+        private void BlockingRange()
+        {
+            if (gameObject.tag == "Player1" && IsGrounded() && transform.position.x > playerTwoX.transform.position.x && playerAttackManager.isAttacking == false && !hurtboxManager.isStunned && hurtboxManager.isBlockable && Input.GetKey(KeyCode.RightArrow))
+            {
+                isBlocking = true;
+            }
+            else if (gameObject.tag == "Player1" && IsGrounded() && transform.position.x < playerTwoX.transform.position.x && playerAttackManager.isAttacking == false && !hurtboxManager.isStunned && hurtboxManager.isBlockable && Input.GetKey(KeyCode.LeftArrow))
+            {
+                isBlocking = true;
+            }
+            else
+            {
+                isBlocking = false;
+            }
+
+            if (gameObject.tag == "Player2" && IsGrounded() && transform.position.x > playerOneX.transform.position.x && playerAttackManager.isAttacking == false && !hurtboxManager.isStunned && hurtboxManager.isBlockable && Input.GetKey(KeyCode.RightArrow))
+            {
+                isBlocking = true;
+            }
+            else if (gameObject.tag == "Player2" && IsGrounded() && transform.position.x < playerOneX.transform.position.x && playerAttackManager.isAttacking == false && !hurtboxManager.isStunned && hurtboxManager.isBlockable && Input.GetKey(KeyCode.LeftArrow))
+            {
+                isBlocking = true;
+            }
+            else
+            {
+                isBlocking = false;
             }
         }
 
