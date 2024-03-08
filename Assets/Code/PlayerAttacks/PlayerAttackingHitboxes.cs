@@ -53,10 +53,6 @@ namespace AB
         public bool isParry;
 
 
-        //Used for the attacker when they get parried
-        public bool beenParried;
-
-
         private void Start()
         {
             hasHit = false;
@@ -71,14 +67,19 @@ namespace AB
 
         public void OnTriggerEnter(Collider other)
         {
-            PlayerHurtboxManager defenderHitboxes = other.gameObject.GetComponent<PlayerHurtboxManager>();
-
-            if(defenderHitboxes != null && defenderHitboxes.parried)
+            // Check if the hit has not occurred and the collider belongs to the hurtbox layer
+            if (!hasHit && enemyTarget != null && ((1 << other.gameObject.layer) & hurtboxs) != 0)
             {
-                Debug.Log("Holy Shit");
-                beenParried = true;
-                playerHurtboxManager.hKnockback = 50f;
+                hasHit = true;
+                Debug.Log("Hit" + other.gameObject.name);
             }
+            else if (!hasHit && enemyTarget != null && ((1 << other.gameObject.layer) & hurtboxs) != 0 && isProjectile)
+            {
+                hasHit = true;
+                Debug.Log("Projectile Hit");
+                gameObject.SetActive(false);
+            }
+
         }
 
         private void Update()

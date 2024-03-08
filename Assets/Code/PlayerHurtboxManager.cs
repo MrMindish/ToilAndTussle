@@ -69,7 +69,6 @@ namespace AB
 
         //If the correct variables are read, the parry is set to true
         public bool parried;
-        public bool parryKnockback;
 
         private void Awake()
         {
@@ -147,43 +146,40 @@ namespace AB
                     canHitJuggle = false;
                 }
             }
-            else if (attackerHitboxes != null && isInvincible == false && playerMovement.isBlocking && !parried)
+            else if (attackerHitboxes != null && isInvincible == false && playerMovement.isBlocking)
             {
+                //Pulls various information from the attacking hitboxes
+                damageToShield = attackerHitboxes.shieldDamage;                         //The Damage of the Attack
+                vKnockback = attackerHitboxes.verticalKnockback * 0f;                   //The Vertical (Up and Down) knockback
+                hKnockback = attackerHitboxes.horizontalKnockback * 0.9f;               //The Horizontal (Left and Right) knockback
+
+
+                canHitRegular = attackerHitboxes.isRegularMove;                         //Checks if the attack is Light or Heavy
+                canHitSpecial = attackerHitboxes.isSpecialMove;                         //Checks if the attack is special
+                canHitAerial = attackerHitboxes.isAerialMove;                           //Checks if the attack is Aerial
+                canHitJuggle = attackerHitboxes.isJugglingMove;                         //Checks if the attack can launch fighters upwards
+
                 if (attackerHitboxes.isParry && playerMovement.canParry)
                 {
                     Debug.Log("Spice");
                     parried = true;
-                    parryKnockback = true;
-                    hKnockback = 50f;
                 }
                 else
                 {
-
-                    //Pulls various information from the attacking hitboxes
-                    damageToShield = attackerHitboxes.shieldDamage;                         //The Damage of the Attack
-                    vKnockback = attackerHitboxes.verticalKnockback * 0f;                   //The Vertical (Up and Down) knockback
-                    hKnockback = attackerHitboxes.horizontalKnockback * 0.9f;               //The Horizontal (Left and Right) knockback
-
-
-                    canHitRegular = attackerHitboxes.isRegularMove;                         //Checks if the attack is Light or Heavy
-                    canHitSpecial = attackerHitboxes.isSpecialMove;                         //Checks if the attack is special
-                    canHitAerial = attackerHitboxes.isAerialMove;                           //Checks if the attack is Aerial
-                    canHitJuggle = attackerHitboxes.isJugglingMove;                         //Checks if the attack can launch fighters upwards
-
-
-
-                    isShieldStunned = true;
-                    isKnockback = true;
-                    if (isShieldStunned)
-                    {
-                        float damageReductionFactor = Mathf.Lerp(1f, maxDamageReductionFactor, hitCountDuringStun / 1f);
-                        damageToShield *= damageReductionFactor;
-                    }
-
-                    stunDuration = attackerHitboxes.shieldStunTime;
-                    kTime = attackerHitboxes.knockbackTime;
-                    isShieldHit = true;
+                    parried = false;
                 }
+
+                isShieldStunned = true;
+                isKnockback = true;
+                if (isShieldStunned)
+                {
+                    float damageReductionFactor = Mathf.Lerp(1f, maxDamageReductionFactor, hitCountDuringStun / 1f);
+                    damageToShield *= damageReductionFactor;
+                }
+
+                stunDuration = attackerHitboxes.shieldStunTime;
+                kTime = attackerHitboxes.knockbackTime;
+                isShieldHit = true;
             }
         }
 
@@ -226,8 +222,6 @@ namespace AB
                     isKnockback = false;
                 }
             }
-
-
         }
     }
 }
