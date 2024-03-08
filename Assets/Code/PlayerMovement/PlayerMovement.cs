@@ -11,6 +11,7 @@ namespace AB
         PlayerPushBox playerPushBox;
         PlayerAttackManager playerAttackManager;
         PlayerHurtboxManager hurtboxManager;
+        PlayerAttackingHitboxes playerAttackingHitboxes;
 
         //Handles all of the movement speed and such
         private float horizontal;
@@ -52,6 +53,7 @@ namespace AB
             playerPushBox = GetComponentInChildren<PlayerPushBox>();
             playerAttackManager = GetComponentInChildren<PlayerAttackManager>();
             hurtboxManager = GetComponentInChildren<PlayerHurtboxManager>();
+            playerAttackingHitboxes = GetComponentInChildren<PlayerAttackingHitboxes>();
         } //Includes the Component Getting
 
         private void Start()

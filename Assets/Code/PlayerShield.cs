@@ -59,6 +59,11 @@ namespace AB
             {
                 shieldHealth = 100;
             }
+
+            if (playerHurtboxManager.parried)
+            {
+                shieldHealth = shieldHealth + 25;
+            }
         }
 
 
