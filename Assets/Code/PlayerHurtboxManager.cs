@@ -148,17 +148,6 @@ namespace AB
             }
             else if (attackerHitboxes != null && isInvincible == false && playerMovement.isBlocking)
             {
-                //Pulls various information from the attacking hitboxes
-                damageToShield = attackerHitboxes.shieldDamage;                         //The Damage of the Attack
-                vKnockback = attackerHitboxes.verticalKnockback * 0f;                   //The Vertical (Up and Down) knockback
-                hKnockback = attackerHitboxes.horizontalKnockback * 0.9f;               //The Horizontal (Left and Right) knockback
-
-
-                canHitRegular = attackerHitboxes.isRegularMove;                         //Checks if the attack is Light or Heavy
-                canHitSpecial = attackerHitboxes.isSpecialMove;                         //Checks if the attack is special
-                canHitAerial = attackerHitboxes.isAerialMove;                           //Checks if the attack is Aerial
-                canHitJuggle = attackerHitboxes.isJugglingMove;                         //Checks if the attack can launch fighters upwards
-
                 if (attackerHitboxes.isParry && playerMovement.canParry)
                 {
                     Debug.Log("Spice");
@@ -166,20 +155,30 @@ namespace AB
                 }
                 else
                 {
-                    parried = false;
+                    //Pulls various information from the attacking hitboxes
+                    damageToShield = attackerHitboxes.shieldDamage;                         //The Damage of the Attack
+                    vKnockback = attackerHitboxes.verticalKnockback * 0f;                   //The Vertical (Up and Down) knockback
+                    hKnockback = attackerHitboxes.horizontalKnockback * 0.9f;               //The Horizontal (Left and Right) knockback
+
+
+                    canHitRegular = attackerHitboxes.isRegularMove;                         //Checks if the attack is Light or Heavy
+                    canHitSpecial = attackerHitboxes.isSpecialMove;                         //Checks if the attack is special
+                    canHitAerial = attackerHitboxes.isAerialMove;                           //Checks if the attack is Aerial
+                    canHitJuggle = attackerHitboxes.isJugglingMove;                         //Checks if the attack can launch fighters upwards
+
+                    isShieldStunned = true;
+                    isKnockback = true;
+                    if (isShieldStunned)
+                    {
+                        float damageReductionFactor = Mathf.Lerp(1f, maxDamageReductionFactor, hitCountDuringStun / 1f);
+                        damageToShield *= damageReductionFactor;
+                    }
+
+                    stunDuration = attackerHitboxes.shieldStunTime;
+                    kTime = attackerHitboxes.knockbackTime;
+                    isShieldHit = true;
                 }
 
-                isShieldStunned = true;
-                isKnockback = true;
-                if (isShieldStunned)
-                {
-                    float damageReductionFactor = Mathf.Lerp(1f, maxDamageReductionFactor, hitCountDuringStun / 1f);
-                    damageToShield *= damageReductionFactor;
-                }
-
-                stunDuration = attackerHitboxes.shieldStunTime;
-                kTime = attackerHitboxes.knockbackTime;
-                isShieldHit = true;
             }
         }
 

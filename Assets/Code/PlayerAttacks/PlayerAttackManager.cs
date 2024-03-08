@@ -41,6 +41,8 @@ namespace AB
         //Used for Cancelling Moves into Specials
         public bool isCancel = false;
 
+        private float timer;
+
 
 
         private void Awake()
@@ -53,10 +55,23 @@ namespace AB
 
             isAttacking = false;
             isAirAttacking = false;
+            timer = 0;
+
+
         }
 
         private void Update()
         {
+            if(timer > 0)
+            {
+                timer -= Time.deltaTime;
+            }
+            else if(timer <= 0)
+            {
+                timer = 0;
+                animator.SetBool("isParried", false);
+            }
+
             //Performs the Jump Animation
             if (playerMovement.isJumping && !hurtboxManager.isStunned)
             {
@@ -80,14 +95,11 @@ namespace AB
             }
 
             //Performs the Parry Animation
-            if(hurtboxManager.parried && !hurtboxManager.isStunned)
+            if (hurtboxManager.parried)
             {
+                timer = 1;
                 animator.SetBool("isParried", true);
                 hurtboxManager.parried = false;
-            }
-            else
-            {
-                animator.SetBool("isParried", false);
             }
 
             //Performs the Light Null Attack
