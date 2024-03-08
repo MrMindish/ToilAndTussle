@@ -27,6 +27,7 @@ namespace AB
 
         PlayerMovement playerMovement;
         PlayerHurtboxManager hurtboxManager;
+        PlayerAttackingHitboxes playerAttackingHitboxes;
 
         //Registers the directional inputs
         public bool isRightPressed;
@@ -40,9 +41,6 @@ namespace AB
         //Used for Cancelling Moves into Specials
         public bool isCancel = false;
 
-        //Used to block attacks
-        public bool isBlocking;
-
 
 
         private void Awake()
@@ -51,6 +49,7 @@ namespace AB
             animator = GetComponent<Animator>();
             playerMovement = GetComponentInParent<PlayerMovement>();
             hurtboxManager = GetComponentInChildren<PlayerHurtboxManager>();
+            playerAttackingHitboxes = GetComponentInChildren<PlayerAttackingHitboxes>();
 
             isAttacking = false;
             isAirAttacking = false;
@@ -59,14 +58,36 @@ namespace AB
         private void Update()
         {
             //Performs the Jump Animation
-            if (playerMovement.isJumping)
+            if (playerMovement.isJumping && !hurtboxManager.isStunned)
             {
                 animator.SetTrigger("jumpStart");
+                animator.ResetTrigger("jumpEnd");
             }
-            if (!playerMovement.isJumping)
+            if (!playerMovement.isJumping && !hurtboxManager.isStunned)
             {
                 animator.ResetTrigger("jumpStart");
                 animator.SetTrigger("jumpEnd");
+            }
+
+            //Performs the Blocking Animation
+            if(playerMovement.isBlocking && !hurtboxManager.isStunned)
+            {
+                animator.SetBool("isBlocking", true);
+            }
+            else
+            {
+                animator.SetBool("isBlocking", false);
+            }
+
+            //Performs the Parry Animation
+            if(hurtboxManager.parried && !hurtboxManager.isStunned)
+            {
+                animator.SetBool("isParried", true);
+                hurtboxManager.parried = false;
+            }
+            else
+            {
+                animator.SetBool("isParried", false);
             }
 
             //Performs the Light Null Attack
@@ -250,6 +271,13 @@ namespace AB
             return isCancel = false;
         }
 
-
+        public bool CanParry()
+        {
+            return playerAttackingHitboxes.isParry = true;
+        }
+        public bool CantParry()
+        {
+            return playerAttackingHitboxes.isParry = false;
+        }
     }
 }

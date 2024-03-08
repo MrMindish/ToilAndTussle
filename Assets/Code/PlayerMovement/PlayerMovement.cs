@@ -37,10 +37,11 @@ namespace AB
 
         //Allows the jump animation to play
         public bool isJumping;
-        public float jumpTimer;
+        public float jumpTimer = 0.4f;
 
-        //
+
         public bool isBlocking;
+        public bool canParry;
 
         [SerializeField] private Rigidbody rb;
         [SerializeField] private LayerMask groundLayer;
@@ -81,14 +82,14 @@ namespace AB
             Flip();
             BlockingRange();
 
-            if(jumpTimer > 0)
+            if(jumpTimer > 0 && !IsGrounded())
             {
                 jumpTimer -= Time.deltaTime;
                 isJumping = true;
             }
             if(jumpTimer <= 0 && IsGrounded())
             {
-                jumpTimer = 0;
+                jumpTimer = 0.4f;
                 isJumping = false;
             }
 
@@ -263,6 +264,7 @@ namespace AB
 
         private void BlockingRange()
         {
+            //Controls the Block Function for Player 1
             if (gameObject.tag == "Player1" && IsGrounded() && transform.position.x > playerTwoX.transform.position.x && playerAttackManager.isAttacking == false && !hurtboxManager.isStunned && hurtboxManager.isBlockable && Input.GetKey(KeyCode.RightArrow))
             {
                 isBlocking = true;
@@ -276,6 +278,21 @@ namespace AB
                 isBlocking = false;
             }
 
+            //Controls the Parry for Player 1
+            if (gameObject.tag == "Player1" && IsGrounded() && transform.position.x > playerTwoX.transform.position.x && playerAttackManager.isAttacking == false && !hurtboxManager.isStunned && hurtboxManager.isBlockable && Input.GetKeyDown(KeyCode.RightArrow))
+            {
+                canParry = true;
+            }
+            else if (gameObject.tag == "Player1" && IsGrounded() && transform.position.x < playerTwoX.transform.position.x && playerAttackManager.isAttacking == false && !hurtboxManager.isStunned && hurtboxManager.isBlockable && Input.GetKeyDown(KeyCode.LeftArrow))
+            {
+                canParry = true;
+            }
+            else
+            {
+                canParry = false;
+            }
+
+            //Controls the Block function for Player 2
             if (gameObject.tag == "Player2" && IsGrounded() && transform.position.x > playerOneX.transform.position.x && playerAttackManager.isAttacking == false && !hurtboxManager.isStunned && hurtboxManager.isBlockable && Input.GetKey(KeyCode.RightArrow))
             {
                 isBlocking = true;
@@ -287,6 +304,20 @@ namespace AB
             else
             {
                 isBlocking = false;
+            }
+
+            //Controls the parry for Player 2
+            if (gameObject.tag == "Player2" && IsGrounded() && transform.position.x > playerOneX.transform.position.x && playerAttackManager.isAttacking == false && !hurtboxManager.isStunned && hurtboxManager.isBlockable && Input.GetKeyDown(KeyCode.RightArrow))
+            {
+                canParry = true;
+            }
+            else if (gameObject.tag == "Player2" && IsGrounded() && transform.position.x < playerOneX.transform.position.x && playerAttackManager.isAttacking == false && !hurtboxManager.isStunned && hurtboxManager.isBlockable && Input.GetKeyDown(KeyCode.LeftArrow))
+            {
+                canParry = true;
+            }
+            else
+            {
+                canParry = false;
             }
         }
 

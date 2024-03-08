@@ -193,6 +193,7 @@ MonoBehaviour:
   isProjectile: 1
   hasHit: 0
   isBlockBox: 0
+  isParry: 0
 --- !u!65 &6553782
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -503,6 +504,7 @@ MonoBehaviour:
   canHitLow: 0
   maxDamageReductionFactor: 0.5
   isBlockable: 0
+  parried: 0
 --- !u!1 &77453362
 GameObject:
   m_ObjectHideFlags: 0
@@ -783,6 +785,7 @@ MonoBehaviour:
   canHitLow: 0
   maxDamageReductionFactor: 0.5
   isBlockable: 0
+  parried: 0
 --- !u!1 &229089001
 GameObject:
   m_ObjectHideFlags: 0
@@ -921,7 +924,6 @@ MonoBehaviour:
   isNothingPressed: 0
   isCrouching: 0
   isCancel: 0
-  isBlocking: 0
 --- !u!1 &244479014
 GameObject:
   m_ObjectHideFlags: 0
@@ -992,6 +994,7 @@ MonoBehaviour:
   isProjectile: 0
   hasHit: 0
   isBlockBox: 0
+  isParry: 0
 --- !u!65 &244479017
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1323,6 +1326,7 @@ MonoBehaviour:
   canHitLow: 0
   maxDamageReductionFactor: 0.5
   isBlockable: 0
+  parried: 0
 --- !u!1 &324375150
 GameObject:
   m_ObjectHideFlags: 0
@@ -1393,6 +1397,7 @@ MonoBehaviour:
   isProjectile: 0
   hasHit: 0
   isBlockBox: 0
+  isParry: 0
 --- !u!65 &324375153
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1815,6 +1820,7 @@ MonoBehaviour:
   canHitLow: 0
   maxDamageReductionFactor: 0.5
   isBlockable: 0
+  parried: 0
 --- !u!1 &555425338
 GameObject:
   m_ObjectHideFlags: 0
@@ -1961,6 +1967,7 @@ MonoBehaviour:
   isProjectile: 0
   hasHit: 0
   isBlockBox: 0
+  isParry: 0
 --- !u!65 &604183533
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2158,6 +2165,7 @@ MonoBehaviour:
   canHitLow: 0
   maxDamageReductionFactor: 0.5
   isBlockable: 0
+  parried: 0
 --- !u!1 &622839967
 GameObject:
   m_ObjectHideFlags: 0
@@ -2186,8 +2194,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 622839967}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.419, y: 8.322, z: 0.4000411}
-  m_LocalScale: {x: 3.1636906, y: 5.6290402, z: 1}
+  m_LocalPosition: {x: -0.754, y: 8.182, z: 0.4000411}
+  m_LocalScale: {x: 3.834393, y: 5.910492, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1891786234}
@@ -2228,6 +2236,7 @@ MonoBehaviour:
   isProjectile: 0
   hasHit: 0
   isBlockBox: 0
+  isParry: 0
 --- !u!65 &622839970
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2446,6 +2455,7 @@ MonoBehaviour:
   canHitLow: 0
   maxDamageReductionFactor: 0.5
   isBlockable: 0
+  parried: 0
 --- !u!65 &623187906
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2617,6 +2627,7 @@ MonoBehaviour:
   isProjectile: 0
   hasHit: 0
   isBlockBox: 0
+  isParry: 0
 --- !u!65 &641713452
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2750,6 +2761,7 @@ MonoBehaviour:
   isProjectile: 0
   hasHit: 0
   isBlockBox: 1
+  isParry: 0
 --- !u!65 &646090589
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3002,6 +3014,7 @@ MonoBehaviour:
   isJumping: 0
   jumpTimer: 0
   isBlocking: 0
+  canParry: 0
   rb: {fileID: 741692803}
   groundLayer:
     serializedVersion: 2
@@ -3205,6 +3218,7 @@ MonoBehaviour:
   isProjectile: 0
   hasHit: 0
   isBlockBox: 0
+  isParry: 0
 --- !u!65 &787552039
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3338,6 +3352,7 @@ MonoBehaviour:
   isProjectile: 0
   hasHit: 0
   isBlockBox: 0
+  isParry: 0
 --- !u!65 &803552155
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3637,6 +3652,7 @@ MonoBehaviour:
   isJumping: 0
   jumpTimer: 0
   isBlocking: 0
+  canParry: 0
   rb: {fileID: 839004341}
   groundLayer:
     serializedVersion: 2
@@ -3776,6 +3792,7 @@ MonoBehaviour:
   canHitLow: 0
   maxDamageReductionFactor: 0.5
   isBlockable: 0
+  parried: 0
 --- !u!1 &901709236
 GameObject:
   m_ObjectHideFlags: 0
@@ -3846,6 +3863,7 @@ MonoBehaviour:
   isProjectile: 0
   hasHit: 0
   isBlockBox: 0
+  isParry: 0
 --- !u!65 &901709239
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3973,7 +3991,6 @@ MonoBehaviour:
   isNothingPressed: 0
   isCrouching: 0
   isCancel: 0
-  isBlocking: 0
 --- !u!95 &913467388
 Animator:
   serializedVersion: 5
@@ -4522,6 +4539,7 @@ MonoBehaviour:
   canHitLow: 0
   maxDamageReductionFactor: 0.5
   isBlockable: 0
+  parried: 0
 --- !u!1 &1045404837
 GameObject:
   m_ObjectHideFlags: 0
@@ -4592,6 +4610,7 @@ MonoBehaviour:
   isProjectile: 0
   hasHit: 0
   isBlockBox: 1
+  isParry: 0
 --- !u!65 &1045404840
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4789,6 +4808,7 @@ MonoBehaviour:
   canHitLow: 0
   maxDamageReductionFactor: 0.5
   isBlockable: 0
+  parried: 0
 --- !u!1 &1105917333
 GameObject:
   m_ObjectHideFlags: 0
@@ -4923,6 +4943,7 @@ MonoBehaviour:
   canHitLow: 0
   maxDamageReductionFactor: 0.5
   isBlockable: 0
+  parried: 0
 --- !u!1 &1134625545
 GameObject:
   m_ObjectHideFlags: 0
@@ -5133,6 +5154,7 @@ MonoBehaviour:
   canHitLow: 0
   maxDamageReductionFactor: 0.5
   isBlockable: 0
+  parried: 0
 --- !u!1 &1230758284
 GameObject:
   m_ObjectHideFlags: 0
@@ -5203,6 +5225,7 @@ MonoBehaviour:
   isProjectile: 0
   hasHit: 0
   isBlockBox: 1
+  isParry: 0
 --- !u!65 &1230758287
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -5400,6 +5423,7 @@ MonoBehaviour:
   canHitLow: 0
   maxDamageReductionFactor: 0.5
   isBlockable: 0
+  parried: 0
 --- !u!1 &1351152213
 GameObject:
   m_ObjectHideFlags: 0
@@ -5501,6 +5525,7 @@ MonoBehaviour:
   isProjectile: 0
   hasHit: 0
   isBlockBox: 0
+  isParry: 0
 --- !u!65 &1355370781
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -5698,6 +5723,7 @@ MonoBehaviour:
   canHitLow: 0
   maxDamageReductionFactor: 0.5
   isBlockable: 0
+  parried: 0
 --- !u!1 &1447884093
 GameObject:
   m_ObjectHideFlags: 0
@@ -5908,6 +5934,7 @@ MonoBehaviour:
   canHitLow: 0
   maxDamageReductionFactor: 0.5
   isBlockable: 0
+  parried: 0
 --- !u!1 &1536258901
 GameObject:
   m_ObjectHideFlags: 0
@@ -5979,6 +6006,7 @@ MonoBehaviour:
   canHitLow: 0
   maxDamageReductionFactor: 0.5
   isBlockable: 0
+  parried: 0
 --- !u!65 &1536258904
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -6231,6 +6259,7 @@ MonoBehaviour:
   isProjectile: 0
   hasHit: 0
   isBlockBox: 1
+  isParry: 0
 --- !u!65 &1605533134
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -6503,6 +6532,7 @@ MonoBehaviour:
   isProjectile: 1
   hasHit: 0
   isBlockBox: 0
+  isParry: 0
 --- !u!1 &1646263991
 GameObject:
   m_ObjectHideFlags: 0
@@ -6940,6 +6970,7 @@ MonoBehaviour:
   canHitLow: 0
   maxDamageReductionFactor: 0.5
   isBlockable: 0
+  parried: 0
 --- !u!1 &1674511205
 GameObject:
   m_ObjectHideFlags: 0
@@ -7016,6 +7047,7 @@ MonoBehaviour:
   canHitLow: 0
   maxDamageReductionFactor: 0.5
   isBlockable: 0
+  parried: 0
 --- !u!1 &1690919592
 GameObject:
   m_ObjectHideFlags: 0
@@ -7226,6 +7258,7 @@ MonoBehaviour:
   canHitLow: 0
   maxDamageReductionFactor: 0.5
   isBlockable: 0
+  parried: 0
 --- !u!1 &1891786233
 GameObject:
   m_ObjectHideFlags: 0
@@ -7398,6 +7431,7 @@ MonoBehaviour:
   isProjectile: 0
   hasHit: 0
   isBlockBox: 0
+  isParry: 0
 --- !u!1 &1920333159
 GameObject:
   m_ObjectHideFlags: 0
@@ -7777,6 +7811,7 @@ MonoBehaviour:
   isJumping: 0
   jumpTimer: 0
   isBlocking: 0
+  canParry: 0
   rb: {fileID: 2002236530}
   groundLayer:
     serializedVersion: 2
@@ -7964,6 +7999,7 @@ MonoBehaviour:
   isProjectile: 0
   hasHit: 0
   isBlockBox: 0
+  isParry: 0
 --- !u!65 &2043342609
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -8194,6 +8230,7 @@ MonoBehaviour:
   isProjectile: 0
   hasHit: 0
   isBlockBox: 1
+  isParry: 0
 --- !u!65 &2087906886
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -8391,6 +8428,7 @@ MonoBehaviour:
   canHitLow: 0
   maxDamageReductionFactor: 0.5
   isBlockable: 0
+  parried: 0
 --- !u!1 &2097557811
 GameObject:
   m_ObjectHideFlags: 0
@@ -8461,6 +8499,7 @@ MonoBehaviour:
   isProjectile: 0
   hasHit: 0
   isBlockBox: 1
+  isParry: 0
 --- !u!65 &2097557814
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -8734,6 +8773,7 @@ MonoBehaviour:
   canHitLow: 0
   maxDamageReductionFactor: 0.5
   isBlockable: 0
+  parried: 0
 --- !u!1 &2135291235
 GameObject:
   m_ObjectHideFlags: 0

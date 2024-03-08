@@ -50,6 +50,8 @@ namespace AB
 
         //Used for the invisible boxes before the attack activates, forcing the opponent to block
         public bool isBlockBox;
+        public bool isParry;
+
 
         private void Start()
         {
@@ -94,5 +96,6 @@ namespace AB
                 timer = hitboxTimer;
             }
         }
+
     }
 }

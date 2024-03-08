@@ -67,6 +67,9 @@ namespace AB
         //Checks if the attack is blockable (Specifically, if the script is on the invisible box collider that activates before the actual attack
         public bool isBlockable;
 
+        //If the correct variables are read, the parry is set to true
+        public bool parried;
+
         private void Awake()
         {
             playerAttackingHitboxes = GetComponent<PlayerAttackingHitboxes>();
@@ -83,6 +86,7 @@ namespace AB
             canReset = false;
             isShieldStunned = false;
             isShieldHit = false;
+            parried = false;
 
             aerialHitsCounter = 0;
             regularHitsCounter = 0;
@@ -155,6 +159,15 @@ namespace AB
                 canHitAerial = attackerHitboxes.isAerialMove;                           //Checks if the attack is Aerial
                 canHitJuggle = attackerHitboxes.isJugglingMove;                         //Checks if the attack can launch fighters upwards
 
+                if (attackerHitboxes.isParry && playerMovement.canParry)
+                {
+                    Debug.Log("Spice");
+                    parried = true;
+                }
+                else
+                {
+                    parried = false;
+                }
 
                 isShieldStunned = true;
                 isKnockback = true;
