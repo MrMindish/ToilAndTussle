@@ -62,15 +62,6 @@ namespace AB
 
         private void Update()
         {
-            if(timer > 0)
-            {
-                timer -= Time.deltaTime;
-            }
-            else if(timer <= 0)
-            {
-                timer = 0;
-                animator.SetBool("isParried", false);
-            }
 
             //Performs the Jump Animation
             if (playerMovement.isJumping && !hurtboxManager.isStunned)
@@ -85,7 +76,7 @@ namespace AB
             }
 
             //Performs the Blocking Animation
-            if(playerMovement.isBlocking && !hurtboxManager.isStunned)
+            if (playerMovement.isBlocking && !hurtboxManager.isStunned)
             {
                 animator.SetBool("isBlocking", true);
             }
@@ -97,10 +88,9 @@ namespace AB
             //Performs the Parry Animation
             if (hurtboxManager.parried)
             {
-                timer = 1;
                 animator.SetBool("isParried", true);
-                hurtboxManager.parried = false;
             }
+
 
             //Performs the Light Null Attack
             if (Input.GetKeyDown(lightInput) && playerMovement.IsGrounded() && isAttacking == false && hurtboxManager.isStunned == false && hurtboxManager.isShieldStunned == false && isNothingPressed)
@@ -290,6 +280,11 @@ namespace AB
         public bool CantParry()
         {
             return playerAttackingHitboxes.isParry = false;
+        }
+        public void EndParry()
+        {
+            hurtboxManager.parried = false;
+            animator.SetBool("isParried", false);
         }
     }
 }
