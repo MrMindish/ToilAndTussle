@@ -28,6 +28,7 @@ namespace AB
         PlayerMovement playerMovement;
         PlayerHurtboxManager hurtboxManager;
         PlayerAttackingHitboxes playerAttackingHitboxes;
+        TimeManager timeManager; 
 
         //Registers the directional inputs
         public bool isRightPressed;
@@ -49,15 +50,15 @@ namespace AB
         {
             anim = GetComponent<Animation>();
             animator = GetComponent<Animator>();
+
             playerMovement = GetComponentInParent<PlayerMovement>();
             hurtboxManager = GetComponentInChildren<PlayerHurtboxManager>();
             playerAttackingHitboxes = GetComponentInChildren<PlayerAttackingHitboxes>();
+            timeManager = GetComponentInParent<TimeManager>();
 
             isAttacking = false;
             isAirAttacking = false;
             timer = 0;
-
-
         }
 
         private void Update()
@@ -285,6 +286,14 @@ namespace AB
         {
             hurtboxManager.parried = false;
             animator.SetBool("isParried", false);
+        }
+        public void TimeSlow()
+        {
+            timeManager.timeSlowed = true;
+        }
+        public void TimeNormal()
+        {
+            timeManager.timeSlowed = false;
         }
     }
 }

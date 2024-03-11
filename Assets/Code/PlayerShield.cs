@@ -62,7 +62,7 @@ namespace AB
 
             if (playerHurtboxManager.parried)
             {
-                shieldHealth = shieldHealth + 1;
+                shieldHealth = shieldHealth + 0.1f;
             }
         }
 

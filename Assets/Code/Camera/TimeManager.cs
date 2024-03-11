@@ -5,13 +5,15 @@ using UnityEngine;
 
 public class TimeManager : MonoBehaviour
 {
-    PlayerHurtboxManager hurtboxManager;
+    PlayerAttackManager attackManager;
 
     private float fixedDeltaTime;
 
+    public bool timeSlowed;
+
     void Awake()
     {
-        hurtboxManager = GetComponentInChildren<PlayerHurtboxManager>();
+        attackManager = GetComponentInChildren<PlayerAttackManager>();
 
         // Make a copy of the fixedDeltaTime, it defaults to 0.02f, but it can be changed in the editor
         this.fixedDeltaTime = Time.fixedDeltaTime;
@@ -19,14 +21,19 @@ public class TimeManager : MonoBehaviour
 
     void Update()
     {
-        if (hurtboxManager.parried)
+        if (timeSlowed)
         {
-            Time.timeScale = 0f;
+            Time.timeScale = 0.01f;
             Time.fixedDeltaTime = this.fixedDeltaTime * Time.timeScale;
         }
-        else if (!hurtboxManager.parried)
+        else if (!timeSlowed)
         {
-            Time.timeScale = 1.0f;
+            Time.timeScale = 1f;
+            Time.fixedDeltaTime = this.fixedDeltaTime * Time.timeScale;
+        }
+        else if (Input.GetKeyDown(KeyCode.K))
+        {
+            Time.timeScale = 0.01f;
             Time.fixedDeltaTime = this.fixedDeltaTime * Time.timeScale;
         }
     }
