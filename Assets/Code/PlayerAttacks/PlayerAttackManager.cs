@@ -77,6 +77,11 @@ namespace AB
                 animator.ResetTrigger("jumpStart");
                 animator.SetTrigger("jumpEnd");
             }
+            else if(playerMovement.isJumping && playerMovement.IsGrounded())
+            {
+                animator.ResetTrigger("jumpStart");
+                animator.SetTrigger("jumpEnd");
+            }
 
             //Performs the Blocking Animation
             if (playerMovement.isBlocking && !hurtboxManager.isStunned)
@@ -187,6 +192,38 @@ namespace AB
                 animator.SetTrigger("isSN1Attacking");
                 isAttacking = true;
                 attackCooldown = 0.4f;
+                animator.ResetTrigger("isCrouchingEnd");
+            }
+
+            //Performs the Special Forward Attack
+            if (Input.GetKeyDown(specialInput) && playerMovement.IsGrounded() && transform.position.x > playerMovement.playerTwoX.transform.position.x && isAttacking == false && hurtboxManager.isStunned == false && hurtboxManager.isShieldStunned == false && isLeftPressed)
+            {
+                //On the Left Side of the opponent
+                animator.SetTrigger("isSF1Attacking");
+                isAttacking = true;
+                attackCooldown = 0.7f;
+            }
+            else if (Input.GetKeyDown(specialInput) && playerMovement.IsGrounded() && transform.position.x > playerMovement.playerTwoX.transform.position.x && isAttacking == true && hurtboxManager.isStunned == false && hurtboxManager.isShieldStunned == false && isLeftPressed && isCancel)
+            {
+                //On Left Side + Cancelled the move
+                animator.SetTrigger("isSF1Attacking");
+                isAttacking = true;
+                attackCooldown = 0.7f;
+                animator.ResetTrigger("isCrouchingEnd");
+            }
+            else if (Input.GetKeyDown(specialInput) && playerMovement.IsGrounded() && transform.position.x < playerMovement.playerTwoX.transform.position.x && isAttacking == false && hurtboxManager.isStunned == false && hurtboxManager.isShieldStunned == false && isRightPressed)
+            {
+                //On the Right Side of the opponent
+                animator.SetTrigger("isSF1Attacking");
+                isAttacking = true;
+                attackCooldown = 0.7f;
+            }
+            else if (Input.GetKeyDown(specialInput) && playerMovement.IsGrounded() && transform.position.x < playerMovement.playerTwoX.transform.position.x && isAttacking == true && hurtboxManager.isStunned == false && hurtboxManager.isShieldStunned == false && isRightPressed && isCancel)
+            {
+                //On Right Side + Cancelled the move
+                animator.SetTrigger("isSF1Attacking");
+                isAttacking = true;
+                attackCooldown = 0.7f;
                 animator.ResetTrigger("isCrouchingEnd");
             }
 
