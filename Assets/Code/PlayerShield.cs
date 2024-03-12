@@ -9,8 +9,9 @@ namespace AB
     {
         private float shieldHealth;
         public float maxShield = 100f;
+        public bool shieldBreak;
 
-        private int shieldRecharge;
+        private float shieldRecharge;
         public float shieldBufferTimer;                    //Gives a full second before resuming the shield recharge
 
         public Image shieldBar;
@@ -27,6 +28,7 @@ namespace AB
         {
             shieldHealth = maxShield;
             shieldBufferTimer = 0;
+            shieldBreak = false;
         }
 
         private void Update()
@@ -43,12 +45,10 @@ namespace AB
             {
                 shieldBufferTimer = 1;
             }
-
-            if(shieldBufferTimer > 0)
+            if(shieldBufferTimer > 0 && shieldBreak == false)
             {
                 shieldBufferTimer -= Time.deltaTime;
             }
-
             if(shieldBufferTimer <= 0)
             {
                 shieldBufferTimer = 0;
@@ -63,6 +63,23 @@ namespace AB
             if (playerHurtboxManager.parried)
             {
                 shieldHealth = shieldHealth + 0.1f;
+            }
+
+            if(shieldHealth <= 0)
+            {
+                playerHurtboxManager.isStunned = true;
+                shieldBreak = true;
+                shieldRecharge = shieldRecharge + 0.1f;
+            }
+            if(shieldRecharge >= 100 || playerHurtboxManager.isHit)
+            {
+                shieldHealth = 100;
+                shieldBreak = false;
+                shieldRecharge = 0;
+                if (!playerHurtboxManager.isHit)
+                {
+                    playerHurtboxManager.isStunned = false;
+                }
             }
         }
 

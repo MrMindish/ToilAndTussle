@@ -11,6 +11,7 @@ namespace AB
         PlayerPushBox playerPushBox;
         PlayerAttackManager playerAttackManager;
         PlayerHurtboxManager hurtboxManager;
+        PlayerShield playerShield;
 
         //Handles all of the movement speed and such
         private float horizontal;
@@ -52,6 +53,7 @@ namespace AB
             playerPushBox = GetComponentInChildren<PlayerPushBox>();
             playerAttackManager = GetComponentInChildren<PlayerAttackManager>();
             hurtboxManager = GetComponentInChildren<PlayerHurtboxManager>();
+            playerShield = GetComponent<PlayerShield>();
         } //Includes the Component Getting
 
         private void Start()
@@ -65,7 +67,7 @@ namespace AB
         {
                 horizontal = Input.GetAxisRaw("Horizontal");
 
-                if (Input.GetButtonDown(JumpName) && IsGrounded() && playerAttackManager.isAttacking == false && playerAttackManager.isCrouching == false && hurtboxManager.isStunned == false && hurtboxManager.isShieldStunned == false)
+                if (Input.GetButtonDown(JumpName) && IsGrounded() && playerAttackManager.isAttacking == false && playerAttackManager.isCrouching == false && hurtboxManager.isStunned == false && hurtboxManager.isShieldStunned == false && playerShield.shieldBreak == false)
                 {
                     //if the jump is inputed while the fighter is grounded, not attacking or being attacked, or crouching, then the jump is performed
                     rb.velocity = new Vector3(rb.velocity.x, jumpingPower, 0);

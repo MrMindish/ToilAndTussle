@@ -78,8 +78,7 @@ namespace AB
                 hasHit = true;
                 Debug.Log("Projectile Hit");
                 gameObject.SetActive(false);
-            }
-
+            } 
         }
 
         private void Update()

@@ -28,7 +28,8 @@ namespace AB
         PlayerMovement playerMovement;
         PlayerHurtboxManager hurtboxManager;
         PlayerAttackingHitboxes playerAttackingHitboxes;
-        TimeManager timeManager; 
+        TimeManager timeManager;
+        PlayerShield playerShield;
 
         //Registers the directional inputs
         public bool isRightPressed;
@@ -55,6 +56,7 @@ namespace AB
             hurtboxManager = GetComponentInChildren<PlayerHurtboxManager>();
             playerAttackingHitboxes = GetComponentInChildren<PlayerAttackingHitboxes>();
             timeManager = GetComponentInParent<TimeManager>();
+            playerShield = GetComponentInParent<PlayerShield>();
 
             isAttacking = false;
             isAirAttacking = false;
@@ -92,6 +94,15 @@ namespace AB
                 animator.SetBool("isParried", true);
             }
 
+            //Performs the Shield Break and Stun Animation
+            if (playerShield.shieldBreak)
+            {
+                animator.SetBool("shieldBreakStun", true);
+            }
+            else if (!playerShield.shieldBreak)
+            {
+                animator.SetBool("shieldBreakStun", false);
+            }
 
             //Performs the Light Null Attack
             if (Input.GetKeyDown(lightInput) && playerMovement.IsGrounded() && isAttacking == false && hurtboxManager.isStunned == false && hurtboxManager.isShieldStunned == false && isNothingPressed)
