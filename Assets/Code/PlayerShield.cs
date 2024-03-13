@@ -33,6 +33,11 @@ namespace AB
 
         private void Update()
         {
+
+        }
+
+        private void FixedUpdate()
+        {
             shieldHealth = Mathf.Clamp(shieldHealth, 0, maxShield);
             UpdateShieldUI();
             if (playerHurtboxManager.isShieldHit)
@@ -45,33 +50,33 @@ namespace AB
             {
                 shieldBufferTimer = 1;
             }
-            if(shieldBufferTimer > 0 && shieldBreak == false)
+            if (shieldBufferTimer > 0 && shieldBreak == false)
             {
                 shieldBufferTimer -= Time.deltaTime;
             }
-            if(shieldBufferTimer <= 0)
+            if (shieldBufferTimer <= 0)
             {
                 shieldBufferTimer = 0;
                 shieldHealth += Time.deltaTime;
             }
 
-            if(shieldHealth >= 100)
+            if (shieldHealth >= 100)
             {
                 shieldHealth = 100;
             }
 
             if (playerHurtboxManager.parried)
             {
-                shieldHealth = shieldHealth + 0.1f;
+                shieldHealth = shieldHealth + 1f;
             }
 
-            if(shieldHealth <= 0)
+            if (shieldHealth <= 0)
             {
                 playerHurtboxManager.isStunned = true;
                 shieldBreak = true;
-                shieldRecharge = shieldRecharge + 0.1f;
+                shieldRecharge = shieldRecharge + 0.2f;
             }
-            if(shieldRecharge >= 100 || playerHurtboxManager.isHit)
+            if (shieldRecharge >= 100 || playerHurtboxManager.isHit)
             {
                 shieldHealth = 100;
                 shieldBreak = false;

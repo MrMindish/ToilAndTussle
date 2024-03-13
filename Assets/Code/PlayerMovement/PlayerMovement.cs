@@ -21,7 +21,8 @@ namespace AB
 
         public float pushForce;
 
-        public string JumpName;
+        public KeyCode JumpName;
+        public KeyCode MovementName;
 
         //Once the player has landed after being juggled, they can recover/jump backwards
         public bool canRecover;
@@ -65,16 +66,26 @@ namespace AB
 
         void Update()
         {
-                horizontal = Input.GetAxisRaw("Horizontal");
+            if(gameObject.tag == "Player1")
+            {
+                horizontal = Input.GetAxisRaw("HorizontalP1");
+            }
+            else if(gameObject.tag == "Player2")
+            {
+                horizontal = Input.GetAxisRaw("HorizontalP2");
+            }
 
-                if (Input.GetButtonDown(JumpName) && IsGrounded() && playerAttackManager.isAttacking == false && playerAttackManager.isCrouching == false && hurtboxManager.isStunned == false && hurtboxManager.isShieldStunned == false && playerShield.shieldBreak == false)
+
+
+
+                if (Input.GetKeyDown(JumpName) && IsGrounded() && playerAttackManager.isAttacking == false && playerAttackManager.isCrouching == false && hurtboxManager.isStunned == false && hurtboxManager.isShieldStunned == false && playerShield.shieldBreak == false)
                 {
                     //if the jump is inputed while the fighter is grounded, not attacking or being attacked, or crouching, then the jump is performed
                     rb.velocity = new Vector3(rb.velocity.x, jumpingPower, 0);
                     jumpTimer = 0.2f;
                 }
 
-                if (Input.GetButtonUp(JumpName) && rb.velocity.y > 0f)
+                if (Input.GetKeyUp(JumpName) && rb.velocity.y > 0f)
                 {
                     //Allows the jump to be cancelled halfway, allowing short hops to happen
                     rb.velocity = new Vector3(rb.velocity.x, rb.velocity.y * 0.5f, 0f);
@@ -105,6 +116,7 @@ namespace AB
                 //movement part
                 rb.velocity = new Vector3(horizontal * moveSpeed, rb.velocity.y, 0f);
             }
+
             //Holds the player in place if they're blocking
             else if (IsGrounded() && playerAttackManager.isAttacking == false && playerAttackManager.isCrouching == false && hurtboxManager.isStunned == false && hurtboxManager.isShieldStunned == false && isBlocking)
             {
@@ -140,7 +152,7 @@ namespace AB
                 hurtboxManager.isInvincible = true;
                 recoveryTime -= Time.deltaTime;
 
-                if(Input.GetButtonDown(JumpName) && recoveryTime <= 0.4 && recoveryTime > 0 && isRecovering == false)
+                if(Input.GetKeyDown(JumpName) && recoveryTime <= 0.4 && recoveryTime > 0 && isRecovering == false)
                 {
                     //Allows the player to "Recover" by rolling away from the enemy
                     isRecovering = true;
@@ -245,20 +257,20 @@ namespace AB
             }
 
             //Makes the recovery travel away from the other player
-            if (gameObject.tag == "Player1" && transform.position.x < playerTwoX.transform.position.x && isRecovering)
+            if (gameObject.tag == "Player1" && transform.position.x < playerTwoX.transform.position.x && isRecovering && recoveryForce > 0)
             {
                 recoveryForce *= -1;
             }
-            else if (gameObject.tag == "Player1" && transform.position.x > playerTwoX.transform.position.x && isRecovering)
+            else if (gameObject.tag == "Player1" && transform.position.x > playerTwoX.transform.position.x && isRecovering && recoveryForce < 0)
             {
                 recoveryForce *= -1;
             }
 
-            if (gameObject.tag == "Player2" && transform.position.x < playerOneX.transform.position.x && isRecovering)
+            if (gameObject.tag == "Player2" && transform.position.x < playerOneX.transform.position.x && isRecovering && recoveryForce > 0)
             {
                 recoveryForce *= -1;
             }
-            else if (gameObject.tag == "Player2" && transform.position.x > playerOneX.transform.position.x && isRecovering)
+            else if (gameObject.tag == "Player2" && transform.position.x > playerOneX.transform.position.x && isRecovering && recoveryForce < 0)
             {
                 recoveryForce *= -1;
             }
@@ -295,11 +307,11 @@ namespace AB
             }
 
             //Controls the Block function for Player 2
-            if (gameObject.tag == "Player2" && IsGrounded() && transform.position.x > playerOneX.transform.position.x && playerAttackManager.isAttacking == false && !hurtboxManager.isStunned && hurtboxManager.isBlockable && Input.GetKey(KeyCode.RightArrow))
+            if (gameObject.tag == "Player2" && IsGrounded() && transform.position.x > playerOneX.transform.position.x && playerAttackManager.isAttacking == false && !hurtboxManager.isStunned && hurtboxManager.isBlockable && Input.GetKey(KeyCode.D))
             {
                 isBlocking = true;
             }
-            else if (gameObject.tag == "Player2" && IsGrounded() && transform.position.x < playerOneX.transform.position.x && playerAttackManager.isAttacking == false && !hurtboxManager.isStunned && hurtboxManager.isBlockable && Input.GetKey(KeyCode.LeftArrow))
+            else if (gameObject.tag == "Player2" && IsGrounded() && transform.position.x < playerOneX.transform.position.x && playerAttackManager.isAttacking == false && !hurtboxManager.isStunned && hurtboxManager.isBlockable && Input.GetKey(KeyCode.A))
             {
                 isBlocking = true;
             }
@@ -309,11 +321,11 @@ namespace AB
             }
 
             //Controls the parry for Player 2
-            if (gameObject.tag == "Player2" && IsGrounded() && transform.position.x > playerOneX.transform.position.x && playerAttackManager.isAttacking == false && !hurtboxManager.isStunned && hurtboxManager.isBlockable && Input.GetKeyDown(KeyCode.RightArrow))
+            if (gameObject.tag == "Player2" && IsGrounded() && transform.position.x > playerOneX.transform.position.x && playerAttackManager.isAttacking == false && !hurtboxManager.isStunned && hurtboxManager.isBlockable && Input.GetKeyDown(KeyCode.D))
             {
                 canParry = true;
             }
-            else if (gameObject.tag == "Player2" && IsGrounded() && transform.position.x < playerOneX.transform.position.x && playerAttackManager.isAttacking == false && !hurtboxManager.isStunned && hurtboxManager.isBlockable && Input.GetKeyDown(KeyCode.LeftArrow))
+            else if (gameObject.tag == "Player2" && IsGrounded() && transform.position.x < playerOneX.transform.position.x && playerAttackManager.isAttacking == false && !hurtboxManager.isStunned && hurtboxManager.isBlockable && Input.GetKeyDown(KeyCode.A))
             {
                 canParry = true;
             }
@@ -321,11 +333,6 @@ namespace AB
             {
                 canParry = false;
             }
-        }
-
-        public void OnDrawGizmos()
-        {
-
         }
     }
 }

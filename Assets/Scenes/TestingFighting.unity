@@ -814,7 +814,7 @@ Transform:
   m_GameObject: {fileID: 229089001}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0.33718088, y: 7.690001, z: 0}
-  m_LocalScale: {x: 3.6, y: 3.6000009, z: 4}
+  m_LocalScale: {x: 3.6, y: 3.6000013, z: 4}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1891786234}
@@ -2879,31 +2879,18 @@ GameObject:
   - component: {fileID: 741692802}
   - component: {fileID: 741692801}
   - component: {fileID: 741692800}
-  - component: {fileID: 741692799}
+  - component: {fileID: 741692807}
   - component: {fileID: 741692803}
   - component: {fileID: 741692804}
   - component: {fileID: 741692805}
   - component: {fileID: 741692806}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Player1
   m_TagString: Player1
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!65 &741692799
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 741692797}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &741692800
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -3004,7 +2991,8 @@ MonoBehaviour:
   slowedMoveSpeed: 2
   jumpingPower: 9
   pushForce: 2
-  JumpName: Jump
+  JumpName: 32
+  MovementName: 0
   canRecover: 0
   recoveryTime: 2
   recoveryForce: 3
@@ -3052,6 +3040,19 @@ MonoBehaviour:
   shieldBreak: 0
   shieldBufferTimer: 0
   shieldBar: {fileID: 1640390389}
+--- !u!135 &741692807
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 741692797}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.11636455
+  m_Center: {x: -0.0000004768371, y: 0, z: 0}
 --- !u!1 &782786552
 GameObject:
   m_ObjectHideFlags: 0
@@ -3643,7 +3644,8 @@ MonoBehaviour:
   slowedMoveSpeed: 2
   jumpingPower: 8
   pushForce: 2
-  JumpName: Jump
+  JumpName: 0
+  MovementName: 0
   canRecover: 0
   recoveryTime: 2
   recoveryForce: 3
@@ -4333,6 +4335,140 @@ Transform:
   m_Father: {fileID: 229089002}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &930409449
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 930409450}
+  - component: {fileID: 930409454}
+  - component: {fileID: 930409453}
+  - component: {fileID: 930409452}
+  - component: {fileID: 930409451}
+  m_Layer: 0
+  m_Name: P1HurtSB1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &930409450
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 930409449}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -1.919, y: 6.906, z: 0.32369828}
+  m_LocalScale: {x: -2.3781254, y: 9.801927, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1891786234}
+  m_RootOrder: 9
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &930409451
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 930409449}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c313501922b18f043be86fa35e0c376d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hurtboxs:
+    serializedVersion: 2
+    m_Bits: 256
+  enemyTarget: {fileID: 1674511205}
+  hitboxTimer: 0.01
+  attackDamage: 40
+  shieldDamage: 8
+  horizontalKnockback: 1
+  verticalKnockback: 0
+  horizontalAirKnockback: 0.8
+  verticalAirKnockback: 1.2
+  stunTime: 0.25
+  shieldStunTime: 0.15
+  knockbackTime: 0.2
+  resetAerialOpponent: 0
+  isSpecialMove: 1
+  isAerialMove: 0
+  isRegularMove: 0
+  isJugglingMove: 0
+  isLowMove: 0
+  isProjectile: 0
+  hasHit: 0
+  isBlockBox: 0
+  isParry: 0
+--- !u!65 &930409452
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 930409449}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!23 &930409453
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 930409449}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!33 &930409454
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 930409449}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1 &955113368
 GameObject:
   m_ObjectHideFlags: 0
@@ -7432,6 +7568,7 @@ Transform:
   - {fileID: 604183531}
   - {fileID: 1642082557}
   - {fileID: 887685589}
+  - {fileID: 930409450}
   m_Father: {fileID: 229089002}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -7894,12 +8031,12 @@ GameObject:
   - component: {fileID: 2002236534}
   - component: {fileID: 2002236533}
   - component: {fileID: 2002236532}
-  - component: {fileID: 2002236531}
+  - component: {fileID: 2002236536}
   - component: {fileID: 2002236530}
   - component: {fileID: 2002236529}
   - component: {fileID: 2002236528}
   - component: {fileID: 2002236535}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Player2
   m_TagString: Player2
   m_Icon: {fileID: 0}
@@ -7938,7 +8075,8 @@ MonoBehaviour:
   slowedMoveSpeed: 2
   jumpingPower: 9
   pushForce: 2
-  JumpName: Jump
+  JumpName: 61
+  MovementName: 0
   canRecover: 0
   recoveryTime: 2
   recoveryForce: 3
@@ -7970,19 +8108,6 @@ Rigidbody:
   m_Interpolate: 1
   m_Constraints: 120
   m_CollisionDetection: 1
---- !u!65 &2002236531
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2002236527}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &2002236532
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -8067,6 +8192,19 @@ MonoBehaviour:
   shieldBreak: 0
   shieldBufferTimer: 0
   shieldBar: {fileID: 818223960}
+--- !u!135 &2002236536
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2002236527}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.11633494
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &2043342606
 GameObject:
   m_ObjectHideFlags: 0
@@ -8119,7 +8257,7 @@ MonoBehaviour:
     m_Bits: 256
   enemyTarget: {fileID: 1674511205}
   hitboxTimer: 0.01
-  attackDamage: 50
+  attackDamage: 30
   shieldDamage: 6
   horizontalKnockback: 1.5
   verticalKnockback: 4
