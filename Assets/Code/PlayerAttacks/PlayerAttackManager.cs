@@ -2,6 +2,7 @@ using AB;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 namespace AB
 {
@@ -30,6 +31,7 @@ namespace AB
         PlayerAttackingHitboxes playerAttackingHitboxes;
         TimeManager timeManager;
         PlayerShield playerShield;
+        PlayerInput playerInput;
 
         //Registers the directional inputs
         public bool isRightPressed;
@@ -51,6 +53,7 @@ namespace AB
         {
             anim = GetComponent<Animation>();
             animator = GetComponent<Animator>();
+            playerInput = GetComponent<PlayerInput>();
 
             playerMovement = GetComponentInParent<PlayerMovement>();
             hurtboxManager = GetComponentInChildren<PlayerHurtboxManager>();
@@ -110,7 +113,7 @@ namespace AB
             }
 
             //Performs the Light Null Attack
-            if (Input.GetKeyDown(lightInput) && playerMovement.IsGrounded() && isAttacking == false && hurtboxManager.isStunned == false && hurtboxManager.isShieldStunned == false && isNothingPressed)
+            if (playerInput.actions["Light Attack"].WasPressedThisFrame() && playerMovement.IsGrounded() && isAttacking == false && hurtboxManager.isStunned == false && hurtboxManager.isShieldStunned == false && isNothingPressed)
             {
                 animator.SetTrigger("isLNAttacking");
                 isAttacking = true;
@@ -118,14 +121,14 @@ namespace AB
             }
 
             //Performs the Light Forward Attack
-            if (Input.GetKeyDown(lightInput) && playerMovement.IsGrounded() && transform.position.x > playerMovement.playerTwoX.transform.position.x && isAttacking == false && hurtboxManager.isStunned == false && hurtboxManager.isShieldStunned == false && isLeftPressed)
+            if (playerInput.actions["Light Attack"].WasPressedThisFrame() && playerMovement.IsGrounded() && transform.position.x > playerMovement.playerTwoX.transform.position.x && isAttacking == false && hurtboxManager.isStunned == false && hurtboxManager.isShieldStunned == false && isLeftPressed)
             {
                 //On the Left Side of the Opponent
                 animator.SetTrigger("isLFAttacking");
                 isAttacking = true;
                 attackCooldown = 0.32f;
             }
-            else if (Input.GetKeyDown(lightInput) && playerMovement.IsGrounded() && transform.position.x < playerMovement.playerTwoX.transform.position.x && isAttacking == false && hurtboxManager.isStunned == false && hurtboxManager.isShieldStunned == false && isRightPressed)
+            else if (playerInput.actions["Light Attack"].WasPressedThisFrame() && playerMovement.IsGrounded() && transform.position.x < playerMovement.playerTwoX.transform.position.x && isAttacking == false && hurtboxManager.isStunned == false && hurtboxManager.isShieldStunned == false && isRightPressed)
             {
                 //On the Right Side of the Opponent
                 animator.SetTrigger("isLFAttacking");
@@ -134,14 +137,14 @@ namespace AB
             }
 
             //Performs the Light Backwards Attack
-            if (Input.GetKeyDown(lightInput) && playerMovement.IsGrounded() && transform.position.x < playerMovement.playerTwoX.transform.position.x && isAttacking == false && hurtboxManager.isStunned == false && hurtboxManager.isShieldStunned == false && isLeftPressed)
+            if (playerInput.actions["Light Attack"].WasPressedThisFrame() && playerMovement.IsGrounded() && transform.position.x < playerMovement.playerTwoX.transform.position.x && isAttacking == false && hurtboxManager.isStunned == false && hurtboxManager.isShieldStunned == false && isLeftPressed)
             {
                 //On the Right Side of the Opponent
                 animator.SetTrigger("isLBAttacking");
                 isAttacking = true;
                 attackCooldown = 0.36f;
             }
-            else if (Input.GetKeyDown(lightInput) && playerMovement.IsGrounded() && transform.position.x > playerMovement.playerTwoX.transform.position.x && isAttacking == false && hurtboxManager.isStunned == false && hurtboxManager.isShieldStunned == false && isRightPressed)
+            else if (playerInput.actions["Light Attack"].WasPressedThisFrame() && playerMovement.IsGrounded() && transform.position.x > playerMovement.playerTwoX.transform.position.x && isAttacking == false && hurtboxManager.isStunned == false && hurtboxManager.isShieldStunned == false && isRightPressed)
             {
                 //On the Left Side of the Opponent
                 animator.SetTrigger("isLBAttacking");
@@ -150,7 +153,7 @@ namespace AB
             }
 
             //Performs the Light Crouch Attack
-            if (Input.GetKeyDown(lightInput) && playerMovement.IsGrounded() && isAttacking == false && hurtboxManager.isStunned == false && hurtboxManager.isShieldStunned == false && isDownPressed && isCrouching)
+            if (playerInput.actions["Light Attack"].WasPressedThisFrame() && playerMovement.IsGrounded() && isAttacking == false && hurtboxManager.isStunned == false && hurtboxManager.isShieldStunned == false && isDownPressed && isCrouching)
             {
                 animator.SetTrigger("isLCAttacking");
                 isAttacking = true;
@@ -159,7 +162,7 @@ namespace AB
             }
 
             //Performs the Light Aerial Attack
-            if(Input.GetKeyDown(lightInput) && !playerMovement.IsGrounded() && isAttacking == false && hurtboxManager.isStunned == false && hurtboxManager.isShieldStunned == false)
+            if(playerInput.actions["Light Attack"].WasPressedThisFrame() && !playerMovement.IsGrounded() && isAttacking == false && hurtboxManager.isStunned == false && hurtboxManager.isShieldStunned == false)
             {
                 animator.SetTrigger("isLAAttacking");
                 isAttacking = true;
@@ -296,14 +299,13 @@ namespace AB
 
 
             //handles the directional inputs
-            if (Input.GetKey(KeyCode.DownArrow))
+            if (playerInput.actions["Crouch"].WasPressedThisFrame())
             {
                 isDownPressed = true;
                 isRightPressed = false;
                 isLeftPressed = false;
                 if (playerMovement.IsGrounded())
                 {
-                    animator.SetTrigger("isCrouchingStart");
                     isCrouching = true;
                 }
             }
@@ -323,15 +325,20 @@ namespace AB
             {
                 isRightPressed = false;
                 isLeftPressed = false;
-                isDownPressed = false;
+            }
+
+            if (isCrouching)
+            {
+                animator.SetBool("isCrouching", true);
             }
 
             //Ends the crouch when the player releases down
-            if (Input.GetKeyUp(KeyCode.DownArrow))
+            if (playerInput.actions["Crouch"].WasReleasedThisFrame())
             {
                 isCrouching = false;
-                animator.ResetTrigger("isCrouchingStart");
-                animator.SetTrigger("isCrouchingEnd");
+                isDownPressed = false;
+                animator.ResetTrigger("isLCAttacking");
+                animator.SetBool("isCrouching", false);
             }
 
             //Runs the bool that checks if it's possible to perform a Null attack

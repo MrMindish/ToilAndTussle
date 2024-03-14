@@ -92,8 +92,8 @@ AnimatorStateTransition:
   - m_ConditionMode: 2
     m_ConditionEvent: isStunned
     m_EventTreshold: 0
-  - m_ConditionMode: 1
-    m_ConditionEvent: isCrouchingEnd
+  - m_ConditionMode: 2
+    m_ConditionEvent: isCrouching
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -8759116576500789653}
@@ -978,7 +978,7 @@ AnimatorStateTransition:
     m_ConditionEvent: isStunned
     m_EventTreshold: 0
   - m_ConditionMode: 1
-    m_ConditionEvent: isCrouchingStart
+    m_ConditionEvent: isCrouching
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 4821244674379189104}
@@ -1155,18 +1155,6 @@ AnimatorController:
     m_DefaultInt: 0
     m_DefaultBool: 0
     m_Controller: {fileID: 0}
-  - m_Name: isCrouchingStart
-    m_Type: 9
-    m_DefaultFloat: 0
-    m_DefaultInt: 0
-    m_DefaultBool: 0
-    m_Controller: {fileID: 0}
-  - m_Name: isCrouchingEnd
-    m_Type: 9
-    m_DefaultFloat: 0
-    m_DefaultInt: 0
-    m_DefaultBool: 0
-    m_Controller: {fileID: 0}
   - m_Name: isLNAttacking
     m_Type: 9
     m_DefaultFloat: 0
@@ -1223,6 +1211,12 @@ AnimatorController:
     m_Controller: {fileID: 0}
   - m_Name: isSC1Attacking
     m_Type: 9
+    m_DefaultFloat: 0
+    m_DefaultInt: 0
+    m_DefaultBool: 0
+    m_Controller: {fileID: 0}
+  - m_Name: isCrouching
+    m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
@@ -1652,7 +1646,7 @@ AnimatorStateMachine:
     m_Position: {x: 250, y: 170, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 4821244674379189104}
-    m_Position: {x: 90, y: -400, z: 0}
+    m_Position: {x: 70, y: -340, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -4003896380577989073}
     m_Position: {x: 180, y: -470, z: 0}
@@ -1661,7 +1655,7 @@ AnimatorStateMachine:
     m_Position: {x: 410, y: 280, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -8759116576500789653}
-    m_Position: {x: 300, y: -400, z: 0}
+    m_Position: {x: 340, y: -340, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1768736450626550886}
     m_Position: {x: 290, y: 230, z: 0}
