@@ -1,9 +1,11 @@
 using JetBrains.Annotations;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.InputSystem;
 namespace AB
 {
     public class PlayerMovement : MonoBehaviour
@@ -12,9 +14,12 @@ namespace AB
         PlayerAttackManager playerAttackManager;
         PlayerHurtboxManager hurtboxManager;
         PlayerShield playerShield;
+        PlayerInput playerInput;
+
 
         //Handles all of the movement speed and such
-        private float horizontal;
+        public Vector2 horizontal;
+
         public float moveSpeed;
         public float slowedMoveSpeed;
         public float jumpingPower;
@@ -51,6 +56,8 @@ namespace AB
 
         private void Awake()
         {
+            playerInput = GetComponentInChildren<PlayerInput>();
+
             playerPushBox = GetComponentInChildren<PlayerPushBox>();
             playerAttackManager = GetComponentInChildren<PlayerAttackManager>();
             hurtboxManager = GetComponentInChildren<PlayerHurtboxManager>();
@@ -68,24 +75,27 @@ namespace AB
         {
             if(gameObject.tag == "Player1")
             {
-                horizontal = Input.GetAxisRaw("HorizontalP1");
+                horizontal = playerInput.actions["Move"].ReadValue<Vector2>();
+
+
+
             }
             else if(gameObject.tag == "Player2")
             {
-                horizontal = Input.GetAxisRaw("HorizontalP2");
+                horizontal = playerInput.actions["Move"].ReadValue<Vector2>();
             }
 
 
 
 
-                if (Input.GetKeyDown(JumpName) && IsGrounded() && playerAttackManager.isAttacking == false && playerAttackManager.isCrouching == false && hurtboxManager.isStunned == false && hurtboxManager.isShieldStunned == false && playerShield.shieldBreak == false)
+                if (playerInput.actions["Jump"].WasPressedThisFrame() && IsGrounded() && playerAttackManager.isAttacking == false && playerAttackManager.isCrouching == false && hurtboxManager.isStunned == false && hurtboxManager.isShieldStunned == false && playerShield.shieldBreak == false)
                 {
                     //if the jump is inputed while the fighter is grounded, not attacking or being attacked, or crouching, then the jump is performed
                     rb.velocity = new Vector3(rb.velocity.x, jumpingPower, 0);
                     jumpTimer = 0.2f;
                 }
 
-                if (Input.GetKeyUp(JumpName) && rb.velocity.y > 0f)
+                if (playerInput.actions["Jump"].WasReleasedThisFrame() && rb.velocity.y > 0f)
                 {
                     //Allows the jump to be cancelled halfway, allowing short hops to happen
                     rb.velocity = new Vector3(rb.velocity.x, rb.velocity.y * 0.5f, 0f);
@@ -110,11 +120,13 @@ namespace AB
 
         private void FixedUpdate()
         {
+            horizontal = playerInput.actions["Move"].ReadValue<Vector2>();
             //if the player's on the ground, isn't attacking, isn't crouching, isn't stunned and isn't blocking, they move normally
             if (IsGrounded() && playerAttackManager.isAttacking == false && playerAttackManager.isCrouching == false && hurtboxManager.isStunned == false && hurtboxManager.isShieldStunned == false && !isBlocking)
             {
                 //movement part
-                rb.velocity = new Vector3(horizontal * moveSpeed, rb.velocity.y, 0f);
+                rb.velocity = new Vector3(horizontal.x * moveSpeed, rb.velocity.y, 0f);
+               
             }
 
             //Holds the player in place if they're blocking
@@ -152,7 +164,7 @@ namespace AB
                 hurtboxManager.isInvincible = true;
                 recoveryTime -= Time.deltaTime;
 
-                if(Input.GetKeyDown(JumpName) && recoveryTime <= 0.4 && recoveryTime > 0 && isRecovering == false)
+                if(playerInput.actions["Jump"].WasPressedThisFrame() && recoveryTime <= 0.4 && recoveryTime > 0 && isRecovering == false)
                 {
                     //Allows the player to "Recover" by rolling away from the enemy
                     isRecovering = true;

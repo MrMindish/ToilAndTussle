@@ -174,7 +174,7 @@ namespace AB
 
 
             //Performs the Heavy Null Attack
-            if (Input.GetKeyDown(heavyInput) && playerMovement.IsGrounded() && isAttacking == false && hurtboxManager.isStunned == false && hurtboxManager.isShieldStunned == false && isNothingPressed)
+            if (playerInput.actions["Heavy Attack"].WasPressedThisFrame() && playerMovement.IsGrounded() && isAttacking == false && hurtboxManager.isStunned == false && hurtboxManager.isShieldStunned == false && isNothingPressed)
             {
                 animator.SetTrigger("isHNAttacking");
                 isAttacking = true;
@@ -184,13 +184,13 @@ namespace AB
 
 
             //Performs the Special Null Attack
-            if(Input.GetKeyDown(specialInput) && playerMovement.IsGrounded() && isAttacking == false && hurtboxManager.isStunned == false && hurtboxManager.isShieldStunned == false && isNothingPressed)
+            if(playerInput.actions["Special Attack"].WasPressedThisFrame() && playerMovement.IsGrounded() && isAttacking == false && hurtboxManager.isStunned == false && hurtboxManager.isShieldStunned == false && isNothingPressed)
             {
                 animator.SetTrigger("isSN1Attacking");
                 isAttacking= true;
                 attackCooldown = 0.4f;
             }
-            else if (Input.GetKeyDown(specialInput) && playerMovement.IsGrounded() && isAttacking == true && hurtboxManager.isStunned == false && isNothingPressed && hurtboxManager.isShieldStunned == false && isCancel)
+            else if (playerInput.actions["Special Attack"].WasPressedThisFrame() && playerMovement.IsGrounded() && isAttacking == true && hurtboxManager.isStunned == false && isNothingPressed && hurtboxManager.isShieldStunned == false && isCancel)
             {
                 animator.SetTrigger("isSN1Attacking");
                 isAttacking = true;
@@ -199,14 +199,14 @@ namespace AB
             }
 
             //Performs the Special Forward Attack
-            if (Input.GetKeyDown(specialInput) && playerMovement.IsGrounded() && transform.position.x > playerMovement.playerTwoX.transform.position.x && isAttacking == false && hurtboxManager.isStunned == false && hurtboxManager.isShieldStunned == false && isLeftPressed)
+            if (playerInput.actions["Special Attack"].WasPressedThisFrame() && playerMovement.IsGrounded() && transform.position.x > playerMovement.playerTwoX.transform.position.x && isAttacking == false && hurtboxManager.isStunned == false && hurtboxManager.isShieldStunned == false && isLeftPressed)
             {
                 //On the Left Side of the opponent
                 animator.SetTrigger("isSF1Attacking");
                 isAttacking = true;
                 attackCooldown = 0.7f;
             }
-            else if (Input.GetKeyDown(specialInput) && playerMovement.IsGrounded() && transform.position.x > playerMovement.playerTwoX.transform.position.x && isAttacking == true && hurtboxManager.isStunned == false && hurtboxManager.isShieldStunned == false && isLeftPressed && isCancel)
+            else if (playerInput.actions["Special Attack"].WasPressedThisFrame() && playerMovement.IsGrounded() && transform.position.x > playerMovement.playerTwoX.transform.position.x && isAttacking == true && hurtboxManager.isStunned == false && hurtboxManager.isShieldStunned == false && isLeftPressed && isCancel)
             {
                 //On Left Side + Cancelled the move
                 animator.SetTrigger("isSF1Attacking");
@@ -214,14 +214,14 @@ namespace AB
                 attackCooldown = 0.7f;
                 animator.ResetTrigger("isCrouchingEnd");
             }
-            else if (Input.GetKeyDown(specialInput) && playerMovement.IsGrounded() && transform.position.x < playerMovement.playerTwoX.transform.position.x && isAttacking == false && hurtboxManager.isStunned == false && hurtboxManager.isShieldStunned == false && isRightPressed)
+            else if (playerInput.actions["Special Attack"].WasPressedThisFrame() && playerMovement.IsGrounded() && transform.position.x < playerMovement.playerTwoX.transform.position.x && isAttacking == false && hurtboxManager.isStunned == false && hurtboxManager.isShieldStunned == false && isRightPressed)
             {
                 //On the Right Side of the opponent
                 animator.SetTrigger("isSF1Attacking");
                 isAttacking = true;
                 attackCooldown = 0.7f;
             }
-            else if (Input.GetKeyDown(specialInput) && playerMovement.IsGrounded() && transform.position.x < playerMovement.playerTwoX.transform.position.x && isAttacking == true && hurtboxManager.isStunned == false && hurtboxManager.isShieldStunned == false && isRightPressed && isCancel)
+            else if (playerInput.actions["Special Attack"].WasPressedThisFrame() && playerMovement.IsGrounded() && transform.position.x < playerMovement.playerTwoX.transform.position.x && isAttacking == true && hurtboxManager.isStunned == false && hurtboxManager.isShieldStunned == false && isRightPressed && isCancel)
             {
                 //On Right Side + Cancelled the move
                 animator.SetTrigger("isSF1Attacking");
@@ -231,14 +231,14 @@ namespace AB
             }
 
             //Performs the Special Backward Attack
-            if (Input.GetKeyDown(specialInput) && playerMovement.IsGrounded() && transform.position.x < playerMovement.playerTwoX.transform.position.x && isAttacking == false && hurtboxManager.isStunned == false && hurtboxManager.isShieldStunned == false && isLeftPressed)
+            if (playerInput.actions["Special Attack"].WasPressedThisFrame() && playerMovement.IsGrounded() && transform.position.x < playerMovement.playerTwoX.transform.position.x && isAttacking == false && hurtboxManager.isStunned == false && hurtboxManager.isShieldStunned == false && isLeftPressed)
             {
                 //On the Left Side of the opponent
                 animator.SetTrigger("isSB1Attacking");
                 isAttacking = true;
                 attackCooldown = 0.26f;
             }
-            else if (Input.GetKeyDown(specialInput) && playerMovement.IsGrounded() && transform.position.x < playerMovement.playerTwoX.transform.position.x && isAttacking == true && hurtboxManager.isStunned == false && hurtboxManager.isShieldStunned == false && isLeftPressed && isCancel)
+            else if (playerInput.actions["Special Attack"].WasPressedThisFrame() && playerMovement.IsGrounded() && transform.position.x < playerMovement.playerTwoX.transform.position.x && isAttacking == true && hurtboxManager.isStunned == false && hurtboxManager.isShieldStunned == false && isLeftPressed && isCancel)
             {
                 //On Left Side + Cancelled the move
                 animator.SetTrigger("isSB1Attacking");
@@ -246,14 +246,14 @@ namespace AB
                 attackCooldown = 0.26f;
                 animator.ResetTrigger("isCrouchingEnd");
             }
-            else if (Input.GetKeyDown(specialInput) && playerMovement.IsGrounded() && transform.position.x > playerMovement.playerTwoX.transform.position.x && isAttacking == false && hurtboxManager.isStunned == false && hurtboxManager.isShieldStunned == false && isRightPressed)
+            else if (playerInput.actions["Special Attack"].WasPressedThisFrame() && playerMovement.IsGrounded() && transform.position.x > playerMovement.playerTwoX.transform.position.x && isAttacking == false && hurtboxManager.isStunned == false && hurtboxManager.isShieldStunned == false && isRightPressed)
             {
                 //On the Right Side of the opponent
                 animator.SetTrigger("isSB1Attacking");
                 isAttacking = true;
                 attackCooldown = 0.26f;
             }
-            else if (Input.GetKeyDown(specialInput) && playerMovement.IsGrounded() && transform.position.x > playerMovement.playerTwoX.transform.position.x && isAttacking == true && hurtboxManager.isStunned == false && hurtboxManager.isShieldStunned == false && isRightPressed && isCancel)
+            else if (playerInput.actions["Special Attack"].WasPressedThisFrame() && playerMovement.IsGrounded() && transform.position.x > playerMovement.playerTwoX.transform.position.x && isAttacking == true && hurtboxManager.isStunned == false && hurtboxManager.isShieldStunned == false && isRightPressed && isCancel)
             {
                 //On Right Side + Cancelled the move
                 animator.SetTrigger("isSB1Attacking");
@@ -263,13 +263,13 @@ namespace AB
             }
 
             //Performs the Special Down Attack
-            if (Input.GetKeyDown(specialInput) && playerMovement.IsGrounded() && isAttacking == false && hurtboxManager.isStunned == false && hurtboxManager.isShieldStunned == false && (isDownPressed || isCrouching))
+            if (playerInput.actions["Special Attack"].WasPressedThisFrame() && playerMovement.IsGrounded() && isAttacking == false && hurtboxManager.isStunned == false && hurtboxManager.isShieldStunned == false && (isDownPressed || isCrouching))
             {
                 animator.SetTrigger("isSC1Attacking");
                 isAttacking = true;
                 attackCooldown = 0.24f;
             }
-            else if (Input.GetKeyDown(specialInput) && playerMovement.IsGrounded() && isAttacking == true && hurtboxManager.isStunned == false && hurtboxManager.isShieldStunned == false && (isDownPressed || isCrouching) && isCancel)
+            else if (playerInput.actions["Special Attack"].WasPressedThisFrame() && playerMovement.IsGrounded() && isAttacking == true && hurtboxManager.isStunned == false && hurtboxManager.isShieldStunned == false && (isDownPressed || isCrouching) && isCancel)
             {
                 animator.SetTrigger("isSC1Attacking");
                 isAttacking = true;
@@ -299,7 +299,20 @@ namespace AB
 
 
             //handles the directional inputs
-            if (playerInput.actions["Crouch"].WasPressedThisFrame())
+
+            if (playerMovement.horizontal.x > 0 && playerMovement.horizontal.y > -0.5)
+            {
+                isRightPressed = true;
+                isLeftPressed = false;
+                isDownPressed = false;
+            }
+            else if (playerMovement.horizontal.x < 0 && playerMovement.horizontal.y > -0.5)
+            {
+                isLeftPressed = true;
+                isRightPressed = false;
+                isDownPressed = false;
+            }
+            else if (playerMovement.horizontal.y < -0.5 || playerInput.actions["Crouch"].WasPressedThisFrame())
             {
                 isDownPressed = true;
                 isRightPressed = false;
@@ -309,22 +322,11 @@ namespace AB
                     isCrouching = true;
                 }
             }
-            else if (Input.GetKey(KeyCode.RightArrow))
-            {
-                isRightPressed = true;
-                isLeftPressed = false;
-                isDownPressed = false;
-            }
-            else if (Input.GetKey(KeyCode.LeftArrow))
-            {
-                isLeftPressed = true;
-                isRightPressed = false;
-                isDownPressed = false;
-            }
             else
             {
                 isRightPressed = false;
                 isLeftPressed = false;
+                isDownPressed=false;
             }
 
             if (isCrouching)
