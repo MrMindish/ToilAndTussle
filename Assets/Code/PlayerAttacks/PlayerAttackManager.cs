@@ -86,6 +86,9 @@ namespace AB
                 animator.SetTrigger("jumpEnd");
             }
 
+            //Performs the Dash Animation
+
+
             //Performs the Blocking Animation
             if (playerMovement.isBlocking && !hurtboxManager.isStunned)
             {
@@ -300,19 +303,19 @@ namespace AB
 
             //handles the directional inputs
 
-            if (playerMovement.horizontal.x > 0 && playerMovement.horizontal.y > -0.5)
+            if (playerMovement.horizontal.x > 0 && !playerInput.actions["Crouch"].WasPressedThisFrame())
             {
                 isRightPressed = true;
                 isLeftPressed = false;
                 isDownPressed = false;
             }
-            else if (playerMovement.horizontal.x < 0 && playerMovement.horizontal.y > -0.5)
+            else if (playerMovement.horizontal.x < 0 && !playerInput.actions["Crouch"].WasPressedThisFrame())
             {
                 isLeftPressed = true;
                 isRightPressed = false;
                 isDownPressed = false;
             }
-            else if (playerMovement.horizontal.y < -0.5 || playerInput.actions["Crouch"].WasPressedThisFrame())
+            else if (playerInput.actions["Crouch"].WasPressedThisFrame())
             {
                 isDownPressed = true;
                 isRightPressed = false;
@@ -326,7 +329,6 @@ namespace AB
             {
                 isRightPressed = false;
                 isLeftPressed = false;
-                isDownPressed=false;
             }
 
             if (isCrouching)

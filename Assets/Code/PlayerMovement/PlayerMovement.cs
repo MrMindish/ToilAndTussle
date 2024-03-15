@@ -46,6 +46,11 @@ namespace AB
         public bool isJumping;
         public float jumpTimer = 0.4f;
 
+        //Allows the Dash to play
+        public bool isDashing;
+        public float dashTimer = 1;
+        public float dashCount = 0;
+
 
         public bool isBlocking;
         public bool canParry;
@@ -121,8 +126,8 @@ namespace AB
         private void FixedUpdate()
         {
             horizontal = playerInput.actions["Move"].ReadValue<Vector2>();
-            //if the player's on the ground, isn't attacking, isn't crouching, isn't stunned and isn't blocking, they move normally
-            if (IsGrounded() && playerAttackManager.isAttacking == false && playerAttackManager.isCrouching == false && hurtboxManager.isStunned == false && hurtboxManager.isShieldStunned == false && !isBlocking)
+            //if the player's on the ground, isn't attacking, isn't crouching, isn't stunned, isn't dashing and isn't blocking, they move normally
+            if (IsGrounded() && playerAttackManager.isAttacking == false && playerAttackManager.isCrouching == false && hurtboxManager.isStunned == false && hurtboxManager.isShieldStunned == false && !isBlocking && !isDashing)
             {
                 //movement part
                 rb.velocity = new Vector3(horizontal.x * moveSpeed, rb.velocity.y, 0f);
@@ -130,7 +135,7 @@ namespace AB
             }
 
             //Holds the player in place if they're blocking
-            else if (IsGrounded() && playerAttackManager.isAttacking == false && playerAttackManager.isCrouching == false && hurtboxManager.isStunned == false && hurtboxManager.isShieldStunned == false && isBlocking)
+            else if (IsGrounded() && playerAttackManager.isAttacking == false && playerAttackManager.isCrouching == false && hurtboxManager.isStunned == false && hurtboxManager.isShieldStunned == false && isBlocking && !isDashing)
             {
                 //Blocking movement
                 rb.velocity = new Vector3(0f, rb.velocity.y, 0f);
