@@ -47,9 +47,15 @@ namespace AB
         public float jumpTimer = 0.4f;
 
         //Allows the Dash to play
+        public bool canDash;
         public bool isDashing;
-        public float dashTimer = 1;
-        public float dashCount = 0;
+        private float dashingPower;
+        private float dashingTime = 0.2f;
+        private float dashingCooldown = 0.05f;
+
+        bool movePressedOnce = false;
+        float lastMovePressTime = 0f;
+        float doublePressTimeThreshold = 1.5f;
 
 
         public bool isBlocking;
@@ -74,6 +80,7 @@ namespace AB
             canRecover = false;
             isRecovering = false;
             isJumping = false;
+            canDash = true;
         } //Sets various bools to false
 
         void Update()
@@ -90,21 +97,23 @@ namespace AB
                 horizontal = playerInput.actions["Move"].ReadValue<Vector2>();
             }
 
-
-
-
-                if (playerInput.actions["Jump"].WasPressedThisFrame() && IsGrounded() && playerAttackManager.isAttacking == false && playerAttackManager.isCrouching == false && hurtboxManager.isStunned == false && hurtboxManager.isShieldStunned == false && playerShield.shieldBreak == false)
+            if (playerInput.actions["Jump"].WasPressedThisFrame() && IsGrounded() && playerAttackManager.isAttacking == false && playerAttackManager.isCrouching == false && hurtboxManager.isStunned == false && hurtboxManager.isShieldStunned == false && playerShield.shieldBreak == false && !isDashing)
                 {
                     //if the jump is inputed while the fighter is grounded, not attacking or being attacked, or crouching, then the jump is performed
                     rb.velocity = new Vector3(rb.velocity.x, jumpingPower, 0);
                     jumpTimer = 0.2f;
                 }
 
-                if (playerInput.actions["Jump"].WasReleasedThisFrame() && rb.velocity.y > 0f)
+            if (playerInput.actions["Jump"].WasReleasedThisFrame() && rb.velocity.y > 0f)
                 {
                     //Allows the jump to be cancelled halfway, allowing short hops to happen
                     rb.velocity = new Vector3(rb.velocity.x, rb.velocity.y * 0.5f, 0f);
                 }
+
+            if (isDashing)
+            {
+                return;
+            }
 
             IsGrounded();
             Flip();
@@ -125,6 +134,11 @@ namespace AB
 
         private void FixedUpdate()
         {
+            if (isDashing)
+            {
+                return;
+            }
+
             horizontal = playerInput.actions["Move"].ReadValue<Vector2>();
             //if the player's on the ground, isn't attacking, isn't crouching, isn't stunned, isn't dashing and isn't blocking, they move normally
             if (IsGrounded() && playerAttackManager.isAttacking == false && playerAttackManager.isCrouching == false && hurtboxManager.isStunned == false && hurtboxManager.isShieldStunned == false && !isBlocking && !isDashing)
@@ -160,6 +174,27 @@ namespace AB
                 rb.velocity = new Vector3(hurtboxManager.hAirKnockback, hurtboxManager.vAirKnockback, 0f);
 
                 //Since gravity will guide the juggled fighter, an else if for knockback duration is not necessary
+            }
+
+            if (IsGrounded() && playerInput.actions["Move"].WasPressedThisFrame() && canDash)
+            {
+                if (movePressedOnce && Time.time - lastMovePressTime <= doublePressTimeThreshold)
+                {
+                    // Double press detected
+                    // Your code to execute when the "Move" input is pressed twice within a second
+                    Debug.Log("Double press detected!");
+                    StartCoroutine(Dash());
+
+                    // Reset variables for next detection
+                    movePressedOnce = false;
+                    lastMovePressTime = 0f;
+                }
+                else
+                {
+                    // First press detected
+                    movePressedOnce = true;
+                    lastMovePressTime = Time.time;
+                }
             }
 
 
@@ -214,8 +249,6 @@ namespace AB
         {
             return Physics.Raycast(orientation.position, Vector3.down, 0.01f);
         }
-
-
 
         private void Flip()
         {
@@ -291,6 +324,49 @@ namespace AB
             {
                 recoveryForce *= -1;
             }
+
+            //Makes the dash go in the inputed direction
+            if (gameObject.tag == "Player1" && transform.position.x < playerTwoX.transform.position.x && horizontal.x < 0)
+            {
+                //Sends Player 1 Right when on the Left side
+                dashingPower = 30f;
+            }
+            else if (gameObject.tag == "Player1" && transform.position.x < playerTwoX.transform.position.x && horizontal.x > 0)
+            {
+                //Sends Player 1 Left when on the Left side
+                dashingPower = -15f;
+            }
+            else if (gameObject.tag == "Player1" && transform.position.x > playerTwoX.transform.position.x && horizontal.x < 0)
+            {
+                //Sends Player 1 Left when on the Right side
+                dashingPower = -30f;
+            }
+            else if (gameObject.tag == "Player1" && transform.position.x > playerTwoX.transform.position.x && horizontal.x > 0)
+            {
+                //Sends Player 1 Right when on the Right side
+                dashingPower = 15f;
+            }
+
+            if (gameObject.tag == "Player2" && transform.position.x < playerOneX.transform.position.x && horizontal.x < 0)
+            {
+                //Sends Player 2 Right when on the Left side
+                dashingPower = 30f;
+            }
+            else if (gameObject.tag == "Player2" && transform.position.x < playerOneX.transform.position.x && horizontal.x > 0)
+            {
+                //Sends Player 2 Left when on the Left side
+                dashingPower = -15f;
+            }
+            else if (gameObject.tag == "Player2" && transform.position.x > playerOneX.transform.position.x && horizontal.x < 0)
+            {
+                //Sends Player 2 Left when on the Right side
+                dashingPower = -30f;
+            }
+            else if (gameObject.tag == "Player2" && transform.position.x > playerOneX.transform.position.x && horizontal.x > 0)
+            {
+                //Sends Player 2 Right when on the Right side
+                dashingPower = 15f;
+            }
         }
 
         private void BlockingRange()
@@ -350,6 +426,19 @@ namespace AB
             {
                 canParry = false;
             }
+        }
+
+        private IEnumerator Dash()
+        {
+            canDash = false;
+            isDashing = true;
+            rb.velocity = new Vector3(transform.localScale.x * dashingPower, 0f, 0f);
+            rb.useGravity = false;
+            yield return new WaitForSeconds(dashingTime);
+            isDashing = false;
+            rb.useGravity = true;
+            yield return new WaitForSeconds(dashingCooldown);
+            canDash = true;
         }
     }
 }

@@ -303,13 +303,13 @@ namespace AB
 
             //handles the directional inputs
 
-            if (playerMovement.horizontal.x > 0 && !playerInput.actions["Crouch"].WasPressedThisFrame())
+            if (playerMovement.horizontal.x > 0 && !isDownPressed)
             {
                 isRightPressed = true;
                 isLeftPressed = false;
                 isDownPressed = false;
             }
-            else if (playerMovement.horizontal.x < 0 && !playerInput.actions["Crouch"].WasPressedThisFrame())
+            else if (playerMovement.horizontal.x < 0 && !isDownPressed)
             {
                 isLeftPressed = true;
                 isRightPressed = false;
@@ -320,7 +320,7 @@ namespace AB
                 isDownPressed = true;
                 isRightPressed = false;
                 isLeftPressed = false;
-                if (playerMovement.IsGrounded())
+                if (playerMovement.IsGrounded() && isDownPressed)
                 {
                     isCrouching = true;
                 }
