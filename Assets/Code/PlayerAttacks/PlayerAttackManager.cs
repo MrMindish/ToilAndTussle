@@ -32,6 +32,7 @@ namespace AB
         TimeManager timeManager;
         PlayerShield playerShield;
         PlayerInput playerInput;
+        MaterialManager materialManager;
 
         //Registers the directional inputs
         public bool isRightPressed;
@@ -59,6 +60,7 @@ namespace AB
             hurtboxManager = GetComponentInChildren<PlayerHurtboxManager>();
             playerAttackingHitboxes = GetComponentInChildren<PlayerAttackingHitboxes>();
             timeManager = GetComponentInParent<TimeManager>();
+            materialManager = GetComponentInParent<MaterialManager>();
             playerShield = GetComponentInParent<PlayerShield>();
 
             isAttacking = false;
@@ -443,13 +445,43 @@ namespace AB
             hurtboxManager.parried = false;
             animator.SetBool("isParried", false);
         }
-        public void TimeSlow()
+        public void TimeSlowParry()
         {
             timeManager.timeSlowed = true;
+
+            if (gameObject.tag == "Player1")
+            {
+                materialManager.p1Light = true;
+            }
+            else if (gameObject.tag == "Player2")
+            {
+                materialManager.p2Light = true;
+            }
         }
+        public void TimeSlowbreak()
+        {
+            timeManager.timeSlowed = true;
+            if(gameObject.tag == "Player2")
+            {
+                materialManager.p1Light = true;
+            }
+            else if(gameObject.tag == "Player1")
+            {
+                materialManager.p2Light = true;
+            }
+        }
+
         public void TimeNormal()
         {
             timeManager.timeSlowed = false;
+            materialManager.p1Light = false;
+            materialManager.p2Light = false;
+        }
+
+        public void NormalLights()
+        {
+            materialManager.p1Light = false;
+            materialManager.p2Light = false;
         }
     }
 }
