@@ -185,9 +185,59 @@ namespace AB
                 animator.SetBool("canCancel", true);
             }
 
+            //Performs the Heavy Forward Attack
+            if (playerInput.actions["Heavy Attack"].WasPressedThisFrame() && playerMovement.IsGrounded() && transform.position.x > playerMovement.playerTwoX.transform.position.x && isAttacking == false && hurtboxManager.isStunned == false && hurtboxManager.isShieldStunned == false && isLeftPressed)
+            {
+                //On the Left Side of the Opponent
+                animator.SetTrigger("isHFAttacking");
+                isAttacking = true;
+                attackCooldown = 0.8f;
+            }
+            else if (playerInput.actions["Heavy Attack"].WasPressedThisFrame() && playerMovement.IsGrounded() && transform.position.x < playerMovement.playerTwoX.transform.position.x && isAttacking == false && hurtboxManager.isStunned == false && hurtboxManager.isShieldStunned == false && isRightPressed)
+            {
+                //On the Right Side of the Opponent
+                animator.SetTrigger("isHFAttacking");
+                isAttacking = true;
+                attackCooldown = 0.8f;
+            }
+
+            //Performs the Heavy Backwards Attack
+            if (playerInput.actions["Heavy Attack"].WasPressedThisFrame() && playerMovement.IsGrounded() && transform.position.x < playerMovement.playerTwoX.transform.position.x && isAttacking == false && hurtboxManager.isStunned == false && hurtboxManager.isShieldStunned == false && isLeftPressed)
+            {
+                //On the Right Side of the Opponent
+                animator.SetTrigger("isHBAttacking");
+                isAttacking = true;
+                attackCooldown = 0.5f;
+            }
+            else if (playerInput.actions["Heavy Attack"].WasPressedThisFrame() && playerMovement.IsGrounded() && transform.position.x > playerMovement.playerTwoX.transform.position.x && isAttacking == false && hurtboxManager.isStunned == false && hurtboxManager.isShieldStunned == false && isRightPressed)
+            {
+                //On the Left Side of the Opponent
+                animator.SetTrigger("isHBAttacking");
+                isAttacking = true;
+                attackCooldown = 0.5f;
+            }
+
+            //Performs the Heavy Crouch Attack
+            if (playerInput.actions["Heavy Attack"].WasPressedThisFrame() && playerMovement.IsGrounded() && isAttacking == false && hurtboxManager.isStunned == false && hurtboxManager.isShieldStunned == false && isDownPressed && isCrouching)
+            {
+                animator.SetTrigger("isHCAttacking");
+                isAttacking = true;
+                attackCooldown = 0.7f;
+            }
+
+            //Performs the Heavy Aerial Attack
+            if (playerInput.actions["Heavy Attack"].WasPressedThisFrame() && !playerMovement.IsGrounded() && isAttacking == false && hurtboxManager.isStunned == false && hurtboxManager.isShieldStunned == false)
+            {
+                Debug.Log("HA");
+                animator.SetTrigger("isHAAttacking");
+                isAttacking = true;
+                isAirAttacking = true;
+                attackCooldown = 0.2f;
+            }
+
 
             //Performs the Special Null Attack
-            if(playerInput.actions["Special Attack"].WasPressedThisFrame() && playerMovement.IsGrounded() && isAttacking == false && hurtboxManager.isStunned == false && hurtboxManager.isShieldStunned == false && isNothingPressed)
+            if (playerInput.actions["Special Attack"].WasPressedThisFrame() && playerMovement.IsGrounded() && isAttacking == false && hurtboxManager.isStunned == false && hurtboxManager.isShieldStunned == false && isNothingPressed)
             {
                 animator.SetTrigger("isSN1Attacking");
                 isAttacking= true;
@@ -303,19 +353,19 @@ namespace AB
 
             //handles the directional inputs
 
-            if (playerMovement.horizontal.x > 0 && !isDownPressed)
+            if (playerMovement.horizontal.x > 0.2 && !isDownPressed)
             {
                 isRightPressed = true;
                 isLeftPressed = false;
                 isDownPressed = false;
             }
-            else if (playerMovement.horizontal.x < 0 && !isDownPressed)
+            else if (playerMovement.horizontal.x < -0.2 && !isDownPressed)
             {
                 isLeftPressed = true;
                 isRightPressed = false;
                 isDownPressed = false;
             }
-            else if (playerInput.actions["Crouch"].WasPressedThisFrame())
+            else if (playerInput.actions["Crouch"].WasPressedThisFrame() || playerMovement.horizontal.y < -0.5)
             {
                 isDownPressed = true;
                 isRightPressed = false;

@@ -61,7 +61,7 @@ namespace AB
         private int hitCountDuringStun = 0;
 
         // The maximum reduction factor for damage
-        public float maxDamageReductionFactor = 0.5f;
+        public float maxDamageReductionFactor = 0.2f;
 
 
         //Checks if the attack is blockable (Specifically, if the script is on the invisible box collider that activates before the actual attack
@@ -125,19 +125,18 @@ namespace AB
 
                 isStunned = true;
                 isKnockback = true;
-                if (isStunned)
+                if (isStunned && isHit)
                 {
                     // Increase hit count during stun and calculate damage reduction
                     hitCountDuringStun++;
-                    float damageReductionFactor = Mathf.Lerp(1f, maxDamageReductionFactor, hitCountDuringStun / 1f);
+                    float damageReductionFactor = Mathf.Lerp(1f, maxDamageReductionFactor, hitCountDuringStun / 1.5f);
                     damageToHealth *= damageReductionFactor;
                 }
 
                 stunDuration = attackerHitboxes.stunTime;
                 kTime = attackerHitboxes.knockbackTime;
                 isHit = true;
-                // Reset hit count when entering stun
-                hitCountDuringStun = 0;
+
 
 
                 if(isStunned && canHitJuggle)
@@ -220,6 +219,11 @@ namespace AB
                 {
                     isKnockback = false;
                 }
+            }
+
+            if (!isStunned)
+            {
+                hitCountDuringStun = 0;
             }
         }
     }

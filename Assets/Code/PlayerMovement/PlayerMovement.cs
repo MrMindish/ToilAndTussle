@@ -54,8 +54,8 @@ namespace AB
         private float dashingCooldown = 0.05f;
 
         bool movePressedOnce = false;
-        float lastMovePressTime = 0f;
-        float doublePressTimeThreshold = 1.5f;
+        float lastMovePressTime = 1f;
+        float doublePressTimeThreshold = 0.6f;
 
 
         public bool isBlocking;
@@ -187,7 +187,7 @@ namespace AB
 
                     // Reset variables for next detection
                     movePressedOnce = false;
-                    lastMovePressTime = 0f;
+                    lastMovePressTime = 1f;
                 }
                 else
                 {
@@ -329,12 +329,12 @@ namespace AB
             if (gameObject.tag == "Player1" && transform.position.x < playerTwoX.transform.position.x && horizontal.x < 0)
             {
                 //Sends Player 1 Right when on the Left side
-                dashingPower = 30f;
+                dashingPower = 15f;
             }
             else if (gameObject.tag == "Player1" && transform.position.x < playerTwoX.transform.position.x && horizontal.x > 0)
             {
                 //Sends Player 1 Left when on the Left side
-                dashingPower = -15f;
+                dashingPower = -30f;
             }
             else if (gameObject.tag == "Player1" && transform.position.x > playerTwoX.transform.position.x && horizontal.x < 0)
             {
@@ -350,12 +350,12 @@ namespace AB
             if (gameObject.tag == "Player2" && transform.position.x < playerOneX.transform.position.x && horizontal.x < 0)
             {
                 //Sends Player 2 Right when on the Left side
-                dashingPower = 30f;
+                dashingPower = 15f;
             }
             else if (gameObject.tag == "Player2" && transform.position.x < playerOneX.transform.position.x && horizontal.x > 0)
             {
                 //Sends Player 2 Left when on the Left side
-                dashingPower = -15f;
+                dashingPower = -30f;
             }
             else if (gameObject.tag == "Player2" && transform.position.x > playerOneX.transform.position.x && horizontal.x < 0)
             {
