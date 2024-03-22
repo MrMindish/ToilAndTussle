@@ -408,10 +408,6 @@ namespace AB
             {
                 isBlocking = true;
             }
-            else
-            {
-                isBlocking = false;
-            }
 
             //Controls the parry for Player 2
             if (gameObject.tag == "Player2" && IsGrounded() && transform.position.x > playerOneX.transform.position.x && playerAttackManager.isAttacking == false && !hurtboxManager.isStunned && hurtboxManager.isBlockable && Input.GetKeyDown(KeyCode.D))
