@@ -14,6 +14,8 @@ namespace AB
         public float maxHealth = 1000f;
         public float chipSpeed = 20f;
 
+        public bool isDead;
+
         public Image frontHealthBar;
         public Image backHealthBar;
 
@@ -30,6 +32,7 @@ namespace AB
         private void Start()
         {
             health = maxHealth;
+            isDead = false;
         }
 
         private void Update()
@@ -40,6 +43,15 @@ namespace AB
             {
                 health -= playerHurtboxManager.damageToHealth;
                 playerHurtboxManager.isHit = false;
+            }
+
+            if(health <= 0)
+            {
+                isDead = true;
+            }
+            else
+            {
+                isDead = false;
             }
         }
 

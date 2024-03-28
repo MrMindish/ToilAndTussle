@@ -15,6 +15,7 @@ namespace AB
         PlayerHurtboxManager hurtboxManager;
         PlayerShield playerShield;
         PlayerInput playerInput;
+        PlayerHealth playerHealth;
 
 
         //Handles all of the movement speed and such
@@ -25,9 +26,6 @@ namespace AB
         public float jumpingPower;
 
         public float pushForce;
-
-        public KeyCode JumpName;
-        public KeyCode MovementName;
 
         //Once the player has landed after being juggled, they can recover/jump backwards
         public bool canRecover;
@@ -40,7 +38,7 @@ namespace AB
         public GameObject playerTwoX;
 
         //Makes sure the player is facing towards the enemy
-        private bool isFacingRight = true;
+        public bool isFacingRight = true;
 
         //Allows the jump animation to play
         public bool isJumping;
@@ -73,6 +71,7 @@ namespace AB
             playerAttackManager = GetComponentInChildren<PlayerAttackManager>();
             hurtboxManager = GetComponentInChildren<PlayerHurtboxManager>();
             playerShield = GetComponent<PlayerShield>();
+            playerHealth = GetComponent<PlayerHealth>();
         } //Includes the Component Getting
 
         private void Start()
@@ -97,27 +96,30 @@ namespace AB
                 horizontal = playerInput.actions["Move"].ReadValue<Vector2>();
             }
 
-            if (playerInput.actions["Jump"].WasPressedThisFrame() && IsGrounded() && playerAttackManager.isAttacking == false && playerAttackManager.isCrouching == false && hurtboxManager.isStunned == false && hurtboxManager.isShieldStunned == false && playerShield.shieldBreak == false && !isDashing)
+            if (!playerHealth.isDead)
+            {
+                if (playerInput.actions["Jump"].WasPressedThisFrame() && IsGrounded() && playerAttackManager.isAttacking == false && playerAttackManager.isCrouching == false && hurtboxManager.isStunned == false && hurtboxManager.isShieldStunned == false && playerShield.shieldBreak == false && !isDashing)
                 {
                     //if the jump is inputed while the fighter is grounded, not attacking or being attacked, or crouching, then the jump is performed
                     rb.velocity = new Vector3(rb.velocity.x, jumpingPower, 0);
                     jumpTimer = 0.2f;
                 }
 
-            if (playerInput.actions["Jump"].WasReleasedThisFrame() && rb.velocity.y > 0f)
+                if (playerInput.actions["Jump"].WasReleasedThisFrame() && rb.velocity.y > 0f)
                 {
                     //Allows the jump to be cancelled halfway, allowing short hops to happen
                     rb.velocity = new Vector3(rb.velocity.x, rb.velocity.y * 0.5f, 0f);
                 }
 
-            if (isDashing)
-            {
-                return;
-            }
+                if (isDashing)
+                {
+                    return;
+                }
 
-            IsGrounded();
-            Flip();
-            BlockingRange();
+                IsGrounded();
+                Flip();
+                BlockingRange();
+            }
 
             if(jumpTimer > 0 && !IsGrounded())
             {
@@ -134,113 +136,117 @@ namespace AB
 
         private void FixedUpdate()
         {
-            if (isDashing)
+            if (!playerHealth.isDead)
             {
-                return;
-            }
-
-            horizontal = playerInput.actions["Move"].ReadValue<Vector2>();
-            //if the player's on the ground, isn't attacking, isn't crouching, isn't stunned, isn't dashing and isn't blocking, they move normally
-            if (IsGrounded() && playerAttackManager.isAttacking == false && playerAttackManager.isCrouching == false && hurtboxManager.isStunned == false && hurtboxManager.isShieldStunned == false && !isBlocking && !isDashing)
-            {
-                //movement part
-                rb.velocity = new Vector3(horizontal.x * moveSpeed, rb.velocity.y, 0f);
-               
-            }
-
-            //Holds the player in place if they're blocking
-            else if (IsGrounded() && playerAttackManager.isAttacking == false && playerAttackManager.isCrouching == false && hurtboxManager.isStunned == false && hurtboxManager.isShieldStunned == false && isBlocking && !isDashing)
-            {
-                //Blocking movement
-                rb.velocity = new Vector3(0f, rb.velocity.y, 0f);
-            }
-
-            else if (hurtboxManager.isStunned && hurtboxManager.isKnockback && IsGrounded())
-            {
-                //Allows the player to get knocked backwards
-                Debug.Log("is stunned");
-                rb.velocity = new Vector3(hurtboxManager.hKnockback, hurtboxManager.vKnockback, 0f);
-            }
-            else if (hurtboxManager.isStunned && !hurtboxManager.isKnockback && IsGrounded())
-            {
-                //Prevents the knockback from lasting throughout the entirety of the hitstun
-                rb.velocity = new Vector3(rb.velocity.x, rb.velocity.y, 0f);
-            }
-
-            else if (hurtboxManager.isStunned && hurtboxManager.isKnockback && hurtboxManager.isLaunched)
-            {
-                //Uses different knockback floats while in the air
-                Debug.Log("is stunned");
-                rb.velocity = new Vector3(hurtboxManager.hAirKnockback, hurtboxManager.vAirKnockback, 0f);
-
-                //Since gravity will guide the juggled fighter, an else if for knockback duration is not necessary
-            }
-
-            if (IsGrounded() && playerInput.actions["Move"].WasPressedThisFrame() && canDash)
-            {
-                if (movePressedOnce && Time.time - lastMovePressTime <= doublePressTimeThreshold)
+                if (isDashing)
                 {
-                    // Double press detected
-                    // Your code to execute when the "Move" input is pressed twice within a second
-                    Debug.Log("Double press detected!");
-                    StartCoroutine(Dash());
-
-                    // Reset variables for next detection
-                    movePressedOnce = false;
-                    lastMovePressTime = 1f;
-                }
-                else
-                {
-                    // First press detected
-                    movePressedOnce = true;
-                    lastMovePressTime = Time.time;
-                }
-            }
-
-
-            if (canRecover)
-            {
-                //If the player has been knocked down, they're made invincible until they get back up
-                hurtboxManager.isInvincible = true;
-                recoveryTime -= Time.deltaTime;
-
-                if(playerInput.actions["Jump"].WasPressedThisFrame() && recoveryTime <= 0.4 && recoveryTime > 0 && isRecovering == false)
-                {
-                    //Allows the player to "Recover" by rolling away from the enemy
-                    isRecovering = true;
-                    recoveryTime = 0.4f;
+                    return;
                 }
 
-                if(recoveryTime <= 0)
+                horizontal = playerInput.actions["Move"].ReadValue<Vector2>();
+                //if the player's on the ground, isn't attacking, isn't crouching, isn't stunned, isn't dashing and isn't blocking, they move normally
+                if (IsGrounded() && playerAttackManager.isAttacking == false && playerAttackManager.isCrouching == false && hurtboxManager.isStunned == false && hurtboxManager.isShieldStunned == false && !isBlocking && !isDashing)
                 {
+                    //movement part
+                    rb.velocity = new Vector3(horizontal.x * moveSpeed, rb.velocity.y, 0f);
+                    playerAttackManager.isWalking = true;
+
+                }
+
+                //Holds the player in place if they're blocking
+                else if (IsGrounded() && playerAttackManager.isAttacking == false && playerAttackManager.isCrouching == false && hurtboxManager.isStunned == false && hurtboxManager.isShieldStunned == false && isBlocking && !isDashing)
+                {
+                    //Blocking movement
+                    rb.velocity = new Vector3(0f, rb.velocity.y, 0f);
+                }
+
+                else if (hurtboxManager.isStunned && hurtboxManager.isKnockback && IsGrounded())
+                {
+                    //Allows the player to get knocked backwards
+                    Debug.Log("is stunned");
+                    rb.velocity = new Vector3(hurtboxManager.hKnockback, hurtboxManager.vKnockback, 0f);
+                }
+                else if (hurtboxManager.isStunned && !hurtboxManager.isKnockback && IsGrounded())
+                {
+                    //Prevents the knockback from lasting throughout the entirety of the hitstun
+                    rb.velocity = new Vector3(rb.velocity.x, rb.velocity.y, 0f);
+                }
+
+                else if (hurtboxManager.isStunned && hurtboxManager.isKnockback && hurtboxManager.isLaunched)
+                {
+                    //Uses different knockback floats while in the air
+                    Debug.Log("is stunned");
+                    rb.velocity = new Vector3(hurtboxManager.hAirKnockback, hurtboxManager.vAirKnockback, 0f);
+
+                    //Since gravity will guide the juggled fighter, an else if for knockback duration is not necessary
+                }
+
+                if (IsGrounded() && playerInput.actions["Move"].WasPressedThisFrame() && canDash)
+                {
+                    if (movePressedOnce && Time.time - lastMovePressTime <= doublePressTimeThreshold)
+                    {
+                        // Double press detected
+                        // Your code to execute when the "Move" input is pressed twice within a second
+                        Debug.Log("Double press detected!");
+                        StartCoroutine(Dash());
+
+                        // Reset variables for next detection
+                        movePressedOnce = false;
+                        lastMovePressTime = 1f;
+                    }
+                    else
+                    {
+                        // First press detected
+                        movePressedOnce = true;
+                        lastMovePressTime = Time.time;
+                    }
+                }
+
+
+                if (canRecover)
+                {
+                    //If the player has been knocked down, they're made invincible until they get back up
+                    hurtboxManager.isInvincible = true;
+                    recoveryTime -= Time.deltaTime;
+
+                    if (playerInput.actions["Jump"].WasPressedThisFrame() && recoveryTime <= 0.4 && recoveryTime > 0 && isRecovering == false)
+                    {
+                        //Allows the player to "Recover" by rolling away from the enemy
+                        isRecovering = true;
+                        recoveryTime = 0.4f;
+                    }
+
+                    if (recoveryTime <= 0)
+                    {
+                        hurtboxManager.isLaunched = false;
+                        hurtboxManager.isInvincible = false;
+                        canRecover = false;
+                        isRecovering = false;
+                    }
+                }
+                else if (!canRecover)
+                {
+                    recoveryTime = 0.5f;
+                }
+                if (isRecovering)
+                {
+                    rb.velocity = new Vector3(recoveryForce, 0f, 0f);
+                }
+
+                if (hurtboxManager.canReset && !IsGrounded())
+                {
+                    hurtboxManager.isInvincible = true;
                     hurtboxManager.isLaunched = false;
-                    hurtboxManager.isInvincible = false;
-                    canRecover = false;
-                    isRecovering = false;
+                    rb.velocity = new Vector3(hurtboxManager.hAirKnockback, -3, 0f);
+
                 }
-            }
-            else if (!canRecover)
-            {
-                recoveryTime = 0.5f;
-            }
-            if (isRecovering)
-            {
-                rb.velocity = new Vector3(recoveryForce, 0f, 0f);
-            }
-
-            if (hurtboxManager.canReset && !IsGrounded())
-            {
-                hurtboxManager.isInvincible = true;
-                hurtboxManager.isLaunched = false;
-                rb.velocity = new Vector3(hurtboxManager.hAirKnockback, -3, 0f);
-
-            }
-            if(hurtboxManager.canReset && IsGrounded())
-            {
-                hurtboxManager.canReset = false;
-                hurtboxManager.isInvincible = false;
-                hurtboxManager.isStunned = false;
-                hurtboxManager.isShieldStunned = false;
+                if (hurtboxManager.canReset && IsGrounded())
+                {
+                    hurtboxManager.canReset = false;
+                    hurtboxManager.isInvincible = false;
+                    hurtboxManager.isStunned = false;
+                    hurtboxManager.isShieldStunned = false;
+                }
             }
         }
 
