@@ -181,7 +181,7 @@ namespace AB
                     //Since gravity will guide the juggled fighter, an else if for knockback duration is not necessary
                 }
 
-                if (IsGrounded() && playerInput.actions["Move"].WasPressedThisFrame() && canDash)
+                if (IsGrounded() && playerInput.actions["Move"].WasPressedThisFrame() && !playerHealth.isDead && !playerAttackManager.isAttacking && canDash)
                 {
                     if (movePressedOnce && Time.time - lastMovePressTime <= doublePressTimeThreshold)
                     {
