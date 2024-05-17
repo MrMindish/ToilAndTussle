@@ -42395,7 +42395,6 @@ GameObject:
   - component: {fileID: 2104907166}
   - component: {fileID: 2104907167}
   - component: {fileID: 2104907168}
-  - component: {fileID: 2104907169}
   m_Layer: 0
   m_Name: Stage Manager
   m_TagString: Untagged
@@ -42456,18 +42455,6 @@ MonoBehaviour:
   lightsMaterial: {fileID: 2100000, guid: 72b9ad7b08a12cf47a3980bfce05f16c, type: 2}
   p1Light: 0
   p2Light: 0
---- !u!114 &2104907169
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2104907165}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4d1d895cb2f724e45bbab43ae7d639ee, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!43 &2112054598
 Mesh:
   m_ObjectHideFlags: 0
