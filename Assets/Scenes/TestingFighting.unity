@@ -1521,7 +1521,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh26758
+  m_Name: pb_Mesh26756
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -5432,7 +5432,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 229089001}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.33718088, y: 7.690001, z: 0}
+  m_LocalPosition: {x: 0.3371809, y: 7.690001, z: 0}
   m_LocalScale: {x: 3.6, y: 3.6000013, z: 4}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -14578,6 +14578,8 @@ MonoBehaviour:
   maxHealth: 1000
   chipSpeed: 2
   isDead: 0
+  p1Dead: 0
+  p2Dead: 0
   frontHealthBar: {fileID: 1920333161}
   backHealthBar: {fileID: 1134625547}
 --- !u!114 &741692806
@@ -19657,7 +19659,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh26708
+  m_Name: pb_Mesh26706
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -23155,6 +23157,8 @@ MonoBehaviour:
   maxHealth: 1000
   chipSpeed: 2
   isDead: 0
+  p1Dead: 0
+  p2Dead: 0
   frontHealthBar: {fileID: 1447884095}
   backHealthBar: {fileID: 1656274677}
 --- !u!114 &1091568076
@@ -26684,7 +26688,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh26694
+  m_Name: pb_Mesh26692
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -34409,7 +34413,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh26722
+  m_Name: pb_Mesh26720
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -34649,7 +34653,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh27382
+  m_Name: pb_Mesh27384
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -35792,7 +35796,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh28198
+  m_Name: pb_Mesh28196
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -39512,6 +39516,8 @@ MonoBehaviour:
   maxHealth: 1000
   chipSpeed: 2
   isDead: 0
+  p1Dead: 0
+  p2Dead: 0
   frontHealthBar: {fileID: 1447884095}
   backHealthBar: {fileID: 1656274677}
 --- !u!114 &2002236529
@@ -42395,6 +42401,7 @@ GameObject:
   - component: {fileID: 2104907166}
   - component: {fileID: 2104907167}
   - component: {fileID: 2104907168}
+  - component: {fileID: 2104907169}
   m_Layer: 0
   m_Name: Stage Manager
   m_TagString: Untagged
@@ -42455,6 +42462,18 @@ MonoBehaviour:
   lightsMaterial: {fileID: 2100000, guid: 72b9ad7b08a12cf47a3980bfce05f16c, type: 2}
   p1Light: 0
   p2Light: 0
+--- !u!114 &2104907169
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2104907165}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 619943573ae95304cbb6926399b9d59e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!43 &2112054598
 Mesh:
   m_ObjectHideFlags: 0

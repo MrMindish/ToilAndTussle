@@ -72,7 +72,7 @@ namespace AB
 
         private void Update()
         {
-            if (!playerHealth.isDead)
+            if (!playerHealth.p1Dead || !playerHealth.p2Dead)
             {
 
 
@@ -108,22 +108,22 @@ namespace AB
                 }
 
                 //Performs the Walk Animation
-                if (isWalking && playerMovement.horizontal.x > 0 && playerMovement.isFacingRight)
+                if (isWalking && playerMovement.horizontal.x > 0 && playerMovement.horizontal.y > -0.4 && playerMovement.isFacingRight)
                 {
                     animator.SetBool("isWalkingF", false);
                     animator.SetBool("isWalkingB", true);
                 }
-                else if (isWalking && playerMovement.horizontal.x < 0 && playerMovement.isFacingRight)
+                else if (isWalking && playerMovement.horizontal.x < 0 && playerMovement.horizontal.y > -0.4 && playerMovement.isFacingRight)
                 {
                     animator.SetBool("isWalkingF", true);
                     animator.SetBool("isWalkingB", false);
                 }
-                else if (isWalking && playerMovement.horizontal.x > 0 && !playerMovement.isFacingRight)
+                else if (isWalking && playerMovement.horizontal.x > 0 && playerMovement.horizontal.y > -0.4 && !playerMovement.isFacingRight)
                 {
                     animator.SetBool("isWalkingF", true);
                     animator.SetBool("isWalkingB", false);
                 }
-                else if (isWalking && playerMovement.horizontal.x < 0 && !playerMovement.isFacingRight)
+                else if (isWalking && playerMovement.horizontal.x < 0 && playerMovement.horizontal.y > -0.4 && !playerMovement.isFacingRight)
                 {
                     animator.SetBool("isWalkingF", false);
                     animator.SetBool("isWalkingB", true);
@@ -414,12 +414,12 @@ namespace AB
                     isRightPressed = false;
                     isDownPressed = false;
                 }
-                else if (playerInput.actions["Crouch"].WasPressedThisFrame() || playerMovement.horizontal.y < -0.5)
+                else if (playerInput.actions["Crouch"].WasPressedThisFrame() || playerMovement.horizontal.y < -0.4)
                 {
                     isDownPressed = true;
                     isRightPressed = false;
                     isLeftPressed = false;
-                    if (playerMovement.IsGrounded() && isDownPressed && !playerMovement.isDashing)
+                    if (playerMovement.IsGrounded() && isDownPressed && !playerMovement.isDashing && playerMovement.horizontal.y < -0.4)
                     {
                         isCrouching = true;
                     }
@@ -498,7 +498,7 @@ namespace AB
         }
         public void TimeSlowParry()
         {
-            timeManager.timeSlowed = true;
+            timeManager.timeSlowedParry = true;
 
             if (gameObject.tag == "Player1")
             {
@@ -511,7 +511,7 @@ namespace AB
         }
         public void TimeSlowbreak()
         {
-            timeManager.timeSlowed = true;
+            timeManager.timeSlowedParry = true;
             if(gameObject.tag == "Player2")
             {
                 materialManager.p1Light = true;
@@ -524,7 +524,7 @@ namespace AB
 
         public void TimeNormal()
         {
-            timeManager.timeSlowed = false;
+            timeManager.timeSlowedParry = false;
             materialManager.p1Light = false;
             materialManager.p2Light = false;
         }

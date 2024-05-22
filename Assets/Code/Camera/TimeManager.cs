@@ -9,7 +9,9 @@ public class TimeManager : MonoBehaviour
 
     private float fixedDeltaTime;
 
-    public bool timeSlowed;
+    public bool timeSlowedParry;
+    public bool timeSlowedHit;
+    public float timeSlowedHitTime;
 
     void Awake()
     {
@@ -19,14 +21,14 @@ public class TimeManager : MonoBehaviour
         this.fixedDeltaTime = Time.fixedDeltaTime;
     }
 
-    void Update()
+    void FixedUpdate()
     {
-        if (timeSlowed)
+        if (timeSlowedParry)
         {
             Time.timeScale = 0.01f;
             Time.fixedDeltaTime = this.fixedDeltaTime * Time.timeScale;
         }
-        else if (!timeSlowed)
+        else if (!timeSlowedParry)
         {
             Time.timeScale = 1f;
             Time.fixedDeltaTime = this.fixedDeltaTime * Time.timeScale;
