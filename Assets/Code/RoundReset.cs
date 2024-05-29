@@ -12,7 +12,7 @@ namespace AB
 
         private void Awake()
         {
-            roundManager = GetComponentInParent<RoundManager>();
+            roundManager = GetComponent<RoundManager>();
         }
 
         private void Update()

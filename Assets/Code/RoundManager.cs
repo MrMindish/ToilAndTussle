@@ -9,6 +9,7 @@ namespace AB
         PlayerHealth playerHealth;
 
         public bool playerReset;
+
         public enum GameState
         {
             Round1,
@@ -73,7 +74,6 @@ namespace AB
         private IEnumerator FadeToBlack()
         {
             Debug.Log("Fade to Black");
-            
             yield return new WaitForSeconds(1.0f);
         }
 
