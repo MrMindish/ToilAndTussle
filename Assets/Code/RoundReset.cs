@@ -20,7 +20,6 @@ namespace AB
             if (roundManager.playerReset)
             {
                 ResetPlayerPosition();
-                roundManager.playerReset = false;  // Reset the flag to prevent repeated resets
             }
         }
 

@@ -9,6 +9,8 @@ namespace AB
         PlayerHealth playerHealth;
 
         public bool playerReset;
+        public bool fadeToBlack;
+        public bool fadeFromBlack;
 
         public enum GameState
         {
@@ -22,6 +24,8 @@ namespace AB
         {
             playerHealth = GetComponentInChildren<PlayerHealth>();
             playerReset = false;
+            fadeToBlack = false;
+            fadeFromBlack = false;
         }
         private void Update()
         {
@@ -74,20 +78,24 @@ namespace AB
         private IEnumerator FadeToBlack()
         {
             Debug.Log("Fade to Black");
+            fadeToBlack = true;
             yield return new WaitForSeconds(1.0f);
-        }
-
-        private IEnumerator FadeFromBlack()
-        {
-            playerReset = true;
-            Debug.Log("Fade from Black");
-            yield return null;
         }
 
         private void ResetRound()
         {
             Debug.Log("Reset Scene");
-            playerReset = false;
+            playerReset = true;
+            fadeToBlack=false;
         }
+
+        private IEnumerator FadeFromBlack()
+        {
+            playerReset = false;
+            Debug.Log("Fade from Black");
+            fadeFromBlack = true;
+            yield return null;
+        }
+
     }
 }
