@@ -10,7 +10,6 @@ namespace AB
 {
     public class PlayerMovement : MonoBehaviour
     {
-        PlayerPushBox playerPushBox;
         PlayerAttackManager playerAttackManager;
         PlayerHurtboxManager hurtboxManager;
         PlayerShield playerShield;
@@ -67,7 +66,6 @@ namespace AB
         {
             playerInput = GetComponentInChildren<PlayerInput>();
 
-            playerPushBox = GetComponentInChildren<PlayerPushBox>();
             playerAttackManager = GetComponentInChildren<PlayerAttackManager>();
             hurtboxManager = GetComponentInChildren<PlayerHurtboxManager>();
             playerShield = GetComponent<PlayerShield>();
@@ -266,7 +264,7 @@ namespace AB
                 localScale.x *= -1f;
                 transform.localScale = localScale;
             }
-            else if (gameObject.tag == "Player1" && IsGrounded() && transform.position.x < playerTwoX.transform.position.x && isFacingRight == true && playerAttackManager.isAttacking == false)
+            else if (gameObject.CompareTag("Player1") && IsGrounded() && transform.position.x < playerTwoX.transform.position.x && isFacingRight == true && playerAttackManager.isAttacking == false)
             {
                 isFacingRight = !isFacingRight;
                 Vector3 localScale = transform.localScale;

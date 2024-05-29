@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEditor.Experimental.GraphView.GraphView;
 
 namespace AB
 {
@@ -12,6 +13,15 @@ namespace AB
         public bool fadeToBlack;
         public bool fadeFromBlack;
 
+        public bool playerOneWins;
+        public bool playerTwoWins;
+
+        public GameObject player1;  // Reference to the player GameObject
+        public GameObject player2;
+        public Transform player1StartPoint;  // Reference to the Transform of the start point
+        public Transform player2StartPoint;
+
+        private bool hasReset; //Used to prevent playes being stuck after reset
         public enum GameState
         {
             Round1,
@@ -20,9 +30,13 @@ namespace AB
             // Add more rounds as needed
             GameOver
         }
-        private void Start()
+
+        private void Awake()
         {
             playerHealth = GetComponentInChildren<PlayerHealth>();
+        }
+        private void Start()
+        {
             playerReset = false;
             fadeToBlack = false;
             fadeFromBlack = false;
@@ -37,6 +51,8 @@ namespace AB
             {
                 StartCoroutine(P1WinSequence());
             }
+
+
         }
 
         private IEnumerator P2WinSequence()
@@ -86,7 +102,12 @@ namespace AB
         {
             Debug.Log("Reset Scene");
             playerReset = true;
-            fadeToBlack=false;
+            fadeToBlack = false;
+            if (playerReset && !hasReset)
+            {
+                ResetPlayerPosition();
+                hasReset = true; // Set the flag to true to prevent further resets
+            }
         }
 
         private IEnumerator FadeFromBlack()
@@ -97,5 +118,14 @@ namespace AB
             yield return null;
         }
 
+
+        public void ResetPlayerPosition()
+        {
+            if ((player1 != null || player2 != null) && playerReset)
+            {
+                player1.transform.position = player1StartPoint.position;
+                player2.transform.position = player2StartPoint.position;
+            }
+        }
     }
 }

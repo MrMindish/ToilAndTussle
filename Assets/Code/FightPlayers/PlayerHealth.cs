@@ -24,11 +24,14 @@ namespace AB
 
         PlayerAttackingHitboxes playerAttackingHitboxes;
         PlayerHurtboxManager playerHurtboxManager;
+        RoundManager roundManager;
 
         private void Awake()
         {
             playerAttackingHitboxes = GetComponentInChildren<PlayerAttackingHitboxes>();
             playerHurtboxManager = GetComponentInChildren<PlayerHurtboxManager>();
+
+            roundManager = GetComponentInParent<RoundManager>();
         }
 
 
@@ -74,6 +77,7 @@ namespace AB
         private void P1Death()
         {
             p1Dead=true;
+            
         }
 
         private void P2Death()

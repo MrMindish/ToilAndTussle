@@ -22280,7 +22280,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1127900098}
-  - component: {fileID: 1127900099}
   m_Layer: 0
   m_Name: P1StartPoint
   m_TagString: Untagged
@@ -22303,20 +22302,6 @@ Transform:
   m_Father: {fileID: 2104907166}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1127900099
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1127900097}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ae7058ba36a96c249b12ef1a17af4dee, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  player: {fileID: 741692797}
-  playerStartPoint: {fileID: 1127900098}
 --- !u!1 &1134625545
 GameObject:
   m_ObjectHideFlags: 0
@@ -34632,7 +34617,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1830740966}
-  - component: {fileID: 1830740967}
   m_Layer: 0
   m_Name: P2StartPoint
   m_TagString: Untagged
@@ -34655,20 +34639,6 @@ Transform:
   m_Father: {fileID: 2104907166}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1830740967
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1830740965}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ae7058ba36a96c249b12ef1a17af4dee, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  player: {fileID: 1091568073}
-  playerStartPoint: {fileID: 1830740966}
 --- !u!1 &1831334833
 GameObject:
   m_ObjectHideFlags: 0
@@ -40315,6 +40285,12 @@ MonoBehaviour:
   playerReset: 0
   fadeToBlack: 0
   fadeFromBlack: 0
+  playerOneWins: 0
+  playerTwoWins: 0
+  player1: {fileID: 741692797}
+  player2: {fileID: 1091568073}
+  player1StartPoint: {fileID: 1127900098}
+  player2StartPoint: {fileID: 1830740966}
 --- !u!43 &2112054598
 Mesh:
   m_ObjectHideFlags: 0

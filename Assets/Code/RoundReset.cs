@@ -7,28 +7,32 @@ namespace AB
     public class RoundReset : MonoBehaviour
     {
         RoundManager roundManager;
-        public GameObject player;  // Reference to the player GameObject
-        public Transform playerStartPoint;  // Reference to the Transform of the start point
+        public GameObject player1;  // Reference to the player GameObject
+        public GameObject player2;
+        public Transform player1StartPoint;  // Reference to the Transform of the start point
+        public Transform player2StartPoint;
 
         private void Awake()
         {
-            roundManager = GetComponent<RoundManager>();
+            roundManager = GetComponentInParent<RoundManager>();
         }
 
         private void Update()
         {
             if (roundManager.playerReset)
             {
+                Debug.Log("Round Reset 1");
                 ResetPlayerPosition();
             }
         }
 
-        private void ResetPlayerPosition()
+        public void ResetPlayerPosition()
         {
-            if (player != null && playerStartPoint != null)
+            if (player1 != null || player2 != null)
             {
-                player.transform.position = playerStartPoint.position;
-                player.transform.rotation = playerStartPoint.rotation;  // Optionally reset rotation
+                Debug.Log("Round Reset 2");
+                player1.transform.position = player1StartPoint.position;
+                player2.transform.position = player2StartPoint.position;
             }
         }
     }
