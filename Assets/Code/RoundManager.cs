@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -22,6 +23,8 @@ namespace AB
         public Transform player2StartPoint;
 
         private bool hasReset; //Used to prevent playes being stuck after reset
+
+        public static RoundManager instance;
         public enum GameState
         {
             Round1,
@@ -34,6 +37,8 @@ namespace AB
         private void Awake()
         {
             playerHealth = GetComponentInChildren<PlayerHealth>();
+
+            instance = this;
         }
         private void Start()
         {
@@ -43,45 +48,35 @@ namespace AB
             playerOneWins = false;
             playerTwoWins = false;
         }
-        private void Update()
-        {
-            if (playerHealth.p1Dead)
-            {
-                StartCoroutine(P2WinSequence());
-            }
-            else if (playerHealth.p2Dead)
-            {
-                StartCoroutine(P1WinSequence());
-            }
-        }
 
-        private IEnumerator P2WinSequence()
+        public IEnumerator P2WinSequence()
         {
             playerTwoWins = true;
             // Trigger animation events here
             yield return new WaitForSeconds(1.0f); // Wait for the animation to play
 
             // Fade to black
-            yield return StartCoroutine(FadeToBlack());
+            FadeToBlack();
 
             // Wait a moment
             yield return new WaitForSeconds(1.0f);
 
             // Reset the scene for the next round
+            Debug.Log("Reset Round Enumerator");
             ResetRound();
 
             // Fade back in
-            yield return StartCoroutine(FadeFromBlack());
+            FadeFromBlack();
         }
 
-        private IEnumerator P1WinSequence()
+        public IEnumerator P1WinSequence()
         {
             playerOneWins = true;
             // Trigger animation events here
             yield return new WaitForSeconds(1.0f); // Wait for the animation to play
 
             // Fade to black
-            yield return StartCoroutine(FadeToBlack());
+            FadeToBlack();
 
             // Wait a moment
             yield return new WaitForSeconds(1.0f);
@@ -90,14 +85,13 @@ namespace AB
             ResetRound();
 
             // Fade back in
-            yield return StartCoroutine(FadeFromBlack());
+            FadeFromBlack();
         }
 
-        private IEnumerator FadeToBlack()
+        private void FadeToBlack()
         {
             Debug.Log("Fade to Black");
             fadeToBlack = true;
-            yield return new WaitForSeconds(1.0f);
         }
 
         private void ResetRound()
@@ -112,12 +106,11 @@ namespace AB
             }
         }
 
-        private IEnumerator FadeFromBlack()
+        private void FadeFromBlack()
         {
             playerReset = false;
             Debug.Log("Fade from Black");
             fadeFromBlack = true;
-            yield return null;
         }
 
 

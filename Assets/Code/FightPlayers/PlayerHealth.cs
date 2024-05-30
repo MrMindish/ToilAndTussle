@@ -13,6 +13,7 @@ namespace AB
         private float lerpTimer;
         public float maxHealth = 1000f;
         public float chipSpeed = 10f;
+        public float healthRestore = 1000f;
 
         public bool isDead;
 
@@ -61,37 +62,26 @@ namespace AB
                 //Tells the Round Manager if a player has died, and which one died
                 if(gameObject.tag == "Player1")
                 {
-                    P1Death();
+                    p1Dead=true;
+                    StartCoroutine(RoundManager.instance.P2WinSequence());
                 }
                 else if (gameObject.tag == "Player2")
                 {
-                    P2Death();
+                    p2Dead=true;
+                    StartCoroutine(RoundManager.instance.P1WinSequence());
                 }
             }
             else
             {
                 isDead = false;
-            }
-
-            if (roundManager.playerReset)
-            {
-                health = maxHealth;
-                isDead = false;
                 p1Dead = false;
                 p2Dead = false;
-                Debug.Log("Reset 1000");
             }
-        }
 
-        private void P1Death()
-        {
-            p1Dead=true;
-            
-        }
-
-        private void P2Death()
-        {
-            p2Dead=true;
+            if(health > 1000f)
+            {
+                health = 1000f;
+            }
         }
 
         public void UpdateHealthUI()
