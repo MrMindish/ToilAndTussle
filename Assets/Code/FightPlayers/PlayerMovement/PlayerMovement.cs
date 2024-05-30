@@ -94,7 +94,7 @@ namespace AB
                 horizontal = playerInput.actions["Move"].ReadValue<Vector2>();
             }
 
-            if (!playerHealth.isDead)
+            if (!playerHealth.p1Dead || !playerHealth.p2Dead)
             {
                 if (playerInput.actions["Jump"].WasPressedThisFrame() && IsGrounded() && playerAttackManager.isAttacking == false && playerAttackManager.isCrouching == false && hurtboxManager.isStunned == false && hurtboxManager.isShieldStunned == false && playerShield.shieldBreak == false && !isDashing)
                 {
@@ -134,7 +134,7 @@ namespace AB
 
         private void FixedUpdate()
         {
-            if (!playerHealth.isDead)
+            if (!playerHealth.p1Dead || !playerHealth.p2Dead)
             {
                 if (isDashing)
                 {

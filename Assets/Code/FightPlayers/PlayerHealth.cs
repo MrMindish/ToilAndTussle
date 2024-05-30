@@ -12,7 +12,7 @@ namespace AB
         private float health;
         private float lerpTimer;
         public float maxHealth = 1000f;
-        public float chipSpeed = 20f;
+        public float chipSpeed = 10f;
 
         public bool isDead;
 
@@ -72,6 +72,15 @@ namespace AB
             {
                 isDead = false;
             }
+
+            if (roundManager.playerReset)
+            {
+                health = maxHealth;
+                isDead = false;
+                p1Dead = false;
+                p2Dead = false;
+                Debug.Log("Reset 1000");
+            }
         }
 
         private void P1Death()
@@ -103,6 +112,10 @@ namespace AB
                     backHealthBar.fillAmount = Mathf.Lerp(fillB, hFraction, percentComplete);
                 }
 
+            }
+            else
+            {
+                lerpTimer = 0;
             }
         }
 

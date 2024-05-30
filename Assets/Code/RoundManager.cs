@@ -40,6 +40,8 @@ namespace AB
             playerReset = false;
             fadeToBlack = false;
             fadeFromBlack = false;
+            playerOneWins = false;
+            playerTwoWins = false;
         }
         private void Update()
         {
@@ -51,12 +53,11 @@ namespace AB
             {
                 StartCoroutine(P1WinSequence());
             }
-
-
         }
 
         private IEnumerator P2WinSequence()
         {
+            playerTwoWins = true;
             // Trigger animation events here
             yield return new WaitForSeconds(1.0f); // Wait for the animation to play
 
@@ -75,6 +76,7 @@ namespace AB
 
         private IEnumerator P1WinSequence()
         {
+            playerOneWins = true;
             // Trigger animation events here
             yield return new WaitForSeconds(1.0f); // Wait for the animation to play
 
