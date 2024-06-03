@@ -143,7 +143,7 @@ namespace AB
 
                 horizontal = playerInput.actions["Move"].ReadValue<Vector2>();
                 //if the player's on the ground, isn't attacking, isn't crouching, isn't stunned, isn't dashing and isn't blocking, they move normally
-                if (IsGrounded() && playerAttackManager.isAttacking == false && horizontal.y >= -0.4 && hurtboxManager.isStunned == false && hurtboxManager.isShieldStunned == false && !isBlocking && !isDashing && !playerShield.shieldBreak)
+                if (IsGrounded() && playerAttackManager.isAttacking == false && !playerAttackManager.isCrouching && horizontal.y >= -0.4 && hurtboxManager.isStunned == false && hurtboxManager.isShieldStunned == false && !isBlocking && !isDashing && !playerShield.shieldBreak)
                 {
                     //movement part
                     rb.velocity = new Vector3(horizontal.x * moveSpeed, rb.velocity.y, 0f);
