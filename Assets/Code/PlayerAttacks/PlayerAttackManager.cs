@@ -72,7 +72,9 @@ namespace AB
 
         private void Update()
         {
-            if (!playerHealth.p1Dead || !playerHealth.p2Dead)
+            Debug.Log(playerHealth.p1Dead);
+            Debug.Log(playerHealth.p2Dead);
+            if (!playerHealth.p1Dead && !playerHealth.p2Dead)
             {
 
 
@@ -164,7 +166,7 @@ namespace AB
                     animator.SetBool("shieldBreakStun", false);
                 }
 
-                //Performs the Light Null Attack
+                //Performs the Light Null Attack            LN
                 if (playerInput.actions["Light Attack"].WasPressedThisFrame() && playerMovement.IsGrounded() && isAttacking == false && hurtboxManager.isStunned == false && hurtboxManager.isShieldStunned == false && isNothingPressed && !playerMovement.isDashing)
                 {
                     animator.SetTrigger("isLNAttacking");
@@ -172,7 +174,7 @@ namespace AB
                     attackCooldown = 0.26f;
                 }
 
-                //Performs the Light Forward Attack
+                //Performs the Light Forward Attack         LF
                 if (playerInput.actions["Light Attack"].WasPressedThisFrame() && playerMovement.IsGrounded() && transform.position.x > playerMovement.playerTwoX.transform.position.x && isAttacking == false && hurtboxManager.isStunned == false && hurtboxManager.isShieldStunned == false && isLeftPressed && !isCrouching && !playerMovement.isDashing)
                 {
                     //On the Left Side of the Opponent
@@ -188,7 +190,7 @@ namespace AB
                     attackCooldown = 0.32f;
                 }
 
-                //Performs the Light Backwards Attack
+                //Performs the Light Backwards Attack       LB
                 if (playerInput.actions["Light Attack"].WasPressedThisFrame() && playerMovement.IsGrounded() && transform.position.x < playerMovement.playerTwoX.transform.position.x && isAttacking == false && hurtboxManager.isStunned == false && hurtboxManager.isShieldStunned == false && isLeftPressed && !isCrouching && !playerMovement.isDashing)
                 {
                     //On the Right Side of the Opponent
@@ -204,7 +206,7 @@ namespace AB
                     attackCooldown = 0.36f;
                 }
 
-                //Performs the Light Crouch Attack
+                //Performs the Light Crouch Attack          LC
                 if (playerInput.actions["Light Attack"].WasPressedThisFrame() && playerMovement.IsGrounded() && isAttacking == false && hurtboxManager.isStunned == false && hurtboxManager.isShieldStunned == false && isDownPressed && isCrouching && !playerMovement.isDashing)
                 {
                     animator.SetTrigger("isLCAttacking");
@@ -213,7 +215,7 @@ namespace AB
                     animator.SetBool("canCancel", true);
                 }
 
-                //Performs the Light Aerial Attack
+                //Performs the Light Aerial Attack          LA
                 if (playerInput.actions["Light Attack"].WasPressedThisFrame() && !playerMovement.IsGrounded() && isAttacking == false && hurtboxManager.isStunned == false && hurtboxManager.isShieldStunned == false && !playerMovement.isDashing)
                 {
                     animator.SetTrigger("isLAAttacking");
@@ -379,6 +381,21 @@ namespace AB
                     animator.ResetTrigger("isCrouchingEnd");
                 }
 
+
+                //Triggers the Hitstun Animations
+                if (hurtboxManager.isStunned)
+                {
+                    animator.SetBool("isStunned", true);
+                    Debug.Log("isSTOONED");
+                    if(hurtboxManager.hitAnimInfo == 1)
+                    {
+                        animator.SetTrigger("isStunnedLow");
+                        hurtboxManager.hitAnimInfo = 0;
+                        Debug.Log("LOW");
+                    }
+                }
+
+
                 if (attackCooldown > 0f && isAirAttacking == false)
                 {
                     attackCooldown = attackCooldown - Time.deltaTime;
@@ -464,9 +481,17 @@ namespace AB
                     animator.SetBool("canCancel", false);
                 }
             }
-            else
+            else if(playerHealth.p1Dead || playerHealth.p2Dead)
             {
-                Debug.Log("ISDEAD");
+                if(playerHealth.p2Dead && gameObject.tag == "Player1")
+                {
+                    Debug.Log("P1 Wins");
+                    animator.SetTrigger("isWin");
+                }
+                else if(playerHealth.p1Dead && gameObject.tag == "Player2")
+                {
+                    animator.SetTrigger("isWin");
+                }
             }
         }
         public bool IsCrouched()
@@ -474,15 +499,16 @@ namespace AB
             return isCrouching;
         }
 
-        public bool CanCancel()
+        public bool CanCancel()                             //Starts the chance to parry an attack
         {
             return isCancel = true;
         }
 
-        public bool EndCancel()
+        public bool EndCancel()                             //Ends the chance to parry an attack
         {
             return isCancel = false;
         }
+
 
         public bool CanParry()
         {
@@ -497,7 +523,9 @@ namespace AB
             hurtboxManager.parried = false;
             animator.SetBool("isParried", false);
         }
-        public void TimeSlowParry()
+
+
+        public void TimeSlowParry()                         //Slows down time upon Perfect Parry
         {
             timeManager.timeSlowedParry = true;
 
@@ -510,7 +538,7 @@ namespace AB
                 materialManager.p2Light = true;
             }
         }
-        public void TimeSlowbreak()
+        public void TimeSlowbreak()                         //Slows down time upon Shield Break
         {
             timeManager.timeSlowedParry = true;
             if(gameObject.tag == "Player2")
@@ -522,18 +550,25 @@ namespace AB
                 materialManager.p2Light = true;
             }
         }
-
-        public void TimeNormal()
+        public void TimeNormal()                               //Reverts time back to normal after being slowed down
         {
             timeManager.timeSlowedParry = false;
             materialManager.p1Light = false;
             materialManager.p2Light = false;
         }
 
-        public void NormalLights()
+        public void NormalLights()                             //Changes the Stage lights back to white
         {
             materialManager.p1Light = false;
             materialManager.p2Light = false;
+        }
+
+        public void StunEnd()
+        {
+            if(hurtboxManager.stunDuration <= 0)
+            {
+                animator.SetBool("isStunned", false);
+            }
         }
     }
 }

@@ -78,6 +78,15 @@ namespace AB
                 p2Dead = false;
             }
 
+            if (roundManager.playerOneWins)
+            {
+                p2Dead = true;
+            }
+            else if (roundManager.playerTwoWins)
+            {
+                p1Dead = true;
+            }
+
             if(health > 1000f)
             {
                 health = 1000f;

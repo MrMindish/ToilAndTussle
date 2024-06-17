@@ -33,6 +33,8 @@ namespace AB
 
         public bool canReset;
 
+        public int hitAnimInfo;             //1 means hitHigh, 2 means hitLow, 3 means hitLaunch. Number is recieved from AttackingHitboxes
+
         private float knockbackTimer;
 
 
@@ -88,6 +90,8 @@ namespace AB
             isShieldHit = false;
             parried = false;
 
+            hitAnimInfo = 0;
+
             aerialHitsCounter = 0;
             regularHitsCounter = 0;
             specialHitsCounter = 0;
@@ -105,6 +109,7 @@ namespace AB
             if (attackerHitboxes != null && isInvincible == false && !playerMovement.isBlocking)
             {
                 //Pulls various information from the attacking hitboxes
+                hitAnimInfo = attackerHitboxes.attackAnimInfo;                          //The animation played upon being hit
                 damageToHealth = attackerHitboxes.attackDamage;                         //The Damage of the Attack
                 vKnockback = attackerHitboxes.verticalKnockback;                        //The Vertical (Up and Down) knockback
                 hKnockback = attackerHitboxes.horizontalKnockback;                      //The Horizontal (Left and Right) knockback
@@ -147,6 +152,7 @@ namespace AB
             }
             else if (attackerHitboxes != null && isInvincible == false && playerMovement.isBlocking)
             {
+                //Blocks the attack
                 if (attackerHitboxes.isParry && playerMovement.canParry)
                 {
                     Debug.Log("Spice");
@@ -183,6 +189,7 @@ namespace AB
 
         private void Update()
         {
+
             if (isStunned && playerMovement.IsGrounded() && !isLaunched)
             {
                 stunDuration -= Time.deltaTime;

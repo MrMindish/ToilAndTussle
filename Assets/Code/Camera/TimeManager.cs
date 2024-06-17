@@ -28,7 +28,7 @@ public class TimeManager : MonoBehaviour
             Time.timeScale = 0.01f;
             Time.fixedDeltaTime = this.fixedDeltaTime * Time.timeScale;
         }
-        else if (!timeSlowedParry)
+        else if (Input.GetKeyDown(KeyCode.L)) //!timeSlowedParry)
         {
             Time.timeScale = 1f;
             Time.fixedDeltaTime = this.fixedDeltaTime * Time.timeScale;
