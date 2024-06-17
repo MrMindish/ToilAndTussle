@@ -7668,7 +7668,7 @@ MonoBehaviour:
   shieldStunTime: 0.35
   knockbackTime: 0.2
   resetAerialOpponent: 0
-  attackAnimInfo: 0
+  attackAnimInfo: 3
   isSpecialMove: 0
   isAerialMove: 0
   isRegularMove: 1
@@ -38145,7 +38145,7 @@ MonoBehaviour:
   shieldStunTime: 0.24
   knockbackTime: 0.2
   resetAerialOpponent: 0
-  attackAnimInfo: 0
+  attackAnimInfo: 3
   isSpecialMove: 0
   isAerialMove: 0
   isRegularMove: 1

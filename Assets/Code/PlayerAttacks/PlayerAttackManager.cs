@@ -390,8 +390,26 @@ namespace AB
                     if(hurtboxManager.hitAnimInfo == 1)
                     {
                         animator.SetTrigger("isStunnedLow");
+                        animator.ResetTrigger("isStunnedHigh");
+                        animator.ResetTrigger("isStunnedLaunched");
                         hurtboxManager.hitAnimInfo = 0;
                         Debug.Log("LOW");
+                    }
+                    else if(hurtboxManager.hitAnimInfo == 2)
+                    {
+                        animator.SetTrigger("isStunnedHigh");
+                        animator.ResetTrigger("isStunnedLow");
+                        animator.ResetTrigger("isStunnedLaunched");
+                        hurtboxManager.hitAnimInfo= 0;
+                        Debug.Log("HIGH");
+                    }
+                    else if(hurtboxManager.hitAnimInfo == 3)
+                    {
+                        animator.SetTrigger("isStunnedLaunched");
+                        animator.ResetTrigger("isStunnedHigh");
+                        animator.ResetTrigger("isStunnedLow");
+                        hurtboxManager.hitAnimInfo = 0;
+                        Debug.Log("LAUNCH");
                     }
                 }
 
@@ -568,6 +586,30 @@ namespace AB
             if(hurtboxManager.stunDuration <= 0)
             {
                 animator.SetBool("isStunned", false);
+            }
+        }
+
+        public void LandEnd()
+        {
+            if (playerMovement.canRecover)
+            {
+                animator.ResetTrigger("recoverNorm");
+                animator.ResetTrigger("recoverBack");
+                animator.SetTrigger("knockedDown");
+            }
+        }
+
+        public void RecoverChance()
+        {
+            if(playerMovement.canRecover && playerMovement.isRecovering)
+            {
+                animator.SetTrigger("recoverBack");
+                animator.ResetTrigger("knockedDown");
+            }
+            else if(!playerMovement.canRecover)
+            {
+                animator.SetTrigger("recoverNorm");
+                animator.ResetTrigger("knockedDown");
             }
         }
     }
