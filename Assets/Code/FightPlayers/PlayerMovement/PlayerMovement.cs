@@ -82,20 +82,19 @@ namespace AB
 
         void Update()
         {
-            if(gameObject.tag == "Player1")
-            {
-                horizontal = playerInput.actions["Move"].ReadValue<Vector2>();
-
-
-
-            }
-            else if(gameObject.tag == "Player2")
-            {
-                horizontal = playerInput.actions["Move"].ReadValue<Vector2>();
-            }
-
             if (!playerHealth.p1Dead || !playerHealth.p2Dead)
             {
+                if (gameObject.tag == "Player1")
+                {
+                    horizontal = playerInput.actions["Move"].ReadValue<Vector2>();
+                }
+
+                else if(gameObject.tag == "Player2")
+                {
+                    horizontal = playerInput.actions["Move"].ReadValue<Vector2>();
+                }
+
+
                 if (playerInput.actions["Jump"].WasPressedThisFrame() && IsGrounded() && playerAttackManager.isAttacking == false && playerAttackManager.isCrouching == false && hurtboxManager.isStunned == false && hurtboxManager.isShieldStunned == false && playerShield.shieldBreak == false && !isDashing)
                 {
                     //if the jump is inputed while the fighter is grounded, not attacking or being attacked, or crouching, then the jump is performed

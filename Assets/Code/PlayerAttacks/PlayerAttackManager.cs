@@ -72,8 +72,6 @@ namespace AB
 
         private void Update()
         {
-            Debug.Log(playerHealth.p1Dead);
-            Debug.Log(playerHealth.p2Dead);
             if (!playerHealth.p1Dead && !playerHealth.p2Dead)
             {
 
