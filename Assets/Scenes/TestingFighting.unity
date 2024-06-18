@@ -4948,7 +4948,7 @@ MonoBehaviour:
   shieldStunTime: 0.35
   knockbackTime: 0.2
   resetAerialOpponent: 0
-  attackAnimInfo: 0
+  attackAnimInfo: 2
   isSpecialMove: 0
   isAerialMove: 0
   isRegularMove: 1
@@ -10857,7 +10857,7 @@ MonoBehaviour:
   shieldStunTime: 0.3
   knockbackTime: 2
   resetAerialOpponent: 1
-  attackAnimInfo: 0
+  attackAnimInfo: 2
   isSpecialMove: 0
   isAerialMove: 0
   isRegularMove: 1
@@ -11031,7 +11031,7 @@ MonoBehaviour:
   shieldStunTime: 0
   knockbackTime: 0.5
   resetAerialOpponent: 1
-  attackAnimInfo: 0
+  attackAnimInfo: 2
   isSpecialMove: 0
   isAerialMove: 1
   isRegularMove: 1
@@ -11697,7 +11697,7 @@ MonoBehaviour:
   shieldStunTime: 0.5
   knockbackTime: 0.5
   resetAerialOpponent: 0
-  attackAnimInfo: 0
+  attackAnimInfo: 3
   isSpecialMove: 0
   isAerialMove: 0
   isRegularMove: 1
@@ -11870,7 +11870,7 @@ MonoBehaviour:
   shieldStunTime: 0.1
   knockbackTime: 0.1
   resetAerialOpponent: 0
-  attackAnimInfo: 0
+  attackAnimInfo: 2
   isSpecialMove: 0
   isAerialMove: 0
   isRegularMove: 1
@@ -16441,7 +16441,7 @@ MonoBehaviour:
   shieldStunTime: 0.42
   knockbackTime: 0.3
   resetAerialOpponent: 0
-  attackAnimInfo: 0
+  attackAnimInfo: 3
   isSpecialMove: 1
   isAerialMove: 0
   isRegularMove: 0
@@ -18279,7 +18279,7 @@ MonoBehaviour:
   shieldStunTime: 0.15
   knockbackTime: 0.2
   resetAerialOpponent: 0
-  attackAnimInfo: 0
+  attackAnimInfo: 2
   isSpecialMove: 1
   isAerialMove: 0
   isRegularMove: 0
@@ -31000,7 +31000,7 @@ MonoBehaviour:
   shieldStunTime: 0.2
   knockbackTime: 0.2
   resetAerialOpponent: 0
-  attackAnimInfo: 0
+  attackAnimInfo: 1
   isSpecialMove: 1
   isAerialMove: 0
   isRegularMove: 0
