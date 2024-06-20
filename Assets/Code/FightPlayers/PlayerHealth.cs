@@ -78,18 +78,13 @@ namespace AB
                 p2Dead = false;
             }
 
-            if (roundManager.playerOneWins)
+            if (roundManager.playerOneWins)         //Tells the winner if the other player is dead
             {
                 p2Dead = true;
             }
-            else if (roundManager.playerTwoWins)
+            else if (roundManager.playerTwoWins)    //Tells the winner if the other player is dead
             {
                 p1Dead = true;
-            }
-
-            if(health > 1000f)
-            {
-                health = 1000f;
             }
         }
 
@@ -123,5 +118,6 @@ namespace AB
             health -= damage;
             lerpTimer = 0f;
         }
+
     }
 }
