@@ -74,7 +74,7 @@ namespace AB
         {
             if (!playerHealth.p1Dead && !playerHealth.p2Dead)
             {
-
+                animator.SetBool("isDead", false);
 
                 //Cancels the Walk animation
                 if (animator.GetBool("isWalkingF") == true || animator.GetBool("isWalkingB") == true)
@@ -508,6 +508,14 @@ namespace AB
                 {
                     animator.SetTrigger("isWin");
                 }
+                else if(playerHealth.p1Dead && gameObject.tag == "Player1")
+                {
+                    animator.SetBool("isDead", true);
+                }
+                else if(playerHealth.p2Dead && gameObject.tag == "Player2")
+                {
+                    animator.SetBool("isDead", true);
+                }
             }
         }
         public bool IsCrouched()
@@ -526,13 +534,13 @@ namespace AB
         }
 
 
-        public bool CanParry()
+        public void CanParry()
         {
-            return playerAttackingHitboxes.isParry = true;
+            playerAttackingHitboxes.isParry = true;
         }
-        public bool CantParry()
+        public void CantParry()
         {
-            return playerAttackingHitboxes.isParry = false;
+            playerAttackingHitboxes.isParry = false;
         }
         public void EndParry()
         {
