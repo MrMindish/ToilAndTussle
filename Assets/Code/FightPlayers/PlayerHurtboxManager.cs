@@ -106,7 +106,7 @@ namespace AB
             isBlockable = attackerHitboxes.isBlockBox;
 
             // Check if the attackerHitboxes is not null and print its attack damage
-            if (attackerHitboxes != null && isInvincible == false && !playerMovement.isBlocking)
+            if (attackerHitboxes != null && isInvincible == false && !playerMovement.isBlocking && !isBlockable)
             {
                 //Pulls various information from the attacking hitboxes
                 hitAnimInfo = attackerHitboxes.attackAnimInfo;                          //The animation played upon being hit
@@ -130,21 +130,20 @@ namespace AB
 
                 isStunned = true;
                 isKnockback = true;
-                if (isStunned && isHit)
-                {
-                    // Increase hit count during stun and calculate damage reduction
-                    hitCountDuringStun++;
-                    float damageReductionFactor = Mathf.Lerp(1f, maxDamageReductionFactor, hitCountDuringStun / 1.5f);
-                    damageToHealth *= damageReductionFactor;
-                }
+
 
                 stunDuration = attackerHitboxes.stunTime;
                 kTime = attackerHitboxes.knockbackTime;
                 isHit = true;
 
+                if (isStunned && isHit)
+                {
+                    // Increase hit count during stun and calculate damage reduction
+                    float damageReductionFactor = Mathf.Lerp(1f, maxDamageReductionFactor, hitCountDuringStun / 1.5f);
+                    damageToHealth *= damageReductionFactor;
+                }
 
-
-                if(isStunned && canHitJuggle)
+                if (isStunned && canHitJuggle)
                 {
                     juggleHitsCounter++;
                     canHitJuggle = false;
@@ -160,6 +159,7 @@ namespace AB
                 }
                 else
                 {
+                    Debug.Log("The Bloockening");
                     //Pulls various information from the attacking hitboxes
                     damageToShield = attackerHitboxes.shieldDamage;                         //The Damage of the Attack
                     vKnockback = attackerHitboxes.verticalKnockback * 0f;                   //The Vertical (Up and Down) knockback
@@ -189,6 +189,7 @@ namespace AB
 
         private void Update()
         {
+            Debug.Log(hitCountDuringStun);
 
             if (isStunned && playerMovement.IsGrounded() && !isLaunched)
             {
@@ -228,7 +229,11 @@ namespace AB
                 }
             }
 
-            if (!isStunned)
+            if(isStunned && isHit)
+            {
+                hitCountDuringStun++;
+            }
+            else if (!isStunned)
             {
                 hitCountDuringStun = 0;
             }

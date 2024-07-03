@@ -25,10 +25,16 @@ namespace AB
             if(roundManager.fadeToBlack && !roundManager.fadeFromBlack)
             {
                 animator.SetTrigger("FadeOut");
+                animator.ResetTrigger("FadeIn");
             }
             else if (!roundManager.fadeToBlack && roundManager.fadeFromBlack)
             {
                 animator.SetTrigger("FadeIn");
+            }
+            else if (!roundManager.fadeFromBlack && !roundManager.fadeFromBlack)
+            {
+                animator.ResetTrigger("FadeIn");
+                animator.ResetTrigger("FadeOut");
             }
         }
     }

@@ -34,6 +34,7 @@ namespace AB
         PlayerInput playerInput;
         MaterialManager materialManager;
         PlayerHealth playerHealth;
+        RoundManager roundManager;
 
         //Registers the directional inputs
         public bool isRightPressed;
@@ -60,10 +61,13 @@ namespace AB
             playerMovement = GetComponentInParent<PlayerMovement>();
             hurtboxManager = GetComponentInChildren<PlayerHurtboxManager>();
             playerAttackingHitboxes = GetComponentInChildren<PlayerAttackingHitboxes>();
+
             timeManager = GetComponentInParent<TimeManager>();
             materialManager = GetComponentInParent<MaterialManager>();
             playerShield = GetComponentInParent<PlayerShield>();
             playerHealth = GetComponentInParent<PlayerHealth>();
+
+            roundManager = GetComponentInParent<RoundManager>();
 
             isAttacking = false;
             isAirAttacking = false;
@@ -72,9 +76,11 @@ namespace AB
 
         private void Update()
         {
+
             if (!playerHealth.p1Dead && !playerHealth.p2Dead)
             {
                 animator.SetBool("isDead", false);
+                animator.ResetTrigger("isWin");
 
                 //Cancels the Walk animation
                 if (animator.GetBool("isWalkingF") == true || animator.GetBool("isWalkingB") == true)
@@ -411,6 +417,8 @@ namespace AB
                     }
                 }
 
+                
+
 
                 if (attackCooldown > 0f && isAirAttacking == false)
                 {
@@ -518,6 +526,14 @@ namespace AB
                 }
             }
         }
+
+        public void RoundEndAnimReset()
+        {
+            Debug.Log("Player Reset Animations");
+            animator.SetTrigger("resetAnims");
+        }
+
+
         public bool IsCrouched()
         {
             return isCrouching;

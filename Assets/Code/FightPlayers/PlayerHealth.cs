@@ -78,6 +78,8 @@ namespace AB
                 p2Dead = false;
             }
 
+            
+
             if (roundManager.playerOneWins)         //Tells the winner if the other player is dead
             {
                 p2Dead = true;
@@ -87,6 +89,24 @@ namespace AB
                 p1Dead = true;
             }
         }
+
+        public void HealthReset()
+        {
+            if (gameObject.tag == "Player1")
+            {
+                health = maxHealth;
+            }
+            else if(gameObject.tag == "Player2")
+            {
+                health = maxHealth;
+            }
+
+            isDead = false;
+            p1Dead = false;
+            p2Dead = false;
+            Debug.Log("Reset Health Through Code");
+        }
+
 
         public void UpdateHealthUI()
         {
@@ -107,7 +127,15 @@ namespace AB
                 }
 
             }
-            else
+            if(fillF < hFraction)
+            {
+                backHealthBar.fillAmount = hFraction;
+                lerpTimer += Time.deltaTime;
+                float percentComplete = lerpTimer / chipSpeed;
+                percentComplete = percentComplete * percentComplete;
+                frontHealthBar.fillAmount = Mathf.Lerp(fillF, backHealthBar.fillAmount, percentComplete);
+            }
+            else if(fillB == hFraction)
             {
                 lerpTimer = 0;
             }
@@ -117,6 +145,13 @@ namespace AB
         {
             health -= damage;
             lerpTimer = 0f;
+        }
+
+        public void RestoreHealth(float restoreAmount)
+        {
+            restoreAmount = 1000 - health;
+            health += restoreAmount;
+            lerpTimer = 0;
         }
 
     }

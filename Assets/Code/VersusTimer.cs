@@ -7,15 +7,19 @@ namespace AB
 {
     public class VersusTimer : MonoBehaviour
     {
+        RoundManager roundManager;
+
         public int startingTime = 99;
         public Image tensPlaceImage;
         public Image onesPlaceImage;
         public Sprite[] numberSprites; // Array to store the number sprites from 0 to 9
 
-        private int currentTime;
+        private int currentTime = 99;
 
         void Start()
         {
+            roundManager = GetComponentInParent<RoundManager>();
+
             currentTime = startingTime;
             StartCoroutine(Countdown());
         }
@@ -36,6 +40,11 @@ namespace AB
             int ones = currentTime % 10;
             tensPlaceImage.sprite = numberSprites[tens];
             onesPlaceImage.sprite = numberSprites[ones];
+        }
+
+        void ResetTimer()
+        {
+            currentTime = startingTime;
         }
     }
 }

@@ -42,6 +42,7 @@ namespace AB
             UpdateShieldUI();
             if (playerHurtboxManager.isShieldHit)
             {
+                Debug.Log("Shield Hit");
                 shieldHealth -= playerHurtboxManager.damageToShield;
                 playerHurtboxManager.isShieldHit = false;
             }

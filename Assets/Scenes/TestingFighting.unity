@@ -6658,12 +6658,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 110898438}
   m_LocalRotation: {x: -0.70442253, y: 0.06155416, z: -0.06155416, w: 0.70442253}
-  m_LocalPosition: {x: 2.02, y: 21.97, z: 8.23}
+  m_LocalPosition: {x: 9.252488, y: 22.658815, z: 6.9417267}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_Father: {fileID: 1582608802}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: -80.012, y: 90, z: -90}
 --- !u!1 &111417261
 GameObject:
@@ -11159,7 +11159,7 @@ MonoBehaviour:
     m_Bits: 256
   enemyTarget: {fileID: 0}
   hitboxTimer: 0.01
-  attackDamage: 20
+  attackDamage: 1000
   shieldDamage: 4
   horizontalKnockback: 2
   verticalKnockback: 0
@@ -34457,6 +34457,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2122949640}
+  - {fileID: 110898441}
   - {fileID: 2038950582}
   m_Father: {fileID: 0}
   m_RootOrder: 1
@@ -42893,7 +42894,7 @@ Transform:
   - {fileID: 438072028}
   - {fileID: 857251753}
   m_Father: {fileID: 1582608802}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2043342606
 GameObject:
