@@ -13,6 +13,8 @@ namespace AB
         PlayerAttackManager attackManager1;
         PlayerAttackManager attackManager2;
 
+        VersusTimer versusTimer;
+
         public bool playerReset;
         public bool fadeToBlack;
         public bool fadeFromBlack;
@@ -27,6 +29,7 @@ namespace AB
 
         private bool hasReset; //Used to prevent playes being stuck after reset
         public bool roundStart; //Used to give the players a few seconds to breathe between rounds
+        public bool roundStarted;
 
         public static RoundManager instance;
         public enum GameState
@@ -46,6 +49,8 @@ namespace AB
             attackManager1 = GameObject.FindGameObjectWithTag("Player1").GetComponentInChildren<PlayerAttackManager>();
             attackManager2 = GameObject.FindGameObjectWithTag("Player2").GetComponentInChildren<PlayerAttackManager>();
 
+            versusTimer = GetComponentInChildren<VersusTimer>();
+
             instance = this;
         }
         private void Start()
@@ -59,12 +64,21 @@ namespace AB
 
             StartCoroutine(OpeningRoundStart());
         }
+        private void Update()
+        {
+            if (roundStart)
+            {
+                roundStarted = true;
+                StartCoroutine(versusTimer.Countdown());
+            }
+        }
 
         public IEnumerator OpeningRoundStart()
         {
             yield return new WaitForSeconds(3.0f);
 
             roundStart = true;
+
         }
 
         public IEnumerator P2WinSequence()
@@ -90,7 +104,9 @@ namespace AB
             yield return new WaitForSeconds(0.5f);
 
             fadeFromBlack = false;
-            roundStart = true;
+
+            yield return new WaitForSeconds(3.0f);
+            roundStarted = true;
         }
 
         public IEnumerator P1WinSequence()
@@ -116,7 +132,9 @@ namespace AB
             yield return new WaitForSeconds(0.5f);
 
             fadeFromBlack = false;
-            roundStart = true;
+
+            yield return new WaitForSeconds(3.0f);
+            roundStarted = true;
         }
 
         private void FadeToBlack()
@@ -129,24 +147,23 @@ namespace AB
         {
             Debug.Log("Reset Scene");
             playerReset = true;
-            roundStart = false;
+            roundStarted = false;
             playerOneWins = false;
             playerTwoWins = false;
             player1Health.HealthReset();
             player2Health.HealthReset();
             attackManager1.RoundEndAnimReset();
             attackManager2.RoundEndAnimReset();
-            if (playerReset && !hasReset)
-            {
-                ResetPlayerPosition();
-                hasReset = true; // Set the flag to true to prevent further resets
-            }
+            ResetPlayerPosition();
+            versusTimer.ResetTimer();
+
         }
 
         private void FadeFromBlack()
         {
             fadeFromBlack = true;
             playerReset = false;
+            hasReset = false;
             Debug.Log("Fade from Black");
             fadeToBlack = false;
         }

@@ -21,11 +21,13 @@ namespace AB
             roundManager = GetComponentInParent<RoundManager>();
 
             currentTime = startingTime;
-            StartCoroutine(Countdown());
+
+
         }
 
-        IEnumerator Countdown()
+        public IEnumerator Countdown()
         {
+            roundManager.roundStart = false;
             while (currentTime >= 0)
             {
                 UpdateTimerDisplay();
@@ -42,7 +44,7 @@ namespace AB
             onesPlaceImage.sprite = numberSprites[ones];
         }
 
-        void ResetTimer()
+        public void ResetTimer()
         {
             currentTime = startingTime;
         }

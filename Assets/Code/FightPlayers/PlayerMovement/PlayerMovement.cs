@@ -16,6 +16,8 @@ namespace AB
         PlayerInput playerInput;
         PlayerHealth playerHealth;
 
+        RoundManager roundManager;
+
 
         //Handles all of the movement speed and such
         public Vector2 horizontal;
@@ -68,8 +70,11 @@ namespace AB
 
             playerAttackManager = GetComponentInChildren<PlayerAttackManager>();
             hurtboxManager = GetComponentInChildren<PlayerHurtboxManager>();
+
             playerShield = GetComponent<PlayerShield>();
             playerHealth = GetComponent<PlayerHealth>();
+
+            roundManager = GetComponentInParent<RoundManager>();
         } //Includes the Component Getting
 
         private void Start()
@@ -82,7 +87,7 @@ namespace AB
 
         void Update()
         {
-            if (!playerHealth.p1Dead && !playerHealth.p2Dead)
+            if ((!playerHealth.p1Dead && !playerHealth.p2Dead) && roundManager.roundStarted)
             {
                 if (gameObject.tag == "Player1")
                 {
@@ -133,7 +138,7 @@ namespace AB
 
         private void FixedUpdate()
         {
-            if (!playerHealth.p1Dead && !playerHealth.p2Dead)
+            if (!playerHealth.p1Dead && !playerHealth.p2Dead && roundManager.roundStarted)
             {
                 if (isDashing)
                 {
