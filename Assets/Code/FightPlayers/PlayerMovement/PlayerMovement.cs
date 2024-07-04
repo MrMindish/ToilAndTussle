@@ -183,7 +183,7 @@ namespace AB
                     //Since gravity will guide the juggled fighter, an else if for knockback duration is not necessary
                 }
 
-                if (IsGrounded() && playerInput.actions["Move"].WasPressedThisFrame() && !playerHealth.isDead && !playerAttackManager.isAttacking && canDash)
+                if (IsGrounded() && playerInput.actions["Move"].WasPressedThisFrame()  && !playerAttackManager.isAttacking && canDash)
                 {
                     if (movePressedOnce && Time.time - lastMovePressTime <= doublePressTimeThreshold)
                     {
@@ -443,6 +443,7 @@ namespace AB
             rb.useGravity = true;
             yield return new WaitForSeconds(dashingCooldown);
             canDash = true;
+            Debug.Log("Double Press End");
         }
     }
 }

@@ -14,6 +14,7 @@ namespace AB
         PlayerAttackManager attackManager2;
 
         VersusTimer versusTimer;
+        MaterialManager materialManager;
 
         public bool playerReset;
         public bool fadeToBlack;
@@ -50,6 +51,7 @@ namespace AB
             attackManager2 = GameObject.FindGameObjectWithTag("Player2").GetComponentInChildren<PlayerAttackManager>();
 
             versusTimer = GetComponentInChildren<VersusTimer>();
+            materialManager = GetComponent<MaterialManager>();
 
             instance = this;
         }
@@ -150,6 +152,8 @@ namespace AB
             roundStarted = false;
             playerOneWins = false;
             playerTwoWins = false;
+            materialManager.p1Light = false;
+            materialManager.p2Light = false;
             player1Health.HealthReset();
             player2Health.HealthReset();
             attackManager1.RoundEndAnimReset();

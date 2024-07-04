@@ -15673,8 +15673,8 @@ MonoBehaviour:
   shieldDamage: 4
   horizontalKnockback: 0.4
   verticalKnockback: 0
-  horizontalAirKnockback: 0
-  verticalAirKnockback: 0
+  horizontalAirKnockback: 0.3
+  verticalAirKnockback: -0.4
   stunTime: 0.6
   shieldStunTime: 0
   knockbackTime: 0.5
@@ -35098,8 +35098,8 @@ MonoBehaviour:
   shieldDamage: 4
   horizontalKnockback: 0.4
   verticalKnockback: 0
-  horizontalAirKnockback: 0
-  verticalAirKnockback: 0
+  horizontalAirKnockback: 0.3
+  verticalAirKnockback: -0.4
   stunTime: 0.6
   shieldStunTime: 0
   knockbackTime: 0.5
@@ -45417,6 +45417,8 @@ MonoBehaviour:
   player2: {fileID: 1091568073}
   player1StartPoint: {fileID: 1127900098}
   player2StartPoint: {fileID: 1830740966}
+  roundStart: 0
+  roundStarted: 0
 --- !u!1 &2112660083
 GameObject:
   m_ObjectHideFlags: 0

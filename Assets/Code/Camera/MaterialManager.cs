@@ -19,6 +19,11 @@ public class MaterialManager : MonoBehaviour
 
     private void Update()
     {
+        ChangeStageLights();
+    }
+
+    public void ChangeStageLights()
+    {
         if (p1Light)
         {
             Color customColor = new Color(1f, 0.7f, 0f); // Define your custom color here (R, G, B)

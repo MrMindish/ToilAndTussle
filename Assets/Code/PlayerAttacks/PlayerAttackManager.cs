@@ -597,6 +597,18 @@ namespace AB
             materialManager.p2Light = false;
         }
 
+        public void StageLights()                               //Changes the lights to match the player
+        {
+            if(gameObject.tag == "Player1")
+            {
+                materialManager.p1Light = true;
+            }
+            else if(gameObject.tag == "Player2")
+            {
+                materialManager.p2Light = true;
+            }
+        }
+
         public void NormalLights()                             //Changes the Stage lights back to white
         {
             materialManager.p1Light = false;
