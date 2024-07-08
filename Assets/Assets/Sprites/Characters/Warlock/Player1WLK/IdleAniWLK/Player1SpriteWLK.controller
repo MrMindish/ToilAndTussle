@@ -55,7 +55,7 @@ AnimatorState:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: WlkHBP1
-  m_Speed: 1
+  m_Speed: 0.6
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: 5699658480321606452}
@@ -3549,7 +3549,7 @@ AnimatorStateTransition:
   m_TransitionDuration: 0
   m_TransitionOffset: 0
   m_ExitTime: 0.000000001444506
-  m_HasExitTime: 0
+  m_HasExitTime: 1
   m_HasFixedDuration: 1
   m_InterruptionSource: 0
   m_OrderedInterruption: 1
@@ -4044,10 +4044,10 @@ AnimatorStateMachine:
     m_Position: {x: 440, y: 320, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 6881341402111299955}
-    m_Position: {x: 500, y: -440, z: 0}
+    m_Position: {x: 490, y: -450, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 4325924144461778714}
-    m_Position: {x: 720, y: -440, z: 0}
+    m_Position: {x: 710, y: -430, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -7940699974855743354}
     m_Position: {x: 760, y: 400, z: 0}
@@ -4119,7 +4119,7 @@ AnimatorStateMachine:
     m_Position: {x: -800, y: 40, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 8812328435836099741}
-    m_Position: {x: -550, y: -110, z: 0}
+    m_Position: {x: -520, y: -50, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -8674482170484361383}
     m_Position: {x: -730, y: 390, z: 0}

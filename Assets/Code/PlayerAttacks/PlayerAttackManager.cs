@@ -262,14 +262,16 @@ namespace AB
                     //On the Right Side of the Opponent
                     animator.SetTrigger("isHBAttacking");
                     isAttacking = true;
-                    attackCooldown = 0.5f;
+                    attackCooldown = 1f;
+                    animator.SetBool("canCancel", true);
                 }
                 else if (playerInput.actions["Heavy Attack"].WasPressedThisFrame() && playerMovement.IsGrounded() && transform.position.x > playerMovement.playerTwoX.transform.position.x && isAttacking == false && hurtboxManager.isStunned == false && hurtboxManager.isShieldStunned == false && isRightPressed && !isCrouching && !playerMovement.isDashing)
                 {
                     //On the Left Side of the Opponent
                     animator.SetTrigger("isHBAttacking");
                     isAttacking = true;
-                    attackCooldown = 0.5f;
+                    attackCooldown = 1f;
+                    animator.SetBool("canCancel", true);
                 }
 
                 //Performs the Heavy Crouch Attack          HC
