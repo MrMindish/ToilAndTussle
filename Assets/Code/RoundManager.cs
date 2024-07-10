@@ -16,12 +16,15 @@ namespace AB
         VersusTimer versusTimer;
         MaterialManager materialManager;
 
-        public bool playerReset;
+        public bool playerReset;                        //Tells the other scripts to revert any changes made during the fight
         public bool fadeToBlack;
         public bool fadeFromBlack;
 
-        public bool playerOneWins;
-        public bool playerTwoWins;
+        public bool playerOneWins;                      //NOT USED FOR WINNING THE OVERALL SET! Simply refers to the victory of each round
+        public bool playerTwoWins;                      //NOT USED FOR WINNING THE OVERALL SET! Simply refers to the victory of each round
+
+        public bool p1WinsSet;                          //USED FOR ENDING THE GAME AFTER PLAYER WINS ENOUGH ROUNDS
+        public bool p2WinsSet;                          //USED FOR ENDING THE GAME AFTER PLAYER WINS ENOUGH ROUNDS
 
         public int roundCount;
         public int p1WinCount;
@@ -32,7 +35,6 @@ namespace AB
         public Transform player1StartPoint;  // Reference to the Transform of the start point
         public Transform player2StartPoint;
 
-        private bool hasReset; //Used to prevent playes being stuck after reset
         public bool roundStart; //Used to give the players a few seconds to breathe between rounds
         public bool roundStarted;
 
@@ -68,6 +70,9 @@ namespace AB
             playerTwoWins = false;
             roundStart = false;
 
+            p1WinsSet = false;
+            p2WinsSet = false;
+
             StartCoroutine(OpeningRoundStart());
         }
         private void Update()
@@ -91,10 +96,20 @@ namespace AB
         {
             playerTwoWins = true;
             p2WinCount++;
-            RoundEndChecker();
-            // Trigger animation events here
             yield return new WaitForSeconds(2.0f); // Wait for the animation to play
+            RoundEndChecker();
+        }
 
+        public IEnumerator P1WinSequence()
+        {
+            playerOneWins = true;
+            p1WinCount++;
+            yield return new WaitForSeconds(2.0f);
+            RoundEndChecker();
+        }
+
+        public IEnumerator RoundResetSequence()
+        {
             // Fade to black
             FadeToBlack();
 
@@ -117,38 +132,6 @@ namespace AB
             StartCoroutine(OpeningRoundStart());
             roundStarted = true;
         }
-
-        public IEnumerator P1WinSequence()
-        {
-            playerOneWins = true;
-            p1WinCount++;
-            RoundEndChecker();
-            // Trigger animation events here
-            yield return new WaitForSeconds(2.0f); // Wait for the animation to play
-
-            // Fade to black
-            FadeToBlack();
-
-            // Wait a moment
-            yield return new WaitForSeconds(1.0f);
-
-            // Reset the scene for the next round
-           
-            ResetRound();
-
-            yield return new WaitForSeconds(1.0f);
-            // Fade back in
-            FadeFromBlack();
-
-            yield return new WaitForSeconds(0.5f);
-
-            fadeFromBlack = false;
-
-            yield return new WaitForSeconds(3.0f);
-            StartCoroutine(OpeningRoundStart());
-            roundStarted = true;
-        }
-
         private void FadeToBlack()
         {
             Debug.Log("Fade to Black");
@@ -177,7 +160,6 @@ namespace AB
         {
             fadeFromBlack = true;
             playerReset = false;
-            hasReset = false;
             Debug.Log("Fade from Black");
             fadeToBlack = false;
         }
@@ -195,6 +177,24 @@ namespace AB
         public void RoundEndChecker()
         {
             roundCount = p1WinCount + p2WinCount;
+
+            if(p1WinCount >= 2 && p2WinCount <= 1)
+            {
+                p1WinsSet = true;
+            }
+            else if(p2WinCount >= 2 && p1WinCount <= 1)
+            {
+                p2WinsSet = true;
+            }
+            else if(p2WinCount == 2 && p1WinCount == 2)
+            {
+                p1WinsSet = true;
+                p2WinsSet=true;
+            }
+            else
+            {
+                StartCoroutine(RoundResetSequence());
+            }
         }
     }
 }

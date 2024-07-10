@@ -42,6 +42,19 @@ namespace AB
             {
                 animator.SetBool("FightTransition", false);
             }
+
+            if (roundManager.p1WinsSet && !roundManager.p2WinsSet)
+            {
+                animator.SetTrigger("P1WINS");
+            }
+            else if (roundManager.p2WinsSet && !roundManager.p1WinsSet)
+            {
+                animator.SetTrigger("P2WINS");
+            }
+            else if(roundManager.p1WinsSet && roundManager.p2WinsSet)
+            {
+                animator.SetTrigger("Stalemate");
+            }
         }
 
         public IEnumerator Round1Sequence()
