@@ -60,7 +60,7 @@ namespace AB
         public bool canHitLow;
 
         // Counter for hits during stun
-        private int hitCountDuringStun;
+        public int hitCountDuringStun;
 
         // The maximum reduction factor for damage
         public float maxDamageReductionFactor = 0.2f;
