@@ -45752,6 +45752,9 @@ MonoBehaviour:
   fadeFromBlack: 0
   playerOneWins: 0
   playerTwoWins: 0
+  roundCount: 0
+  p1WinCount: 0
+  p2WinCount: 0
   player1: {fileID: 741692797}
   player2: {fileID: 1091568073}
   player1StartPoint: {fileID: 1127900098}

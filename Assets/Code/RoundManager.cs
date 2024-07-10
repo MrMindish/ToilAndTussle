@@ -23,6 +23,10 @@ namespace AB
         public bool playerOneWins;
         public bool playerTwoWins;
 
+        public int roundCount;
+        public int p1WinCount;
+        public int p2WinCount;
+
         public GameObject player1;  // Reference to the player GameObject
         public GameObject player2;
         public Transform player1StartPoint;  // Reference to the Transform of the start point

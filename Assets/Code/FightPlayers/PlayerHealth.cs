@@ -60,12 +60,12 @@ namespace AB
                 isDead = true;
 
                 //Tells the Round Manager if a player has died, and which one died
-                if(gameObject.tag == "Player1")
+                if(gameObject.tag == "Player1" && p1Dead == false)
                 {
                     p1Dead=true;
                     StartCoroutine(RoundManager.instance.P2WinSequence());
                 }
-                else if (gameObject.tag == "Player2")
+                else if (gameObject.tag == "Player2" && p2Dead == false)
                 {
                     p2Dead=true;
                     StartCoroutine(RoundManager.instance.P1WinSequence());
