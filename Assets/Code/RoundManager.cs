@@ -90,8 +90,10 @@ namespace AB
         public IEnumerator P2WinSequence()
         {
             playerTwoWins = true;
+            p2WinCount++;
+            RoundEndChecker();
             // Trigger animation events here
-            yield return new WaitForSeconds(1.0f); // Wait for the animation to play
+            yield return new WaitForSeconds(2.0f); // Wait for the animation to play
 
             // Fade to black
             FadeToBlack();
@@ -112,14 +114,17 @@ namespace AB
             fadeFromBlack = false;
 
             yield return new WaitForSeconds(3.0f);
+            StartCoroutine(OpeningRoundStart());
             roundStarted = true;
         }
 
         public IEnumerator P1WinSequence()
         {
             playerOneWins = true;
+            p1WinCount++;
+            RoundEndChecker();
             // Trigger animation events here
-            yield return new WaitForSeconds(1.0f); // Wait for the animation to play
+            yield return new WaitForSeconds(2.0f); // Wait for the animation to play
 
             // Fade to black
             FadeToBlack();
@@ -140,6 +145,7 @@ namespace AB
             fadeFromBlack = false;
 
             yield return new WaitForSeconds(3.0f);
+            StartCoroutine(OpeningRoundStart());
             roundStarted = true;
         }
 
@@ -184,6 +190,11 @@ namespace AB
                 player1.transform.position = player1StartPoint.position;
                 player2.transform.position = player2StartPoint.position;
             }
+        }
+
+        public void RoundEndChecker()
+        {
+            roundCount = p1WinCount + p2WinCount;
         }
     }
 }
