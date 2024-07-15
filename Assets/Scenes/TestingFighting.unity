@@ -10766,7 +10766,7 @@ MonoBehaviour:
   horizontalAirKnockback: 2
   verticalAirKnockback: -1
   stunTime: 0.35
-  shieldStunTime: 0.25
+  shieldStunTime: 5
   knockbackTime: 0.2
   resetAerialOpponent: 0
   attackAnimInfo: 1
@@ -11637,7 +11637,7 @@ MonoBehaviour:
     m_Bits: 256
   enemyTarget: {fileID: 0}
   hitboxTimer: 0.01
-  attackDamage: 1000
+  attackDamage: 20
   shieldDamage: 4
   horizontalKnockback: 2
   verticalKnockback: 0
