@@ -11,7 +11,6 @@ public class TimeManager : MonoBehaviour
 
     public bool timeSlowedParry;
     public bool timeSlowedHit;
-    public float timeSlowedHitTime;
 
     void Awake()
     {

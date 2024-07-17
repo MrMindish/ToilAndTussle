@@ -418,6 +418,10 @@ namespace AB
                         Debug.Log("LAUNCH");
                     }
                 }
+                else if (!hurtboxManager.isStunned)
+                {
+                    animator.SetBool("isStunned", false);
+                }
 
                 
 

@@ -118,12 +118,13 @@ namespace AB
                     return;
                 }
 
-                IsGrounded();
-                Flip();
-                BlockingRange();
-            }
 
-            if(jumpTimer > 0 && !IsGrounded())
+            }
+            IsGrounded();
+            Flip();
+            BlockingRange();
+
+            if (jumpTimer > 0 && !IsGrounded())
             {
                 jumpTimer -= Time.deltaTime;
                 isJumping = true;
@@ -185,7 +186,7 @@ namespace AB
 
                 if (IsGrounded() && playerInput.actions["Move"].WasPressedThisFrame()  && !playerAttackManager.isAttacking && canDash)
                 {
-                    if (movePressedOnce && Time.time - lastMovePressTime <= doublePressTimeThreshold)
+                    if (Time.time - lastMovePressTime <= doublePressTimeThreshold)
                     {
                         // Double press detected
                         // Your code to execute when the "Move" input is pressed twice within a second

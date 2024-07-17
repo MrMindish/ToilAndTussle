@@ -76,14 +76,14 @@ AnimationClip:
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 0.05
+  - time: 0.016666668
     functionName: NormalLights
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 0.06666667
+  - time: 0.016666668
     functionName: TimeNormal
     data: 
     objectReferenceParameter: {fileID: 0}

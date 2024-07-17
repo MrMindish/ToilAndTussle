@@ -4074,10 +4074,10 @@ AnimatorStateMachine:
     m_Position: {x: -450, y: -390, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -1103381879363164496}
-    m_Position: {x: -250, y: 10, z: 0}
+    m_Position: {x: -160, y: -20, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 6719636532080949400}
-    m_Position: {x: -270, y: 120, z: 0}
+    m_Position: {x: -270, y: 130, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 7821699754200835025}
     m_Position: {x: 1230, y: -10, z: 0}
