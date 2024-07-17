@@ -107,7 +107,7 @@ namespace AB
                     animator.ResetTrigger("jumpStart");
                     animator.SetTrigger("jumpEnd");
                 }
-                else if (playerMovement.isJumping && playerMovement.IsGrounded())
+                else if (playerMovement.IsGrounded())
                 {
                     animator.ResetTrigger("jumpStart");
                     animator.SetTrigger("jumpEnd");

@@ -67,6 +67,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "Dash",
+                    "type": "Button",
+                    "id": "11683dae-bbe8-4167-81d0-af8f6dd7c862",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -267,6 +276,50 @@
                     "action": "Pause-Start",
                     "isComposite": false,
                     "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "eea0b626-6989-479c-bc7f-3052f65a4959",
+                    "path": "<Keyboard>/leftArrow",
+                    "interactions": "MultiTap",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "Dash",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "fa54caf2-b0ec-4805-9326-18018882c52f",
+                    "path": "<Keyboard>/rightArrow",
+                    "interactions": "MultiTap",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "Dash",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "cd4d0743-41a5-41b2-8ed0-612cc11fa01a",
+                    "path": "<Gamepad>/leftStick/left",
+                    "interactions": "MultiTap",
+                    "processors": "AxisDeadzone",
+                    "groups": "Gamepad",
+                    "action": "Dash",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "19122fa5-e3d0-4edc-9a3f-7cf6fbdab318",
+                    "path": "<Gamepad>/leftStick/right",
+                    "interactions": "MultiTap",
+                    "processors": "AxisDeadzone",
+                    "groups": "Gamepad",
+                    "action": "Dash",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         },
@@ -332,6 +385,15 @@
                     "name": "Pause-Start",
                     "type": "Button",
                     "id": "07597db0-700b-43d4-8d51-8a0801048996",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Dash",
+                    "type": "Button",
+                    "id": "b316b464-6459-4246-95c8-22a01573bdac",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -534,6 +596,50 @@
                     "processors": "",
                     "groups": "",
                     "action": "Pause-Start",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "2e72807b-5ac5-4bb9-a185-3dca502bb6ac",
+                    "path": "<Keyboard>/a",
+                    "interactions": "MultiTap",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "Dash",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "9e78152e-37d7-4d91-8194-54ac7ce8dc63",
+                    "path": "<Keyboard>/d",
+                    "interactions": "MultiTap",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "Dash",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "f7affef3-455a-4a56-a005-696bd476e74d",
+                    "path": "<Gamepad>/leftStick/left",
+                    "interactions": "MultiTap",
+                    "processors": "AxisDeadzone",
+                    "groups": "Gamepad",
+                    "action": "Dash",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "007bae75-7cbc-47bc-b858-a4892813cd84",
+                    "path": "<Gamepad>/leftStick/right",
+                    "interactions": "MultiTap",
+                    "processors": "AxisDeadzone",
+                    "groups": "Gamepad",
+                    "action": "Dash",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

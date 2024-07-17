@@ -184,14 +184,15 @@ namespace AB
                     //Since gravity will guide the juggled fighter, an else if for knockback duration is not necessary
                 }
 
-                if (IsGrounded() && playerInput.actions["Move"].WasPressedThisFrame()  && !playerAttackManager.isAttacking && canDash)
+                if (IsGrounded() && playerInput.actions["Dash"].WasPressedThisFrame() && !playerAttackManager.isAttacking && !hurtboxManager.isStunned && !canRecover && !playerAttackManager.isCrouching && canDash)
                 {
+                    StartCoroutine(Dash());
+
+                    /*
                     if (Time.time - lastMovePressTime <= doublePressTimeThreshold)
                     {
                         // Double press detected
-                        // Your code to execute when the "Move" input is pressed twice within a second
                         Debug.Log("Double press detected!");
-                        StartCoroutine(Dash());
 
                         // Reset variables for next detection
                         movePressedOnce = false;
@@ -203,6 +204,7 @@ namespace AB
                         movePressedOnce = true;
                         lastMovePressTime = Time.time;
                     }
+                    */
                 }
 
 
@@ -444,7 +446,6 @@ namespace AB
             rb.useGravity = true;
             yield return new WaitForSeconds(dashingCooldown);
             canDash = true;
-            Debug.Log("Double Press End");
         }
     }
 }
