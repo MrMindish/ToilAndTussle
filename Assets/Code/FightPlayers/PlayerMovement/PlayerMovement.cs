@@ -184,7 +184,7 @@ namespace AB
                     //Since gravity will guide the juggled fighter, an else if for knockback duration is not necessary
                 }
 
-                if (IsGrounded() && playerInput.actions["Dash"].WasPressedThisFrame() && !playerAttackManager.isAttacking && !hurtboxManager.isStunned && !canRecover && !playerAttackManager.isCrouching && canDash)
+                if (IsGrounded() && playerInput.actions["Dash"].WasPerformedThisFrame() && !playerAttackManager.isAttacking && !hurtboxManager.isStunned && !canRecover && !playerAttackManager.isCrouching && canDash)
                 {
                     StartCoroutine(Dash());
 

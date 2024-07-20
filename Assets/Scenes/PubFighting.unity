@@ -26198,7 +26198,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timeSlowedParry: 0
   timeSlowedHit: 0
-  timeSlowedHitTime: 0
 --- !u!4 &1624265150
 Transform:
   m_ObjectHideFlags: 0

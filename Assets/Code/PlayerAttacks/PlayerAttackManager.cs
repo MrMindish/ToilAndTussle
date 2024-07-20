@@ -81,6 +81,7 @@ namespace AB
             {
                 animator.SetBool("isDead", false);
                 animator.ResetTrigger("isWin");
+                animator.ResetTrigger("resetAnims");
 
                 //Cancels the Walk animation
                 if (animator.GetBool("isWalkingF") == true || animator.GetBool("isWalkingB") == true)
@@ -225,7 +226,7 @@ namespace AB
                     animator.SetTrigger("isLAAttacking");
                     isAttacking = true;
                     isAirAttacking = true;
-                    attackCooldown = 0.1f;
+                    attackCooldown = 0.15f;
                 }
 
 
@@ -236,7 +237,7 @@ namespace AB
                 {
                     animator.SetTrigger("isHNAttacking");
                     isAttacking = true;
-                    attackCooldown = 0.4f;
+                    attackCooldown = 0.45f;
                     animator.SetBool("canCancel", true);
                 }
 
@@ -262,7 +263,7 @@ namespace AB
                     //On the Right Side of the Opponent
                     animator.SetTrigger("isHBAttacking");
                     isAttacking = true;
-                    attackCooldown = 1f;
+                    attackCooldown = 0.6f;
                     animator.SetBool("canCancel", true);
                 }
                 else if (playerInput.actions["Heavy Attack"].WasPressedThisFrame() && playerMovement.IsGrounded() && transform.position.x > playerMovement.playerTwoX.transform.position.x && isAttacking == false && hurtboxManager.isStunned == false && hurtboxManager.isShieldStunned == false && isRightPressed && !isCrouching && !playerMovement.isDashing)
@@ -270,7 +271,7 @@ namespace AB
                     //On the Left Side of the Opponent
                     animator.SetTrigger("isHBAttacking");
                     isAttacking = true;
-                    attackCooldown = 1f;
+                    attackCooldown = 0.6f;
                     animator.SetBool("canCancel", true);
                 }
 
@@ -279,7 +280,7 @@ namespace AB
                 {
                     animator.SetTrigger("isHCAttacking");
                     isAttacking = true;
-                    attackCooldown = 0.7f;
+                    attackCooldown = 0.4f;
                 }
 
                 //Performs the Heavy Aerial Attack
@@ -388,36 +389,7 @@ namespace AB
                 }
 
 
-                //Triggers the Hitstun Animations
-                if (hurtboxManager.isStunned)
-                {
-                    animator.SetBool("isStunned", true);
-                    Debug.Log("isSTOONED");
-                    if(hurtboxManager.hitAnimInfo == 1)
-                    {
-                        animator.SetTrigger("isStunnedLow");
-                        animator.ResetTrigger("isStunnedHigh");
-                        animator.ResetTrigger("isStunnedLaunched");
-                        hurtboxManager.hitAnimInfo = 0;
-                        Debug.Log("LOW");
-                    }
-                    else if(hurtboxManager.hitAnimInfo == 2)
-                    {
-                        animator.SetTrigger("isStunnedHigh");
-                        animator.ResetTrigger("isStunnedLow");
-                        animator.ResetTrigger("isStunnedLaunched");
-                        hurtboxManager.hitAnimInfo= 0;
-                        Debug.Log("HIGH");
-                    }
-                    else if(hurtboxManager.hitAnimInfo == 3)
-                    {
-                        animator.SetTrigger("isStunnedLaunched");
-                        animator.ResetTrigger("isStunnedHigh");
-                        animator.ResetTrigger("isStunnedLow");
-                        hurtboxManager.hitAnimInfo = 0;
-                        Debug.Log("LAUNCH");
-                    }
-                }
+
                 else if (!hurtboxManager.isStunned)
                 {
                     animator.SetBool("isStunned", false);
@@ -530,6 +502,42 @@ namespace AB
                 {
                     animator.SetBool("isDead", true);
                 }
+            }
+            //Triggers the Hitstun Animations
+            if (hurtboxManager.isStunned)
+            {
+                animator.SetBool("isStunned", true);
+                Debug.Log("isSTOONED");
+                if (hurtboxManager.hitAnimInfo == 1)
+                {
+                    animator.SetTrigger("isStunnedLow");
+                    animator.ResetTrigger("isStunnedHigh");
+                    animator.ResetTrigger("isStunnedLaunched");
+                    hurtboxManager.hitAnimInfo = 0;
+                    Debug.Log("LOW");
+                }
+                else if (hurtboxManager.hitAnimInfo == 2)
+                {
+                    animator.SetTrigger("isStunnedHigh");
+                    animator.ResetTrigger("isStunnedLow");
+                    animator.ResetTrigger("isStunnedLaunched");
+                    hurtboxManager.hitAnimInfo = 0;
+                    Debug.Log("HIGH");
+                }
+                else if (hurtboxManager.hitAnimInfo == 3)
+                {
+                    animator.SetTrigger("isStunnedLaunched");
+                    animator.ResetTrigger("isStunnedHigh");
+                    animator.ResetTrigger("isStunnedLow");
+                    hurtboxManager.hitAnimInfo = 0;
+                    Debug.Log("LAUNCH");
+                }
+            }
+
+            if (playerMovement.IsGrounded())
+            {
+                animator.ResetTrigger("jumpStart");
+                animator.SetTrigger("jumpEnd");
             }
         }
 

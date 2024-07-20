@@ -1293,7 +1293,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh53402
+  m_Name: pb_Mesh125114
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -6070,9 +6070,9 @@ MonoBehaviour:
   attackDamage: 30
   shieldDamage: 6
   horizontalKnockback: 1.5
-  verticalKnockback: 4
+  verticalKnockback: 0
   horizontalAirKnockback: 1.5
-  verticalAirKnockback: 4
+  verticalAirKnockback: 3.5
   stunTime: 0.3
   shieldStunTime: 0.24
   knockbackTime: 0.2
@@ -25577,7 +25577,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh52628
+  m_Name: pb_Mesh124340
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -25793,7 +25793,7 @@ MonoBehaviour:
   verticalKnockback: 0.4
   horizontalAirKnockback: 1
   verticalAirKnockback: -20
-  stunTime: 0.8
+  stunTime: 0.5
   shieldStunTime: 0.5
   knockbackTime: 1
   resetAerialOpponent: 0

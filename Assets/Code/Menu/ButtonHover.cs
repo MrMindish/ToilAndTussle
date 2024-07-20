@@ -57,5 +57,22 @@ namespace AB
         {
             Debug.Log("More Selected");
         }
+
+        public void SelectStageHut()
+        {
+
+        }
+        public void SelectStageBar()
+        {
+
+        }
+        public void SelectStageRoof()
+        {
+
+        }
+        public void BackStages()
+        {
+
+        }
     }
 }

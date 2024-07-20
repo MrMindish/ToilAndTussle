@@ -29963,7 +29963,7 @@ MonoBehaviour:
   horizontalAirKnockback: 1
   verticalAirKnockback: -20
   stunTime: 0.8
-  shieldStunTime: 0.5
+  shieldStunTime: 0.3
   knockbackTime: 1
   resetAerialOpponent: 0
   attackAnimInfo: 1
@@ -43553,7 +43553,7 @@ MonoBehaviour:
   hitboxTimer: 0.01
   attackDamage: 30
   shieldDamage: 6
-  horizontalKnockback: 1.5
+  horizontalKnockback: 0
   verticalKnockback: 4
   horizontalAirKnockback: 1.5
   verticalAirKnockback: 4
@@ -43561,7 +43561,7 @@ MonoBehaviour:
   shieldStunTime: 0.24
   knockbackTime: 0.2
   resetAerialOpponent: 0
-  attackAnimInfo: 3
+  attackAnimInfo: 1
   isSpecialMove: 0
   isAerialMove: 0
   isRegularMove: 1
@@ -45984,7 +45984,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timeSlowedParry: 0
   timeSlowedHit: 0
-  timeSlowedHitTime: 0
 --- !u!114 &2104907168
 MonoBehaviour:
   m_ObjectHideFlags: 0
