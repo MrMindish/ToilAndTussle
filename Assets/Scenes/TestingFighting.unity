@@ -186,6 +186,7 @@ MonoBehaviour:
   isLaunched: 0
   isInvincible: 0
   isShieldStunned: 0
+  comboHit: 0
   canReset: 0
   hitAnimInfo: 0
   canHitSpecial: 0
@@ -12214,6 +12215,7 @@ MonoBehaviour:
   isLaunched: 0
   isInvincible: 0
   isShieldStunned: 0
+  comboHit: 0
   canReset: 0
   hitAnimInfo: 0
   canHitSpecial: 0
@@ -12423,6 +12425,7 @@ MonoBehaviour:
   isLaunched: 0
   isInvincible: 0
   isShieldStunned: 0
+  comboHit: 0
   canReset: 0
   hitAnimInfo: 0
   canHitSpecial: 0
@@ -13311,6 +13314,7 @@ MonoBehaviour:
   isLaunched: 0
   isInvincible: 0
   isShieldStunned: 0
+  comboHit: 0
   canReset: 0
   hitAnimInfo: 0
   canHitSpecial: 0
@@ -14744,6 +14748,7 @@ MonoBehaviour:
   isLaunched: 0
   isInvincible: 0
   isShieldStunned: 0
+  comboHit: 0
   canReset: 0
   hitAnimInfo: 0
   canHitSpecial: 0
@@ -23810,6 +23815,7 @@ MonoBehaviour:
   isLaunched: 0
   isInvincible: 0
   isShieldStunned: 0
+  comboHit: 0
   canReset: 0
   hitAnimInfo: 0
   canHitSpecial: 0
@@ -24363,6 +24369,7 @@ MonoBehaviour:
   isLaunched: 0
   isInvincible: 0
   isShieldStunned: 0
+  comboHit: 0
   canReset: 0
   hitAnimInfo: 0
   canHitSpecial: 0
@@ -25143,6 +25150,7 @@ MonoBehaviour:
   isLaunched: 0
   isInvincible: 0
   isShieldStunned: 0
+  comboHit: 0
   canReset: 0
   hitAnimInfo: 0
   canHitSpecial: 0
@@ -25642,6 +25650,7 @@ MonoBehaviour:
   isLaunched: 0
   isInvincible: 0
   isShieldStunned: 0
+  comboHit: 0
   canReset: 0
   hitAnimInfo: 0
   canHitSpecial: 0
@@ -27329,6 +27338,7 @@ MonoBehaviour:
   isLaunched: 0
   isInvincible: 0
   isShieldStunned: 0
+  comboHit: 0
   canReset: 0
   hitAnimInfo: 0
   canHitSpecial: 0
@@ -27792,7 +27802,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0, b: 0, a: 1}
+  m_Color: {r: 1, g: 0, b: 0.6139345, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -28818,6 +28828,7 @@ MonoBehaviour:
   isLaunched: 0
   isInvincible: 0
   isShieldStunned: 0
+  comboHit: 0
   canReset: 0
   hitAnimInfo: 0
   canHitSpecial: 0
@@ -29629,6 +29640,7 @@ MonoBehaviour:
   isLaunched: 0
   isInvincible: 0
   isShieldStunned: 0
+  comboHit: 0
   canReset: 0
   hitAnimInfo: 0
   canHitSpecial: 0
@@ -31309,6 +31321,7 @@ MonoBehaviour:
   isLaunched: 0
   isInvincible: 0
   isShieldStunned: 0
+  comboHit: 0
   canReset: 0
   hitAnimInfo: 0
   canHitSpecial: 0
@@ -31850,7 +31863,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -32714,6 +32727,7 @@ MonoBehaviour:
   isLaunched: 0
   isInvincible: 0
   isShieldStunned: 0
+  comboHit: 0
   canReset: 0
   hitAnimInfo: 0
   canHitSpecial: 0
@@ -35935,6 +35949,7 @@ MonoBehaviour:
   isLaunched: 0
   isInvincible: 0
   isShieldStunned: 0
+  comboHit: 0
   canReset: 0
   hitAnimInfo: 0
   canHitSpecial: 0
@@ -36940,7 +36955,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0, b: 0, a: 1}
+  m_Color: {r: 1, g: 0, b: 0.86177063, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -42253,14 +42268,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.8301887, g: 0.8301887, b: 0.8301887, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 0b9f0f35ee6422d409d1d24521a7e0e4, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 8b74e26d4e048fb46a54fb30829faf0b, type: 3}
   m_Type: 3
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -42573,6 +42588,7 @@ MonoBehaviour:
   isLaunched: 0
   isInvincible: 0
   isShieldStunned: 0
+  comboHit: 0
   canReset: 0
   hitAnimInfo: 0
   canHitSpecial: 0
@@ -42710,6 +42726,7 @@ MonoBehaviour:
   isLaunched: 0
   isInvincible: 0
   isShieldStunned: 0
+  comboHit: 0
   canReset: 0
   hitAnimInfo: 0
   canHitSpecial: 0
@@ -43732,6 +43749,7 @@ MonoBehaviour:
   isLaunched: 0
   isInvincible: 0
   isShieldStunned: 0
+  comboHit: 0
   canReset: 0
   hitAnimInfo: 0
   canHitSpecial: 0
