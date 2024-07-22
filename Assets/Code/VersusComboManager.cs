@@ -13,16 +13,11 @@ namespace AB
         public Image onesComboImage;
         public Sprite[] numberSprites; // Array to store the number sprites from 0 to 9
 
-        private int currentCombo;
-        private int currentCombotens;
-
         public int updatedComboCount;
 
 
         void Start()
         {
-            currentCombo = 0;
-            currentCombotens = 0;
 
             uiManager = GetComponentInParent<UIManager>();
         }
@@ -47,11 +42,6 @@ namespace AB
                 tensComboImage.sprite = numberSprites[tens];
                 onesComboImage.sprite = numberSprites[ones];
             }
-        }
-
-        public void ResetCombo()
-        {
-            
         }
     }
 }

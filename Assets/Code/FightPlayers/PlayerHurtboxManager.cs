@@ -187,6 +187,15 @@ namespace AB
             }
         }
 
+        private void OnTriggerExit(Collider other)
+        {
+             // Get the component of type PlayerAttackingHitboxes from the collider's GameObject
+             PlayerAttackingHitboxes attackerHitboxes = other.gameObject.GetComponent<PlayerAttackingHitboxes>();
+
+            isBlockable = false;
+        }
+
+
         private void Update()
         {
             Debug.Log(hitCountDuringStun);

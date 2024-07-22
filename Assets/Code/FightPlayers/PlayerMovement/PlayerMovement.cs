@@ -129,7 +129,7 @@ namespace AB
                 jumpTimer -= Time.deltaTime;
                 isJumping = true;
             }
-            if(jumpTimer <= 0 && IsGrounded())
+            else if(jumpTimer <= 0 && IsGrounded())
             {
                 jumpTimer = 0.4f;
                 isJumping = false;
