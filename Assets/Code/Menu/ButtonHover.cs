@@ -23,10 +23,14 @@ namespace AB
         public RawImage VersusVideo;
         public RenderTexture OtherVideo;
 
+        MenuManager menuManager;
+
 
 
         void Start()
         {
+            menuManager = GetComponentInParent<MenuManager>();
+
             buttonImage = GetComponent<Image>();
             buttonImage.sprite = normalSprite;
         }
@@ -45,7 +49,7 @@ namespace AB
 
         public void EnterVersus()
         {
-            SceneManager.LoadScene("TestingFighting");
+            menuManager.stageMenu = true;
         }
 
         public void EnterStory()
@@ -60,19 +64,19 @@ namespace AB
 
         public void SelectStageHut()
         {
-
+            SceneManager.LoadScene("HutFighting");
         }
         public void SelectStageBar()
         {
-
+            SceneManager.LoadScene("BarFighting");
         }
         public void SelectStageRoof()
         {
-
+            SceneManager.LoadScene("TestingFighting");
         }
         public void BackStages()
         {
-
+            menuManager.mainMenu = true;
         }
     }
 }
