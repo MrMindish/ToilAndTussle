@@ -21,8 +21,14 @@ namespace AB
             roundManager = GetComponentInParent<RoundManager>();
 
             currentTime = startingTime;
+        }
 
-
+        private void Update()
+        {
+            if (!roundManager.roundStarted)
+            {
+                ResetTimer();
+            }
         }
 
         public IEnumerator Countdown()

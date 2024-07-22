@@ -31,6 +31,8 @@ namespace AB
         public bool isInvincible;
         public bool isShieldStunned;
 
+        public bool comboHit;
+
         public bool canReset;
 
         public int hitAnimInfo;             //1 means hitHigh, 2 means hitLow, 3 means hitLaunch. Number is recieved from AttackingHitboxes
@@ -135,6 +137,7 @@ namespace AB
                 stunDuration = attackerHitboxes.stunTime;
                 kTime = attackerHitboxes.knockbackTime;
                 isHit = true;
+                comboHit = true;
 
                 if (isStunned && isHit)
                 {
@@ -238,9 +241,10 @@ namespace AB
                 }
             }
 
-            if(isStunned && isHit)
+            if(isStunned && comboHit)
             {
                 hitCountDuringStun++;
+                comboHit = false;
             }
             else if (!isStunned)
             {
