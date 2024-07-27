@@ -34921,15 +34921,15 @@ MonoBehaviour:
   hitboxTimer: 0.01
   attackDamage: 30
   shieldDamage: 6
-  horizontalKnockback: 1.5
-  verticalKnockback: 4
+  horizontalKnockback: 3
+  verticalKnockback: 0
   horizontalAirKnockback: 1.5
   verticalAirKnockback: 4
   stunTime: 0.3
   shieldStunTime: 0.24
   knockbackTime: 0.2
   resetAerialOpponent: 0
-  attackAnimInfo: 3
+  attackAnimInfo: 1
   isSpecialMove: 0
   isAerialMove: 0
   isRegularMove: 1
@@ -43605,8 +43605,8 @@ MonoBehaviour:
   hitboxTimer: 0.01
   attackDamage: 30
   shieldDamage: 6
-  horizontalKnockback: 0
-  verticalKnockback: 4
+  horizontalKnockback: 3
+  verticalKnockback: 0
   horizontalAirKnockback: 1.5
   verticalAirKnockback: 4
   stunTime: 0.3
