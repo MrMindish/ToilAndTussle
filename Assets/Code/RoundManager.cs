@@ -19,6 +19,7 @@ namespace AB
         public bool playerReset;                        //Tells the other scripts to revert any changes made during the fight
         public bool fadeToBlack;
         public bool fadeFromBlack;
+        public bool endGameScene;
 
         public bool playerOneWins;                      //NOT USED FOR WINNING THE OVERALL SET! Simply refers to the victory of each round
         public bool playerTwoWins;                      //NOT USED FOR WINNING THE OVERALL SET! Simply refers to the victory of each round
@@ -69,6 +70,7 @@ namespace AB
             playerOneWins = false;
             playerTwoWins = false;
             roundStart = false;
+            endGameScene = false;
 
             p1WinsSet = false;
             p2WinsSet = false;
@@ -84,7 +86,7 @@ namespace AB
             }
         }
 
-        public IEnumerator OpeningRoundStart()
+        public IEnumerator OpeningRoundStart()                                                     //Activates at the start of the scene
         {
             yield return new WaitForSeconds(3.0f);
 
@@ -92,23 +94,25 @@ namespace AB
 
         }
 
-        public IEnumerator P2WinSequence()
+        public IEnumerator P2WinSequence()                                                          //Activates when Player 2 wins the round
         {
             playerTwoWins = true;
+            roundStarted = false;
             p2WinCount++;
             yield return new WaitForSeconds(2.0f); // Wait for the animation to play
             RoundEndChecker();
         }
 
-        public IEnumerator P1WinSequence()
+        public IEnumerator P1WinSequence()                                                          //Activates when Player 1 wins the round
         {
             playerOneWins = true;
+            roundStarted = false;
             p1WinCount++;
             yield return new WaitForSeconds(2.0f);
             RoundEndChecker();
         }
 
-        public IEnumerator RoundResetSequence()
+        public IEnumerator RoundResetSequence()                                                     //Starts the second round
         {
             // Fade to black
             FadeToBlack();
@@ -142,7 +146,6 @@ namespace AB
         {
             Debug.Log("Reset Scene");
             playerReset = true;
-            roundStarted = false;
             playerOneWins = false;
             playerTwoWins = false;
             materialManager.p1Light = false;
@@ -181,20 +184,29 @@ namespace AB
             if(p1WinCount >= 2 && p2WinCount <= 1)
             {
                 p1WinsSet = true;
+                StartCoroutine(EndGameScene());
             }
             else if(p2WinCount >= 2 && p1WinCount <= 1)
             {
                 p2WinsSet = true;
+                StartCoroutine(EndGameScene());
             }
             else if(p2WinCount == 2 && p1WinCount == 2)
             {
                 p1WinsSet = true;
                 p2WinsSet=true;
+                StartCoroutine(EndGameScene());
             }
             else
             {
                 StartCoroutine(RoundResetSequence());
             }
+        }
+
+        public IEnumerator EndGameScene()
+        {
+            yield return new WaitForSeconds(3.0f);
+            endGameScene = true;
         }
     }
 }

@@ -36,6 +36,11 @@ namespace AB
                 animator.ResetTrigger("FadeIn");
                 animator.ResetTrigger("FadeOut");
             }
+
+            if (roundManager.endGameScene)
+            {
+                animator.SetTrigger("EndScreen");
+            }
         }
     }
 }

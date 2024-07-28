@@ -5,6 +5,8 @@ using UnityEngine.SceneManagement;
 using System.Collections.Generic;
 using AB;
 using UnityEngine.Video;
+using Unity.PlasticSCM.Editor.WebApi;
+
 namespace AB
 {
 
@@ -74,9 +76,19 @@ namespace AB
         {
             SceneManager.LoadScene("TestingFighting");
         }
+        public void ReturnToMenu()
+        {
+            SceneManager.LoadScene("MainMenu");
+        }
         public void BackStages()
         {
             menuManager.mainMenu = true;
+        }
+
+        public void ResetGame()
+        {
+            var currentScene = SceneManager.GetActiveScene();
+            SceneManager.LoadScene(currentScene.name);
         }
     }
 }
