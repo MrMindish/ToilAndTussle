@@ -107,6 +107,43 @@ AnimationClip:
     path: P1Hurtboxes/P1HurtSN1
     classID: 1
     script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 103
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 0.16666667
+        value: 1
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 103
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 0.23333333
+        value: 0
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 103
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_IsActive
+    path: P1Hurtboxes/P1HurtSN1/SN1Proj
+    classID: 1
+    script: {fileID: 0}
   m_PPtrCurves:
   - curve:
     - time: 0
@@ -153,6 +190,19 @@ AnimationClip:
     path: 
     classID: 212
     script: {fileID: 0}
+  - curve:
+    - time: 0
+      value: {fileID: 21300000, guid: 340331791626d25499f2470d452bb2be, type: 3}
+    - time: 0.18333334
+      value: {fileID: 21300000, guid: bffecc748ee04924ea6ef410470cc945, type: 3}
+    - time: 0.2
+      value: {fileID: 21300000, guid: 1c42bd95f18934e4abb29fb2c9491491, type: 3}
+    - time: 0.21666667
+      value: {fileID: 21300000, guid: a2763ecf1c0fce547af4165d2675e4af, type: 3}
+    attribute: m_Sprite
+    path: P1Hurtboxes/P1HurtSN1/SN1Proj
+    classID: 212
+    script: {fileID: 0}
   m_SampleRate: 60
   m_WrapMode: 0
   m_Bounds:
@@ -182,7 +232,21 @@ AnimationClip:
       customType: 0
       isPPtrCurve: 0
     - serializedVersion: 2
+      path: 136336111
+      attribute: 2086281974
+      script: {fileID: 0}
+      typeID: 1
+      customType: 0
+      isPPtrCurve: 0
+    - serializedVersion: 2
       path: 0
+      attribute: 0
+      script: {fileID: 0}
+      typeID: 212
+      customType: 23
+      isPPtrCurve: 1
+    - serializedVersion: 2
+      path: 136336111
       attribute: 0
       script: {fileID: 0}
       typeID: 212
@@ -209,6 +273,10 @@ AnimationClip:
     - {fileID: 21300000, guid: 3fd9a23fee9ccbe47adf8f58099c3fb1, type: 3}
     - {fileID: 21300000, guid: 7c9c334bafdc87c4aa872c031137caa0, type: 3}
     - {fileID: 21300000, guid: 5a03dc785a13bfc43b5b9e8d81dce1da, type: 3}
+    - {fileID: 21300000, guid: 340331791626d25499f2470d452bb2be, type: 3}
+    - {fileID: 21300000, guid: bffecc748ee04924ea6ef410470cc945, type: 3}
+    - {fileID: 21300000, guid: 1c42bd95f18934e4abb29fb2c9491491, type: 3}
+    - {fileID: 21300000, guid: a2763ecf1c0fce547af4165d2675e4af, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
@@ -396,6 +464,43 @@ AnimationClip:
     attribute: m_LocalPosition.z
     path: P1Hurtboxes/P1HurtSN1
     classID: 4
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 103
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 0.16666667
+        value: 1
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 103
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 0.23333333
+        value: 0
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 103
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_IsActive
+    path: P1Hurtboxes/P1HurtSN1/SN1Proj
+    classID: 1
     script: {fileID: 0}
   m_EulerEditorCurves: []
   m_HasGenericRootTransform: 0
