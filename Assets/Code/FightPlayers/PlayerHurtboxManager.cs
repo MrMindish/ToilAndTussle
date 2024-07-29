@@ -102,37 +102,39 @@ namespace AB
 
         private void OnTriggerEnter(Collider other)
         {
-            // Get the component of type PlayerAttackingHitboxes from the collider's GameObject
             PlayerAttackingHitboxes attackerHitboxes = other.gameObject.GetComponent<PlayerAttackingHitboxes>();
+
+            // Check if attackerHitboxes is null
+            if (attackerHitboxes == null)
+            {
+                Debug.LogWarning("Collider does not have PlayerAttackingHitboxes component.");
+                return;
+            }
 
             isBlockable = attackerHitboxes.isBlockBox;
 
-            // Check if the attackerHitboxes is not null and print its attack damage
-            if (attackerHitboxes != null && isInvincible == false && !playerMovement.isBlocking && !isBlockable)
+            if (!isInvincible && !playerMovement.isBlocking && !isBlockable)
             {
-                //Pulls various information from the attacking hitboxes
-                hitAnimInfo = attackerHitboxes.attackAnimInfo;                          //The animation played upon being hit
-                damageToHealth = attackerHitboxes.attackDamage;                         //The Damage of the Attack
-                vKnockback = attackerHitboxes.verticalKnockback;                        //The Vertical (Up and Down) knockback
-                hKnockback = attackerHitboxes.horizontalKnockback;                      //The Horizontal (Left and Right) knockback
-                vAirKnockback = attackerHitboxes.verticalAirKnockback;                  //The Vertical Knockback while in the Air
-                hAirKnockback = attackerHitboxes.horizontalAirKnockback;                //The Horizontal Knockback while in the Air
+                hitAnimInfo = attackerHitboxes.attackAnimInfo;
+                damageToHealth = attackerHitboxes.attackDamage;
+                vKnockback = attackerHitboxes.verticalKnockback;
+                hKnockback = attackerHitboxes.horizontalKnockback;
+                vAirKnockback = attackerHitboxes.verticalAirKnockback;
+                hAirKnockback = attackerHitboxes.horizontalAirKnockback;
+
                 if (!playerMovement.IsGrounded())
                 {
-                    canReset = attackerHitboxes.resetAerialOpponent;                    //Checks if the attack resets airbourne fighters
+                    canReset = attackerHitboxes.resetAerialOpponent;
                 }
 
-
-                canHitRegular = attackerHitboxes.isRegularMove;                         //Checks if the attack is Light or Heavy
-                canHitSpecial = attackerHitboxes.isSpecialMove;                         //Checks if the attack is special
-                canHitAerial = attackerHitboxes.isAerialMove;                           //Checks if the attack is Aerial
-                canHitJuggle = attackerHitboxes.isJugglingMove;                         //Checks if the attack can launch fighters upwards
-                canHitLow = attackerHitboxes.isLowMove;                                 //Checks if the attack is low
-
+                canHitRegular = attackerHitboxes.isRegularMove;
+                canHitSpecial = attackerHitboxes.isSpecialMove;
+                canHitAerial = attackerHitboxes.isAerialMove;
+                canHitJuggle = attackerHitboxes.isJugglingMove;
+                canHitLow = attackerHitboxes.isLowMove;
 
                 isStunned = true;
                 isKnockback = true;
-
 
                 stunDuration = attackerHitboxes.stunTime;
                 kTime = attackerHitboxes.knockbackTime;
@@ -141,7 +143,6 @@ namespace AB
 
                 if (isStunned && isHit)
                 {
-                    // Increase hit count during stun and calculate damage reduction
                     float damageReductionFactor = Mathf.Lerp(1f, maxDamageReductionFactor, hitCountDuringStun / 1.5f);
                     damageToHealth *= damageReductionFactor;
                 }
@@ -152,9 +153,8 @@ namespace AB
                     canHitJuggle = false;
                 }
             }
-            else if (attackerHitboxes != null && isInvincible == false && playerMovement.isBlocking)
+            else if (!isInvincible && playerMovement.isBlocking)
             {
-                //Blocks the attack
                 if (attackerHitboxes.isParry && playerMovement.canParry)
                 {
                     Debug.Log("Spice");
@@ -162,20 +162,19 @@ namespace AB
                 }
                 else
                 {
-                    Debug.Log("The Bloockening");
-                    //Pulls various information from the attacking hitboxes
-                    damageToShield = attackerHitboxes.shieldDamage;                         //The Damage of the Attack
-                    vKnockback = attackerHitboxes.verticalKnockback * 0f;                   //The Vertical (Up and Down) knockback
-                    hKnockback = attackerHitboxes.horizontalKnockback * 0.9f;               //The Horizontal (Left and Right) knockback
+                    Debug.Log("The Blockening");
+                    damageToShield = attackerHitboxes.shieldDamage;
+                    vKnockback = attackerHitboxes.verticalKnockback * 0f;
+                    hKnockback = attackerHitboxes.horizontalKnockback * 0.9f;
 
-
-                    canHitRegular = attackerHitboxes.isRegularMove;                         //Checks if the attack is Light or Heavy
-                    canHitSpecial = attackerHitboxes.isSpecialMove;                         //Checks if the attack is special
-                    canHitAerial = attackerHitboxes.isAerialMove;                           //Checks if the attack is Aerial
-                    canHitJuggle = attackerHitboxes.isJugglingMove;                         //Checks if the attack can launch fighters upwards
+                    canHitRegular = attackerHitboxes.isRegularMove;
+                    canHitSpecial = attackerHitboxes.isSpecialMove;
+                    canHitAerial = attackerHitboxes.isAerialMove;
+                    canHitJuggle = attackerHitboxes.isJugglingMove;
 
                     isShieldStunned = true;
                     isKnockback = true;
+
                     if (isShieldStunned)
                     {
                         float damageReductionFactor = Mathf.Lerp(1f, maxDamageReductionFactor, hitCountDuringStun / 1f);
@@ -186,14 +185,19 @@ namespace AB
                     kTime = attackerHitboxes.knockbackTime;
                     isShieldHit = true;
                 }
-
             }
         }
 
         private void OnTriggerExit(Collider other)
         {
-             // Get the component of type PlayerAttackingHitboxes from the collider's GameObject
-             PlayerAttackingHitboxes attackerHitboxes = other.gameObject.GetComponent<PlayerAttackingHitboxes>();
+            // No need to check if attackerHitboxes is null in OnTriggerExit, but you can keep it for consistency
+            PlayerAttackingHitboxes attackerHitboxes = other.gameObject.GetComponent<PlayerAttackingHitboxes>();
+
+            if (attackerHitboxes == null)
+            {
+                Debug.LogWarning("Collider exiting does not have PlayerAttackingHitboxes component.");
+                return;
+            }
 
             isBlockable = false;
         }

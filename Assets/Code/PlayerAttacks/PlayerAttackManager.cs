@@ -72,6 +72,11 @@ namespace AB
             isAttacking = false;
             isAirAttacking = false;
             isWalking = false;
+
+            // Debug logs to ensure proper initialization
+            if (animator == null) Debug.LogError("Animator is not assigned!");
+            if (hurtboxManager == null) Debug.LogError("HurtboxManager is not assigned!");
+            if (playerAttackingHitboxes == null) Debug.LogError("PlayerAttackingHitboxes is not assigned!");
         }
 
         private void Update()
@@ -566,14 +571,36 @@ namespace AB
 
         public void CanParry()
         {
+            if (playerAttackingHitboxes == null)
+            {
+                Debug.LogError("playerAttackingHitboxes is null in CanParry");
+                return;
+            }
             playerAttackingHitboxes.isParry = true;
         }
+
         public void CantParry()
         {
+            if (playerAttackingHitboxes == null)
+            {
+                Debug.LogError("playerAttackingHitboxes is null in CantParry");
+                return;
+            }
             playerAttackingHitboxes.isParry = false;
         }
+
         public void EndParry()
         {
+            if (hurtboxManager == null)
+            {
+                Debug.LogError("hurtboxManager is null in EndParry");
+                return;
+            }
+            if (animator == null)
+            {
+                Debug.LogError("animator is null in EndParry");
+                return;
+            }
             hurtboxManager.parried = false;
             animator.SetBool("isParried", false);
         }

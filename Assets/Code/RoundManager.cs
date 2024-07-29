@@ -1,6 +1,5 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace AB
@@ -16,52 +15,76 @@ namespace AB
         VersusTimer versusTimer;
         MaterialManager materialManager;
 
-        public bool playerReset;                        //Tells the other scripts to revert any changes made during the fight
+        public bool playerReset;
         public bool fadeToBlack;
         public bool fadeFromBlack;
         public bool endGameScene;
 
-        public bool playerOneWins;                      //NOT USED FOR WINNING THE OVERALL SET! Simply refers to the victory of each round
-        public bool playerTwoWins;                      //NOT USED FOR WINNING THE OVERALL SET! Simply refers to the victory of each round
+        public bool playerOneWins;
+        public bool playerTwoWins;
 
-        public bool p1WinsSet;                          //USED FOR ENDING THE GAME AFTER PLAYER WINS ENOUGH ROUNDS
-        public bool p2WinsSet;                          //USED FOR ENDING THE GAME AFTER PLAYER WINS ENOUGH ROUNDS
+        public bool p1WinsSet;
+        public bool p2WinsSet;
 
         public int roundCount;
         public int p1WinCount;
         public int p2WinCount;
 
-        public GameObject player1;  // Reference to the player GameObject
+        public GameObject player1;
         public GameObject player2;
-        public Transform player1StartPoint;  // Reference to the Transform of the start point
+        public Transform player1StartPoint;
         public Transform player2StartPoint;
 
-        public bool roundStart; //Used to give the players a few seconds to breathe between rounds
+        public bool roundStart;
         public bool roundStarted;
 
         public static RoundManager instance;
+
         public enum GameState
         {
             Round1,
             Round2,
             Round3,
-            // Add more rounds as needed
             GameOver
         }
 
         private void Awake()
         {
-            player1Health = GameObject.FindGameObjectWithTag("Player1").GetComponentInChildren<PlayerHealth>();
-            player2Health = GameObject.FindGameObjectWithTag("Player2").GetComponentInChildren<PlayerHealth>();
+            instance = this;
 
-            attackManager1 = GameObject.FindGameObjectWithTag("Player1").GetComponentInChildren<PlayerAttackManager>();
-            attackManager2 = GameObject.FindGameObjectWithTag("Player2").GetComponentInChildren<PlayerAttackManager>();
+            if (player1 != null)
+            {
+                player1Health = player1.GetComponentInChildren<PlayerHealth>();
+                attackManager1 = player1.GetComponentInChildren<PlayerAttackManager>();
+            }
+            else
+            {
+                Debug.LogError("Player1 GameObject is not assigned in the Inspector.");
+            }
+
+            if (player2 != null)
+            {
+                player2Health = player2.GetComponentInChildren<PlayerHealth>();
+                attackManager2 = player2.GetComponentInChildren<PlayerAttackManager>();
+            }
+            else
+            {
+                Debug.LogError("Player2 GameObject is not assigned in the Inspector.");
+            }
 
             versusTimer = GetComponentInChildren<VersusTimer>();
-            materialManager = GetComponent<MaterialManager>();
+            if (versusTimer == null)
+            {
+                Debug.LogError("VersusTimer component is missing.");
+            }
 
-            instance = this;
+            materialManager = GetComponent<MaterialManager>();
+            if (materialManager == null)
+            {
+                Debug.LogError("MaterialManager component is missing.");
+            }
         }
+
         private void Start()
         {
             playerReset = false;
@@ -75,35 +98,42 @@ namespace AB
             p1WinsSet = false;
             p2WinsSet = false;
 
+            if (player1 == null || player2 == null || player1StartPoint == null || player2StartPoint == null)
+            {
+                Debug.LogError("Player GameObjects or start points are not assigned in the Inspector.");
+            }
+
             StartCoroutine(OpeningRoundStart());
         }
+
         private void Update()
         {
-            if (roundStart)
+            if (roundStart && !roundStarted)
             {
                 roundStarted = true;
-                StartCoroutine(versusTimer.Countdown());
+                if (versusTimer != null)
+                {
+                    StartCoroutine(versusTimer.Countdown());
+                }
             }
         }
 
-        public IEnumerator OpeningRoundStart()                                                     //Activates at the start of the scene
+        public IEnumerator OpeningRoundStart()
         {
             yield return new WaitForSeconds(3.0f);
-
             roundStart = true;
-
         }
 
-        public IEnumerator P2WinSequence()                                                          //Activates when Player 2 wins the round
+        public IEnumerator P2WinSequence()
         {
             playerTwoWins = true;
             roundStarted = false;
             p2WinCount++;
-            yield return new WaitForSeconds(2.0f); // Wait for the animation to play
+            yield return new WaitForSeconds(2.0f);
             RoundEndChecker();
         }
 
-        public IEnumerator P1WinSequence()                                                          //Activates when Player 1 wins the round
+        public IEnumerator P1WinSequence()
         {
             playerOneWins = true;
             roundStarted = false;
@@ -112,30 +142,20 @@ namespace AB
             RoundEndChecker();
         }
 
-        public IEnumerator RoundResetSequence()                                                     //Starts the second round
+        public IEnumerator RoundResetSequence()
         {
-            // Fade to black
             FadeToBlack();
-
-            // Wait a moment
             yield return new WaitForSeconds(1.0f);
-
-            // Reset the scene for the next round
-            Debug.Log("Reset Round Enumerator");
             ResetRound();
-
             yield return new WaitForSeconds(1.0f);
-            // Fade back in
             FadeFromBlack();
-
             yield return new WaitForSeconds(0.5f);
-
             fadeFromBlack = false;
-
             yield return new WaitForSeconds(3.0f);
             StartCoroutine(OpeningRoundStart());
             roundStarted = true;
         }
+
         private void FadeToBlack()
         {
             Debug.Log("Fade to Black");
@@ -148,15 +168,19 @@ namespace AB
             playerReset = true;
             playerOneWins = false;
             playerTwoWins = false;
-            materialManager.p1Light = false;
-            materialManager.p2Light = false;
-            player1Health.HealthReset();
-            player2Health.HealthReset();
-            attackManager1.RoundEndAnimReset();
-            attackManager2.RoundEndAnimReset();
-            ResetPlayerPosition();
-            versusTimer.ResetTimer();
 
+            if (materialManager != null)
+            {
+                materialManager.p1Light = false;
+                materialManager.p2Light = false;
+            }
+
+            if (player1Health != null) player1Health.HealthReset();
+            if (player2Health != null) player2Health.HealthReset();
+            if (attackManager1 != null) attackManager1.RoundEndAnimReset();
+            if (attackManager2 != null) attackManager2.RoundEndAnimReset();
+            ResetPlayerPosition();
+            if (versusTimer != null) versusTimer.ResetTimer();
         }
 
         private void FadeFromBlack()
@@ -167,10 +191,9 @@ namespace AB
             fadeToBlack = false;
         }
 
-
         public void ResetPlayerPosition()
         {
-            if ((player1 != null || player2 != null) && playerReset)
+            if (playerReset && player1 != null && player2 != null && player1StartPoint != null && player2StartPoint != null)
             {
                 player1.transform.position = player1StartPoint.position;
                 player2.transform.position = player2StartPoint.position;
@@ -181,20 +204,20 @@ namespace AB
         {
             roundCount = p1WinCount + p2WinCount;
 
-            if(p1WinCount >= 2 && p2WinCount <= 1)
+            if (p1WinCount >= 2 && p2WinCount <= 1)
             {
                 p1WinsSet = true;
                 StartCoroutine(EndGameScene());
             }
-            else if(p2WinCount >= 2 && p1WinCount <= 1)
+            else if (p2WinCount >= 2 && p1WinCount <= 1)
             {
                 p2WinsSet = true;
                 StartCoroutine(EndGameScene());
             }
-            else if(p2WinCount == 2 && p1WinCount == 2)
+            else if (p2WinCount == 2 && p1WinCount == 2)
             {
                 p1WinsSet = true;
-                p2WinsSet=true;
+                p2WinsSet = true;
                 StartCoroutine(EndGameScene());
             }
             else
