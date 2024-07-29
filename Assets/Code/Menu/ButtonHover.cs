@@ -69,7 +69,7 @@ namespace AB
         }
         public void SelectStageBar()
         {
-            SceneManager.LoadScene("BarFighting");
+            SceneManager.LoadScene("PubFighting");
         }
         public void SelectStageRoof()
         {
