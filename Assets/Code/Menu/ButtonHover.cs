@@ -60,7 +60,7 @@ namespace AB
 
         public void EnterMore()
         {
-            Debug.Log("More Selected");
+            menuManager.controllerMenu = true;
         }
 
         public void SelectStageHut()

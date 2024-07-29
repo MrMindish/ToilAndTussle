@@ -8,6 +8,7 @@ namespace AB
     {
         public bool mainMenu;
         public bool stageMenu;
+        public bool controllerMenu;
 
         private Animator animator;
 
@@ -15,6 +16,7 @@ namespace AB
         {
             mainMenu = false;
             stageMenu = false;
+            controllerMenu = false;
             animator = GetComponent<Animator>();
         }
 
@@ -24,11 +26,17 @@ namespace AB
             {
                 animator.SetTrigger("HomeMenu");
                 mainMenu = false;
+                controllerMenu=false;
             }
             else if(stageMenu == true)
             {
                 animator.SetTrigger("StageMenu");
                 stageMenu = false;
+            }
+            else if(controllerMenu == true)
+            {
+                animator.SetTrigger("ControllerMenu");
+                controllerMenu = false;
             }
         }
     }
