@@ -88,6 +88,11 @@ namespace AB
                 }
             }
         }
+        public void ResetShield()
+        {
+            shieldHealth = 100;
+            shieldBreak = false;
+        }
 
 
         public void UpdateShieldUI()

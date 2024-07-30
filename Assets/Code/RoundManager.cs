@@ -9,6 +9,9 @@ namespace AB
         PlayerHealth player1Health;
         PlayerHealth player2Health;
 
+        PlayerShield player1Shield;
+        PlayerShield player2Shield;
+
         PlayerAttackManager attackManager1;
         PlayerAttackManager attackManager2;
 
@@ -55,6 +58,7 @@ namespace AB
             if (player1 != null)
             {
                 player1Health = player1.GetComponentInChildren<PlayerHealth>();
+                player1Shield = player1.GetComponentInChildren<PlayerShield>();
                 attackManager1 = player1.GetComponentInChildren<PlayerAttackManager>();
             }
             else
@@ -65,6 +69,7 @@ namespace AB
             if (player2 != null)
             {
                 player2Health = player2.GetComponentInChildren<PlayerHealth>();
+                player2Shield = player2.GetComponentInChildren<PlayerShield>();
                 attackManager2 = player2.GetComponentInChildren<PlayerAttackManager>();
             }
             else
@@ -175,8 +180,11 @@ namespace AB
                 materialManager.p2Light = false;
             }
 
+
             if (player1Health != null) player1Health.HealthReset();
             if (player2Health != null) player2Health.HealthReset();
+            if (player1Shield != null) player1Shield.ResetShield();
+            if(player2Shield != null) player2Shield.ResetShield();
             if (attackManager1 != null) attackManager1.RoundEndAnimReset();
             if (attackManager2 != null) attackManager2.RoundEndAnimReset();
             ResetPlayerPosition();

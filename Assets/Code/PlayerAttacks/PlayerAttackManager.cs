@@ -169,6 +169,7 @@ namespace AB
                 //Performs the Shield Break and Stun Animation
                 if (playerShield.shieldBreak)
                 {
+                    hurtboxManager.isStunned = false;
                     animator.SetBool("shieldBreakStun", true);
                 }
                 else if (!playerShield.shieldBreak)
@@ -490,6 +491,8 @@ namespace AB
             }
             else if(playerHealth.p1Dead || playerHealth.p2Dead)
             {
+                animator.ResetTrigger("JumpEnd");
+                animator.ResetTrigger("actionPerformed");
                 if(playerHealth.p2Dead && gameObject.tag == "Player1")
                 {
                     Debug.Log("P1 Wins");
@@ -671,6 +674,15 @@ namespace AB
                 animator.ResetTrigger("recoverNorm");
                 animator.ResetTrigger("recoverBack");
                 animator.SetTrigger("knockedDown");
+            }
+            else if (hurtboxManager.canReset)
+            {
+                animator.ResetTrigger("knockedDown");
+                animator.SetTrigger("isReset");
+            }
+            else if (!hurtboxManager.canReset)
+            {
+                animator.ResetTrigger("isReset");
             }
         }
 

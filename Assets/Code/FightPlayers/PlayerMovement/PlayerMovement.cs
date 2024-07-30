@@ -52,10 +52,6 @@ namespace AB
         private float dashingTime = 0.2f;
         private float dashingCooldown = 0.05f;
 
-        bool movePressedOnce = false;
-        float lastMovePressTime = 1f;
-        float doublePressTimeThreshold = 0.6f;
-
 
         public bool isBlocking;
         public bool canParry;
@@ -132,6 +128,10 @@ namespace AB
             else if(jumpTimer <= 0 && IsGrounded())
             {
                 jumpTimer = 0.4f;
+                isJumping = false;
+            }
+            else if (IsGrounded())
+            {
                 isJumping = false;
             }
 
