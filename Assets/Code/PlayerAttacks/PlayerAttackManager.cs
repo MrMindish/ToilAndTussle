@@ -191,14 +191,14 @@ namespace AB
                     //On the Left Side of the Opponent
                     animator.SetTrigger("isLFAttacking");
                     isAttacking = true;
-                    attackCooldown = 0.32f;
+                    attackCooldown = 0.4f;
                 }
                 else if (playerInput.actions["Light Attack"].WasPressedThisFrame() && playerMovement.IsGrounded() && transform.position.x < playerMovement.playerTwoX.transform.position.x && isAttacking == false && hurtboxManager.isStunned == false && hurtboxManager.isShieldStunned == false && isRightPressed && !isCrouching && !playerMovement.isDashing )
                 {
                     //On the Right Side of the Opponent
                     animator.SetTrigger("isLFAttacking");
                     isAttacking = true;
-                    attackCooldown = 0.32f;
+                    attackCooldown = 0.4f;
                 }
 
                 //Performs the Light Backwards Attack       LB
@@ -305,13 +305,13 @@ namespace AB
                 {
                     animator.SetTrigger("isSN1Attacking");
                     isAttacking = true;
-                    attackCooldown = 0.4f;
+                    attackCooldown = 0.6f;
                 }
                 else if (playerInput.actions["Special Attack"].WasPressedThisFrame() && playerMovement.IsGrounded() && isAttacking == true && hurtboxManager.isStunned == false && isNothingPressed && hurtboxManager.isShieldStunned == false && isCancel && !playerMovement.isDashing)
                 {
                     animator.SetTrigger("isSN1Attacking");
                     isAttacking = true;
-                    attackCooldown = 0.4f;
+                    attackCooldown = 0.6f;
                     animator.ResetTrigger("isCrouchingEnd");
                 }
 
@@ -321,14 +321,14 @@ namespace AB
                     //On the Left Side of the opponent
                     animator.SetTrigger("isSF1Attacking");
                     isAttacking = true;
-                    attackCooldown = 0.7f;
+                    attackCooldown = 0.8f;
                 }
                 else if (playerInput.actions["Special Attack"].WasPressedThisFrame() && playerMovement.IsGrounded() && transform.position.x > playerMovement.playerTwoX.transform.position.x && isAttacking == true && hurtboxManager.isStunned == false && hurtboxManager.isShieldStunned == false && isLeftPressed && isCancel && !playerMovement.isDashing)
                 {
                     //On Left Side + Cancelled the move
                     animator.SetTrigger("isSF1Attacking");
                     isAttacking = true;
-                    attackCooldown = 0.7f;
+                    attackCooldown = 0.8f;
                     animator.ResetTrigger("isCrouchingEnd");
                 }
                 else if (playerInput.actions["Special Attack"].WasPressedThisFrame() && playerMovement.IsGrounded() && transform.position.x < playerMovement.playerTwoX.transform.position.x && isAttacking == false && hurtboxManager.isStunned == false && hurtboxManager.isShieldStunned == false && isRightPressed && !playerMovement.isDashing)
