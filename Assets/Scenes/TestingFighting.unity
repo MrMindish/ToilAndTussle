@@ -10917,8 +10917,8 @@ MonoBehaviour:
   verticalKnockback: 0
   horizontalAirKnockback: 2
   verticalAirKnockback: -1
-  stunTime: 0.35
-  shieldStunTime: 5
+  stunTime: 0.4
+  shieldStunTime: 0.25
   knockbackTime: 0.2
   resetAerialOpponent: 0
   attackAnimInfo: 1
@@ -24110,7 +24110,7 @@ MonoBehaviour:
   verticalKnockback: 0
   horizontalAirKnockback: 2
   verticalAirKnockback: -1
-  stunTime: 0.35
+  stunTime: 0.4
   shieldStunTime: 0.25
   knockbackTime: 0.2
   resetAerialOpponent: 0
@@ -30522,8 +30522,8 @@ MonoBehaviour:
   verticalKnockback: 0.4
   horizontalAirKnockback: 1
   verticalAirKnockback: -20
-  stunTime: 0.8
-  shieldStunTime: 0.3
+  stunTime: 0.6
+  shieldStunTime: 0.35
   knockbackTime: 1
   resetAerialOpponent: 0
   attackAnimInfo: 1

@@ -491,7 +491,7 @@ namespace AB
             }
             else if(playerHealth.p1Dead || playerHealth.p2Dead)
             {
-                animator.ResetTrigger("JumpEnd");
+                animator.ResetTrigger("jumpEnd");
                 animator.ResetTrigger("actionPerformed");
                 if(playerHealth.p2Dead && gameObject.tag == "Player1")
                 {
