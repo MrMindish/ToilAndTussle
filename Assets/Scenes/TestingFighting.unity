@@ -45211,7 +45211,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lightsMaterial: {fileID: 2100000, guid: 72b9ad7b08a12cf47a3980bfce05f16c, type: 2}
-  particleMaterial: {fileID: 2100000, guid: e327310c257775b4cb5d2139bb766f62, type: 2}
+  particleMaterial: {fileID: 2100000, guid: 8b6df3a39cf2ef04c94646459a76bbcb, type: 2}
   p1Light: 0
   p2Light: 0
 --- !u!114 &2013970019
