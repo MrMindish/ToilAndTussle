@@ -83,6 +83,7 @@ namespace AB
 
         void Update()
         {
+
             if ((!playerHealth.p1Dead && !playerHealth.p2Dead) && roundManager.roundStarted)
             {
                 if (gameObject.tag == "Player1")
@@ -383,11 +384,11 @@ namespace AB
         private void BlockingRange()
         {
             //Controls the Block Function for Player 1
-            if (gameObject.tag == "Player1" && IsGrounded() && transform.position.x > playerTwoX.transform.position.x && playerAttackManager.isAttacking == false && !hurtboxManager.isStunned && hurtboxManager.isBlockable && Input.GetKey(KeyCode.RightArrow))
+            if (gameObject.tag == "Player1" && IsGrounded() && transform.position.x > playerTwoX.transform.position.x && playerAttackManager.isAttacking == false && !hurtboxManager.isStunned && hurtboxManager.isBlockable && (Input.GetKey(KeyCode.RightArrow) || horizontal.x > 0))
             {
                 isBlocking = true;
             }
-            else if (gameObject.tag == "Player1" && IsGrounded() && transform.position.x < playerTwoX.transform.position.x && playerAttackManager.isAttacking == false && !hurtboxManager.isStunned && hurtboxManager.isBlockable && Input.GetKey(KeyCode.LeftArrow))
+            else if (gameObject.tag == "Player1" && IsGrounded() && transform.position.x < playerTwoX.transform.position.x && playerAttackManager.isAttacking == false && !hurtboxManager.isStunned && hurtboxManager.isBlockable && (Input.GetKey(KeyCode.LeftArrow) || horizontal.x < 0))
             {
                 isBlocking = true;
             }
@@ -397,11 +398,11 @@ namespace AB
             }
 
             //Controls the Parry for Player 1
-            if (gameObject.tag == "Player1" && IsGrounded() && transform.position.x > playerTwoX.transform.position.x && playerAttackManager.isAttacking == false && !hurtboxManager.isStunned && hurtboxManager.isBlockable && Input.GetKeyDown(KeyCode.RightArrow))
+            if (gameObject.tag == "Player1" && IsGrounded() && transform.position.x > playerTwoX.transform.position.x && playerAttackManager.isAttacking == false && !hurtboxManager.isStunned && hurtboxManager.isBlockable && (Input.GetKeyDown(KeyCode.RightArrow) || (horizontal.x > 0 && playerInput.actions["Parry"].WasPressedThisFrame())))
             {
                 canParry = true;
             }
-            else if (gameObject.tag == "Player1" && IsGrounded() && transform.position.x < playerTwoX.transform.position.x && playerAttackManager.isAttacking == false && !hurtboxManager.isStunned && hurtboxManager.isBlockable && Input.GetKeyDown(KeyCode.LeftArrow))
+            else if (gameObject.tag == "Player1" && IsGrounded() && transform.position.x < playerTwoX.transform.position.x && playerAttackManager.isAttacking == false && !hurtboxManager.isStunned && hurtboxManager.isBlockable && (Input.GetKeyDown(KeyCode.LeftArrow) || (horizontal.x < 0 && playerInput.actions["Parry"].WasPressedThisFrame())))
             {
                 canParry = true;
             }
@@ -411,21 +412,21 @@ namespace AB
             }
 
             //Controls the Block function for Player 2
-            if (gameObject.tag == "Player2" && IsGrounded() && transform.position.x > playerOneX.transform.position.x && playerAttackManager.isAttacking == false && !hurtboxManager.isStunned && hurtboxManager.isBlockable && Input.GetKey(KeyCode.D))
+            if (gameObject.tag == "Player2" && IsGrounded() && transform.position.x > playerOneX.transform.position.x && playerAttackManager.isAttacking == false && !hurtboxManager.isStunned && hurtboxManager.isBlockable && (Input.GetKey(KeyCode.D) || horizontal.x > 0))
             {
                 isBlocking = true;
             }
-            else if (gameObject.tag == "Player2" && IsGrounded() && transform.position.x < playerOneX.transform.position.x && playerAttackManager.isAttacking == false && !hurtboxManager.isStunned && hurtboxManager.isBlockable && Input.GetKey(KeyCode.A))
+            else if (gameObject.tag == "Player2" && IsGrounded() && transform.position.x < playerOneX.transform.position.x && playerAttackManager.isAttacking == false && !hurtboxManager.isStunned && hurtboxManager.isBlockable && (Input.GetKey(KeyCode.A) || horizontal.x < 0))
             {
                 isBlocking = true;
             }
 
             //Controls the parry for Player 2
-            if (gameObject.tag == "Player2" && IsGrounded() && transform.position.x > playerOneX.transform.position.x && playerAttackManager.isAttacking == false && !hurtboxManager.isStunned && hurtboxManager.isBlockable && Input.GetKeyDown(KeyCode.D))
+            if (gameObject.tag == "Player2" && IsGrounded() && transform.position.x > playerOneX.transform.position.x && playerAttackManager.isAttacking == false && !hurtboxManager.isStunned && hurtboxManager.isBlockable && (Input.GetKeyDown(KeyCode.D) || (horizontal.x > 0 && playerInput.actions["Parry"].WasPressedThisFrame())))
             {
                 canParry = true;
             }
-            else if (gameObject.tag == "Player2" && IsGrounded() && transform.position.x < playerOneX.transform.position.x && playerAttackManager.isAttacking == false && !hurtboxManager.isStunned && hurtboxManager.isBlockable && Input.GetKeyDown(KeyCode.A))
+            else if (gameObject.tag == "Player2" && IsGrounded() && transform.position.x < playerOneX.transform.position.x && playerAttackManager.isAttacking == false && !hurtboxManager.isStunned && hurtboxManager.isBlockable && (Input.GetKeyDown(KeyCode.A) || (horizontal.x < 0 && playerInput.actions["Parry"].WasPressedThisFrame())))
             {
                 canParry = true;
             }

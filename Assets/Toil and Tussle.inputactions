@@ -76,6 +76,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "Parry",
+                    "type": "Button",
+                    "id": "916e5daf-1849-4f76-a2cc-62ee20d2895c",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -320,6 +329,17 @@
                     "action": "Dash",
                     "isComposite": false,
                     "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "b464e498-ff64-491e-be8a-bf56a67e510a",
+                    "path": "<Gamepad>/leftStick",
+                    "interactions": "Tap",
+                    "processors": "StickDeadzone",
+                    "groups": "Gamepad",
+                    "action": "Parry",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         },
@@ -394,6 +414,15 @@
                     "name": "Dash",
                     "type": "Button",
                     "id": "b316b464-6459-4246-95c8-22a01573bdac",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Parry",
+                    "type": "Button",
+                    "id": "bae4fd03-ef72-4adb-bb7a-ecd968919a9b",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -640,6 +669,17 @@
                     "processors": "AxisDeadzone",
                     "groups": "Gamepad",
                     "action": "Dash",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "29fa1a46-511f-4ac9-9c0a-55128dceae79",
+                    "path": "<Gamepad>/leftStick",
+                    "interactions": "Tap",
+                    "processors": "StickDeadzone",
+                    "groups": "Gamepad",
+                    "action": "Parry",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
