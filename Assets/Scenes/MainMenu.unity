@@ -289,7 +289,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &237545168
 Transform:
   m_ObjectHideFlags: 0
@@ -448,10 +448,10 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_NormalColor: {r: 1, g: 0, b: 0, a: 1}
+    m_HighlightedColor: {r: 1, g: 0, b: 0, a: 1}
+    m_PressedColor: {r: 1, g: 0, b: 0, a: 1}
+    m_SelectedColor: {r: 1, g: 0, b: 0, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
@@ -466,7 +466,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 471315443}
   m_OnClick:
     m_PersistentCalls:
@@ -534,8 +534,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   normalSprite: {fileID: 21300000, guid: 44b7bae1d0c0f004f9128cb692db8e57, type: 3}
-  hoverSprite: {fileID: 21300000, guid: 2c45fb8f29598f54ba5962ae39eb8d88, type: 3}
-  pressedSprite: {fileID: 21300000, guid: 7b66478972f0c2c4eb60ae52c87c009b, type: 3}
+  hoverSprite: {fileID: 21300000, guid: 44b7bae1d0c0f004f9128cb692db8e57, type: 3}
+  pressedSprite: {fileID: 21300000, guid: 44b7bae1d0c0f004f9128cb692db8e57, type: 3}
   VersusVideo: {fileID: 862350609}
   OtherVideo: {fileID: 8400000, guid: 4e9901c5a1fb74042a30f7339d60baf9, type: 2}
 --- !u!1 &490349702
@@ -2484,7 +2484,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &2090920439
 Transform:
   m_ObjectHideFlags: 0
